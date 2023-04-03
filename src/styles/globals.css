@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.category-items {
+  @apply h-full hover:bg-GreenLight-30 flex justify-center items-center border-[1px] rounded-[2rem] hover:text-[white];
+}
