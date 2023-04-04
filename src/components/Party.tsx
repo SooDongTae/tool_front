@@ -25,7 +25,7 @@ export const Party = ({
           {Reserving}
         </div>
         <div className="flex justify-between items-center mt-[1rem]">
-          <div className="text-GrayScale-20 text-[.75rem]">{endDate}</div>
+          <div className="text-GrayScale-20 text-[.75rem]">~{endDate}</div>
           <div className="font-bold text-xl">{price}원</div>
         </div>
       </div>
