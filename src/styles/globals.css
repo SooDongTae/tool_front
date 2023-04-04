@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.category-items {
-  @apply h-full hover:bg-GreenLight-30 flex justify-center items-center border-[1px] rounded-[2rem] hover:text-[white];
+.button-layout {
+  @apply h-full flex justify-center items-center rounded-[2rem];
+}
+
+.text-omit {
+  @apply overflow-hidden text-ellipsis whitespace-nowrap;
 }
