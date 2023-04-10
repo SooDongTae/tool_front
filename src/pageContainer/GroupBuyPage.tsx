@@ -42,7 +42,7 @@ const GroupBuyPage = () => {
             <div className="w-[10rem] h-[10rem] border-GrayScale-30 border-[2px] rounded-2xl"></div>
             <div className="w-[10rem] h-[10rem] border-GrayScale-30 border-[2px] rounded-2xl"></div>
           </div>
-          <hr className="border-[1.5px] w-full"></hr>
+          <hr className="border-[1px] w-full"></hr>
           {/* <Image src={""} alt="" /> */}
           <div className="w-full h-[70vh] bg-BlueLight-20"></div>
           <div className="w-[20rem] h-[5rem] bg-GreenLight-30 text-white rounded-3xl text-center text-4xl font-semibold items-center justify-center flex">
