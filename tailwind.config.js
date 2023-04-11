@@ -6,7 +6,30 @@ module.exports = {
     "./src/components/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        InputHover: {
+          from: {},
+          to: {
+            "font-size": "1.1rem",
+            color: "#20C997",
+            transform: "translate(8px,-33px)",
+          },
+        },
+        TextAreaHover: {
+          from: {},
+          to: {
+            "font-size": "1.1rem",
+            color: "#20C997",
+            transform: "translate(8px,-14px)",
+          },
+        },
+      },
+      animation: {
+        InputHover: "InputHover .3s ease-in-out forwards",
+        TextAreaHover : "TextAreaHover .3s ease-in-out forwards"
+      },
+    },
     colors: {
       "BlueLight-20": "#E1F5FE",
       "GreenLight-30": "#20C997",
@@ -16,5 +39,6 @@ module.exports = {
       "white": "#fff",
     },
   },
+
   plugins: [],
 };
