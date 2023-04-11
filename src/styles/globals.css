@@ -9,3 +9,19 @@
 .text-omit {
   @apply overflow-hidden text-ellipsis whitespace-nowrap;
 }
+
+.input-box {
+  @apply flex items-center mt-[1.5rem];
+}
+
+.form-input {
+  @apply  pl-2 focus:outline-none bg-GrayScale-10 rounded-[10px] text-[1.25rem] font-bold;
+}
+
+.input-text {
+  @apply peer-focus:animate-InputHover absolute pl-2 text-[1.2rem] text-GrayScale-30 font-bold;
+}
+
+.form-row {
+  @apply flex flex-row justify-between;
+}
