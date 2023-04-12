@@ -81,10 +81,10 @@ export const CreatePage = () => {
             제목
           </div>
         </div>
-        <div className="form-row w-[74rem]">
+        <div className="form-row w-[49rem]">
           <div className="input-box h-[4rem]">
             <input
-              className=" form-input peer w-[49rem] h-[4rem]"
+              className=" form-input peer w-[24rem] h-[4rem]"
               onChange={(e) => setForm({ ...form, account: e.target.value })}
             />
             <div
