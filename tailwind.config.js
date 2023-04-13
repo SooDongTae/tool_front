@@ -13,7 +13,7 @@ module.exports = {
           to: {
             "font-size": "1.1rem",
             color: "#20C997",
-            transform: "translate(8px,-33px)",
+            transform: "translate(0px,-33px)",
           },
         },
         TextAreaHover: {
@@ -21,7 +21,7 @@ module.exports = {
           to: {
             "font-size": "1.1rem",
             color: "#20C997",
-            transform: "translate(8px,-27px)",
+            transform: "translate(0px,-27px)",
           },
         },
       },
