@@ -1,6 +1,6 @@
 import { FormSelectInput } from "@/components/FormSelectInput";
 import { FormTextInput } from "@/components/FormTextInput";
-import { useReducer, useState } from "react";
+import { useReducer, useRef, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 
 export interface FormType {
@@ -16,7 +16,7 @@ export interface FormType {
 }
 
 const notify = (msg: string) => toast.error(msg);
-function reducer(state: any, action: any): any {
+const reducer = (state: any, action: any): any => {
   switch (action.type) {
     case "Category":
       return { ...state, category: action.data };
@@ -48,9 +48,22 @@ function reducer(state: any, action: any): any {
     default:
       throw new Error("Unhandled action");
   }
-}
+};
 
 export const CreatePage = () => {
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [images, setImages] = useState<string[]>([]);
+  const handleClick = () => {
+    fileRef?.current?.click();
+  };
+  const handleChange = (e: React.ChangeEvent) => {
+    const targetFiles = (e.target as HTMLInputElement).files as FileList;
+    const targetFilesArray = Array.from(targetFiles);
+    const selectedFiles: string[] = targetFilesArray.map((file) => {
+      return URL.createObjectURL(file);
+    });
+    setImages((prev) => prev.concat(selectedFiles));
+  };
   const [form, setForm] = useReducer(reducer, {
     category: "",
     people: "",
@@ -61,7 +74,9 @@ export const CreatePage = () => {
     fee: "",
     desc: "",
   });
+
   console.log(form);
+  console.log(images);
   return (
     <div className="w-screen flex items-center pt-[10rem] justify-center">
       <div className="w-[75rem]">
@@ -69,64 +84,81 @@ export const CreatePage = () => {
           <span className="text-GreenLight-30">공동구매 파티</span>
           <span> 등록</span>
         </div>
-        <FormTextInput
-          type="Title"
-          setData={setForm}
-          inputName="제목"
-          width="49rem"
-          title={form.title}
-        />
-        <div className="form-row w-[49rem]">
-          <FormSelectInput
-            type="Category"
-            setData={setForm}
-            title={form.category}
-            inputName="카테고리"
-            options={["", "카테1", "카테2", "카테3"]}
-          />
-          <FormTextInput
-            type="People"
-            setData={setForm}
-            title={form.people}
-            inputName="참가 인원수"
-            width="24rem"
-          />
-        </div>
-        <div className="form-row w-[49rem]">
-          <FormTextInput
-            type="Account"
-            title={form.account}
-            setData={setForm}
-            width="24rem"
-            inputName="계좌번호"
-          />
-          <FormSelectInput
-            title={form.bank}
-            type="Bank"
-            setData={setForm}
-            inputName="은행"
-            options={["", "신한", "국민", "우리", "토스"]}
-          />
-        </div>
-        <div className="form-row w-[49rem]">
-          <FormTextInput
-            type="Fee"
-            title={form.fee}
-            setData={setForm}
-            width="24rem"
-            inputName="참여 금액"
-          />
-          <FormTextInput
-            type="EndDate"
-            title={form.endDate}
-            setData={setForm}
-            width="24rem"
-            inputName="종료 날짜"
-          />
+        <div className="flex flex-row justify-between">
+          <div>
+            <FormTextInput
+              type="Title"
+              setData={setForm}
+              inputName="제목"
+              width="49rem"
+              title={form.title}
+            />
+            <div className="form-row w-[49rem]">
+              <FormSelectInput
+                type="Category"
+                setData={setForm}
+                title={form.category}
+                inputName="카테고리"
+                options={["", "카테1", "카테2", "카테3"]}
+              />
+              <FormTextInput
+                type="People"
+                setData={setForm}
+                title={form.people}
+                inputName="참가 인원수"
+                width="24rem"
+              />
+            </div>
+            <div className="form-row w-[49rem]">
+              <FormTextInput
+                type="Account"
+                title={form.account}
+                setData={setForm}
+                width="24rem"
+                inputName="계좌번호"
+              />
+              <FormSelectInput
+                title={form.bank}
+                type="Bank"
+                setData={setForm}
+                inputName="은행"
+                options={["", "신한", "국민", "우리", "토스"]}
+              />
+            </div>
+            <div className="form-row w-[49rem]">
+              <FormTextInput
+                type="Fee"
+                title={form.fee}
+                setData={setForm}
+                width="24rem"
+                inputName="참여 금액"
+              />
+              <FormTextInput
+                type="EndDate"
+                title={form.endDate}
+                setData={setForm}
+                width="24rem"
+                inputName="종료 날짜"
+              />
+            </div>
+          </div>
+
+          <label htmlFor="chooseFile">
+            <div className="w-[20.5rem] h-[20.5rem] bg-GreenLight-30 mt-[1.5rem] rounded-md"></div>
+          </label>
+          <input
+            ref={fileRef}
+            onChange={handleChange}
+            className="hidden"
+            id="chooseFile"
+            type="file"
+            accept="image/png, image/jpeg, image/gif"
+          ></input>
+          <img src={images[0]} className="w-[20.5rem] h-[20.5rem]"/>
         </div>
         <div className="mt-[1.5rem] flex items-start">
           <textarea
-            className="h-[20rem] form-input peer w-[74rem] pt-[1rem]"
+            className="h-[20rem] form-input peer w-[75rem] pt-[1rem]"
             onChange={(e) => setForm({ type: "Desc", data: e.target.value })}
           />
           <div
