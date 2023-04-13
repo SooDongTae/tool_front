@@ -12,30 +12,40 @@ export interface FormType {
   fee: number;
   desc: string;
 }
-type Action = { type: 'Category' } | { type: 'People' } | { type: 'Title' } | { type: 'Account' } | { type: 'Bank' } | { type: 'EndDate' } | { type: 'Fee' } | { type: 'Desc' }; // 이렇게 액션을 | 으로 연달아서 쭉 나열하세요.
-
-function reducer(state: number, action: Action): number {
+function reducer(state: any, action: any): any {
   switch (action.type) {
-    case 'INCREASE':
-      return state + 1;
-    case 'DECREASE':
-      return state - 1;
+    case "Category":
+      return { ...state, category: action.data };
+    case "People":
+      return { ...state, people: action.data };
+    case "Title":
+      return { ...state, title: action.data };
+    case "Account":
+      return { ...state, account: action.data };
+    case "Bank":
+      return { ...state, bank: action.data };
+    case "EndDate":
+      return { ...state, endDate: action.data };
+    case "Fee":
+      return { ...state, fee: action.data };
+    case "Desc":
+      return { ...state, desc: action.data };
     default:
-      throw new Error('Unhandled action');
+      throw new Error("Unhandled action");
   }
 }
-
 export const CreatePage = () => {
-  const [category, setCategory] = useState("");
-  const [people, setPeople] = useState("");
-  const [title, setTitle] = useState("");
-  const [account, setAccount] = useState("");
-  const [bank, setBank] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [fee, setFee] = useState("");
-  const [desc, setDesc] = useState("");
-
-  const [form, setForm] = useReducer(reducer,0);
+  const [form, setForm] = useReducer(reducer, {
+    category: "",
+    people: "",
+    title: "",
+    account: "",
+    bank: "",
+    endDate: "",
+    fee: "",
+    desc: "",
+  });
+  console.log(form);
   return (
     <div className="w-screen flex items-center pt-[10rem] justify-center">
       <div className="w-[75rem]">
@@ -44,49 +54,56 @@ export const CreatePage = () => {
           <span> 등록</span>
         </div>
         <FormTextInput
-          setData={setTitle}
+          type="Title"
+          setData={setForm}
           inputName="제목"
           width="49rem"
-          title={title}
+          title={form.title}
         />
         <div className="form-row w-[49rem]">
           <FormSelectInput
-            setData={setCategory}
-            title={category}
+            type="Category"
+            setData={setForm}
+            title={form.category}
             inputName="카테고리"
             options={["", "카테1", "카테2", "카테3"]}
           />
           <FormTextInput
-            setData={setPeople}
-            title={people}
+            type="People"
+            setData={setForm}
+            title={form.people}
             inputName="참가 인원수"
             width="24rem"
           />
         </div>
         <div className="form-row w-[49rem]">
           <FormTextInput
-            title={account}
-            setData={setAccount}
+            type="Account"
+            title={form.account}
+            setData={setForm}
             width="24rem"
             inputName="계좌번호"
           />
           <FormSelectInput
-            title={bank}
-            setData={setBank}
+            title={form.bank}
+            type="Bank"
+            setData={setForm}
             inputName="은행"
             options={["", "신한", "국민", "우리", "토스"]}
           />
         </div>
         <div className="form-row w-[49rem]">
           <FormTextInput
-            title={fee}
-            setData={setFee}
+            type="Fee"
+            title={form.fee}
+            setData={setForm}
             width="24rem"
             inputName="참여 금액"
           />
           <FormTextInput
-            title={fee}
-            setData={setFee}
+            type="EndDate"
+            title={form.endDate}
+            setData={setForm}
             width="24rem"
             inputName="종료 날짜"
           />
@@ -94,11 +111,11 @@ export const CreatePage = () => {
         <div className="mt-[1.5rem] flex items-start">
           <textarea
             className="h-[20rem] form-input peer w-[74rem] pt-[1rem]"
-            onChange={(e) => setDesc(e.target.value)}
+            onChange={(e) => setForm({ type: "Desc", data: e.target.value })}
           />
           <div
             className={`peer-focus:animate-TextAreaHover absolute pl-4 pt-4 text-[1.3rem] text-GrayScale-30 font-bold ${
-              desc ? "animate-TextAreaHover" : null
+              form.desc ? "animate-TextAreaHover" : null
             }`}
           >
             상세정보

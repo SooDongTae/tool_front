@@ -1,8 +1,9 @@
 interface FormSelectInputType {
   title?: string;
   inputName: string;
-  setData: (v: string) => void;
+  setData: ({}) => void;
   options: string[];
+  type: string;
 }
 
 export const FormSelectInput = ({
@@ -10,6 +11,7 @@ export const FormSelectInput = ({
   setData,
   title,
   options,
+  type,
 }: FormSelectInputType) => {
   const Options = options.map((data, idx) => {
     return (
@@ -22,7 +24,7 @@ export const FormSelectInput = ({
     <div className="input-box">
       <select
         className={`form-input peer w-[24rem] h-[4rem]`}
-        onChange={(e) => setData(e.target.value)}
+        onChange={(e) => setData({ type: type, data: e.target.value })}
       >
         {Options}
       </select>
