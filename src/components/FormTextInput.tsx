@@ -12,7 +12,7 @@ export const FormTextInput = ({
   width,
   title,
   inputName,
-  type =  "Title",
+  type,
 }: FormTextInputType) => {
   return (
     <div className="input-box">

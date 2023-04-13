@@ -1,6 +1,8 @@
 import { FormSelectInput } from "@/components/FormSelectInput";
 import { FormTextInput } from "@/components/FormTextInput";
 import { useReducer, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+
 export interface FormType {
   category: string;
   people: number;
@@ -12,11 +14,20 @@ export interface FormType {
   fee: number;
   desc: string;
 }
+
+const notify = (msg: string) => toast.error(msg);
 function reducer(state: any, action: any): any {
   switch (action.type) {
     case "Category":
       return { ...state, category: action.data };
     case "People":
+      if (parseInt(action.data) < 0 || parseInt(action.data) > 20) {
+        notify("참가자 수는 0 ~ 20 사이의 숫자여야 합니다!");
+        return { ...state };
+      } else if (isNaN(action.data)) {
+        notify("참가자 수는 숫자여야 합니다!");
+        return { ...state };
+      }
       return { ...state, people: action.data };
     case "Title":
       return { ...state, title: action.data };
@@ -27,13 +38,18 @@ function reducer(state: any, action: any): any {
     case "EndDate":
       return { ...state, endDate: action.data };
     case "Fee":
-      return { ...state, fee: action.data };
+      if (isNaN(action.data)) {
+        notify("참여 금액은 숫자여야 합니다!");
+        return { ...state };
+      }
+      return { ...state, fee: parseInt(action.data) };
     case "Desc":
       return { ...state, desc: action.data };
     default:
       throw new Error("Unhandled action");
   }
 }
+
 export const CreatePage = () => {
   const [form, setForm] = useReducer(reducer, {
     category: "",
@@ -123,10 +139,7 @@ export const CreatePage = () => {
         </div>
         <div className="form-row w-[74rem]"></div>
         <div className="w-full flex justify-center mt-[4rem] mb-[4rem]">
-          <button
-            className="w-[10rem] h-[5rem] bg-GreenLight-30 text-white text-[1.5rem] rounded-[10rem]"
-            onClick={() => null}
-          >
+          <button className="w-[10rem] h-[5rem] bg-GreenLight-30 text-white text-[1.5rem] rounded-[10rem]">
             등록하기
           </button>
         </div>
