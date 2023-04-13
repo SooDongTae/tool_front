@@ -21,7 +21,7 @@ module.exports = {
           to: {
             "font-size": "1.1rem",
             color: "#20C997",
-            transform: "translate(8px,-14px)",
+            transform: "translate(8px,-27px)",
           },
         },
       },

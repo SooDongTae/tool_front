@@ -1,5 +1,6 @@
 import { Party } from "@/components/Party";
 import { PartyProps } from "@/types/Party";
+import Link from "next/link";
 const TestData: PartyProps = {
   title: "파티 제목을 적어",
   subtitle: "파티의 설명을 적어",
@@ -19,9 +20,11 @@ export const MainPage = () => {
             <div className="button-layout bg-GrayScale-20">카테고리2</div>
             <div className="button-layout bg-GrayScale-20">카테고리3</div>
           </div>
-          <div className="w-[8rem] button-layout text-GreenLight-30 hover:bg-GreenLight-30 bg-[white] hover:text-[white] border-[.5px] border-[GreenLight-30]">
-            파티 만들기
-          </div>
+          <Link href="/create">
+            <div className="w-[8rem] button-layout text-GreenLight-30 hover:bg-GreenLight-30 bg-[white] hover:text-[white] border-[.5px] border-[GreenLight-30]">
+              파티 만들기
+            </div>
+          </Link>
         </div>
         <div className="w-full grid grid-cols-3 gap-8 mt-[4rem] gap-y-[4rem]">
           <Party {...TestData} />
