@@ -27,7 +27,7 @@ module.exports = {
       },
       animation: {
         InputHover: "InputHover .3s ease-in-out forwards",
-        TextAreaHover : "TextAreaHover .3s ease-in-out forwards"
+        TextAreaHover: "TextAreaHover .3s ease-in-out forwards",
       },
     },
     colors: {
@@ -35,8 +35,9 @@ module.exports = {
       "GreenLight-30": "#20C997",
       "GrayScale-30": "#AEAEB2",
       "GrayScale-20": "#C6C6C6",
+      "GrayScale-15": "#EEEEEE",
       "GrayScale-10": "#F4F4F4",
-      "white": "#fff",
+      white: "#fff",
     },
   },
 

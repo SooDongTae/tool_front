@@ -25,3 +25,11 @@
 .form-row {
   @apply flex flex-row justify-between;
 }
+
+.history-content {
+  @apply text-center text-[1.3rem] border-2 border-r-GrayScale-30 border-l-0 border-t-0 border-b-0;
+}
+
+.history-box {
+  @apply w-full h-[5rem] flex flex-row items-center border-r-0 border-l-0 border-t-0 border-b-GrayScale-30 border-2;
+}
