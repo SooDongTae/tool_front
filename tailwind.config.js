@@ -41,6 +41,7 @@ module.exports = {
       "OrangeDark-30": "#ffa500",
       Gold: "#ffd700",
       white: "#fff",
+      black: "#000",
     },
   },
 
