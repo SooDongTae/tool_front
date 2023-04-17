@@ -1,10 +1,10 @@
 import { Party } from "@/components/Party";
-import { PartyProps } from "@/types/Party";
+import { PartyProps } from "@/types/Party.type";
 import Link from "next/link";
 const TestData: PartyProps = {
   title: "파티 제목을 적어",
-  subtitle: "파티의 설명을 적어",
-  reserve: [true, true, false, false],
+  maxPeople: 13,
+  currentPeople: 6,
   price: 50000,
   endDate: "2023.04.01",
 };
@@ -21,7 +21,7 @@ export const MainPage = () => {
             </div>
           </Link>
         </div>
-        <div className="w-full  lg:grid-cols-3 md:grid-cols-2 grid grid-cols-1 gap-8 mt-[2rem] gap-y-[4rem]">
+        <div className="w-full lg:grid-cols-3 md:grid-cols-2 grid grid-cols-1 gap-8 mt-[2rem] gap-y-[4rem]">
           <Party {...TestData} />
           <Party {...TestData} />
           <Party {...TestData} />

@@ -52,12 +52,8 @@ const reducer = (state: any, action: any): any => {
 
 export const CreatePage = () => {
   const formData = new FormData();
-
   const fileRef = useRef<HTMLInputElement>(null);
   const [images, setImages] = useState<string>("");
-  const handleClick = () => {
-    fileRef?.current?.click();
-  };
   const handleChange = (e: React.ChangeEvent) => {
     const targetFiles = (e.target as HTMLInputElement).files as FileList;
     const targetFilesArray = Array.from(targetFiles);

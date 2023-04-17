@@ -1,5 +1,5 @@
 import { Party } from "@/components/Party";
-import { PartyProps } from "@/types/Party";
+import { PartyProps } from "@/types/Party.type";
 import Image from "next/image";
 import React from "react";
 

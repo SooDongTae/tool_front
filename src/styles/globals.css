@@ -11,7 +11,7 @@
 }
 
 .input-box {
-  @apply flex items-center mt-[1.5rem];
+  @apply flex relative items-center mt-[1.5rem];
 }
 
 .form-input {
