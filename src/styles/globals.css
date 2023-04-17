@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .button-layout {
-  @apply h-full flex justify-center items-center rounded-[2rem];
+  @apply h-[2.5rem] flex justify-center items-center rounded-[2rem] w-[8rem];
 }
 
 .text-omit {
@@ -33,3 +33,4 @@
 .history-box {
   @apply w-full h-[5rem] flex flex-row items-center border-r-0 border-l-0 border-t-0 border-b-GrayScale-30 border-2;
 }
+

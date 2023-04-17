@@ -14,19 +14,14 @@ export const MainPage = () => {
       <div className="w-[75rem]">
         <div className="w-full h-[18rem] rounded-[2rem] bg-BlueLight-20"></div>
         <div className="w-full h-[2.5rem] flex justify-between mt-8">
-          <div className="grid grid-cols-4 h-full w-[60%] gap-8">
-            <div className="button-layout bg-GrayScale-20 ">카테고리</div>
-            <div className="button-layout bg-GrayScale-20">카테고리1</div>
-            <div className="button-layout bg-GrayScale-20">카테고리2</div>
-            <div className="button-layout bg-GrayScale-20">카테고리3</div>
-          </div>
+          <div className="grid grid-cols-2 h-full w-[60%] gap-8"></div>
           <Link href="/create">
-            <div className="w-[8rem] button-layout text-GreenLight-30 hover:bg-GreenLight-30 bg-[white] hover:text-[white] border-[.5px] border-[GreenLight-30]">
+            <div className="button-layout text-GreenLight-30 hover:bg-GreenLight-30 bg-[white] hover:text-[white] border-[.5px] border-[GreenLight-30]">
               파티 만들기
             </div>
           </Link>
         </div>
-        <div className="w-full grid grid-cols-3 gap-8 mt-[2rem] gap-y-[4rem]">
+        <div className="w-full  lg:grid-cols-3 md:grid-cols-2 grid grid-cols-1 gap-8 mt-[2rem] gap-y-[4rem]">
           <Party {...TestData} />
           <Party {...TestData} />
           <Party {...TestData} />
