@@ -8,7 +8,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Header />
       <Component {...pageProps} />
-      <ToastContainer limit={1} />
+      <ToastContainer limit={1} position="bottom-right" />
     </>
   );
 }
