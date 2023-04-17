@@ -7,7 +7,7 @@ export const Party = ({
   endDate,
 }: PartyProps) => {
   return (
-    <div className="w-full h-[16rem] rounded-[10px] border-[1px] border-GrayScale-20 flex justify-center items-center shadow-[rgba(0,_0,_0,_0.1)_0px_4px_16px_0px] hover:shadow-[rgba(0,_0,_0,_0.2)_0px_7px_16px_0px] hover:translate-y-[-.6rem] duration-300 cursor-pointer hover:border-GreenLight-30 ">
+    <div className="w-full h-[16rem] rounded-[10px] border-[1px] border-GrayScale-15 flex justify-center items-center shadow-[rgba(0,_0,_0,_0.1)_0px_4px_16px_0px] hover:shadow-[rgba(0,_0,_0,_0.2)_0px_7px_16px_0px] hover:translate-y-[-.6rem] duration-300 cursor-pointer hover:border-GreenLight-30 ">
       <div className="w-[85%] h-[90%] flex flex-col">
         <div className="text-3xl font-semibold w-full text-omit ">{title}</div>
         <span className="text-xs font-bold text-GrayScale-20">
