@@ -1,4 +1,5 @@
 import { Party } from "@/components/Party";
+import { SearchBar } from "@/components/SearchBar";
 import { PartyProps } from "@/types/Party.type";
 import Link from "next/link";
 const TestData: PartyProps = {
@@ -13,8 +14,8 @@ export const MainPage = () => {
     <div className="w-screen h-screen flex justify-center pt-[8.5rem]">
       <div className="w-[75rem]">
         <div className="w-full h-[18rem] rounded-[2rem] bg-BlueLight-20"></div>
-        <div className="w-full h-[2.5rem] flex justify-between mt-8">
-          <div className="grid grid-cols-2 h-full w-[60%] gap-8"></div>
+        <div className="w-full h-[2.5rem] flex justify-between mt-8 items-center">
+          <SearchBar />
           <Link href="/create">
             <div className="button-layout text-GreenLight-30 hover:bg-GreenLight-30 bg-[white] hover:text-[white] border-[.5px] border-[GreenLight-30]">
               파티 만들기

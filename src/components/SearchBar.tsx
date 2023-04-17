@@ -5,7 +5,7 @@ export const SearchBar = () => {
       <button className="w-[4rem] h-[4rem] bg-white border-none text-[1.3rem] font-bold outline-none absolute right-0 text-[black] flex justify-end items-center focus:w-auto focus:h-auto peer">
         <AiOutlineSearch
           size={"3rem"}
-          className=" hover:bg-GrayScale-15 duration-300"
+          className=" hover:bg-GrayScale-15 duration-300 text-GreenLight-30"
         />
       </button>
       <input
