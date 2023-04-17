@@ -51,8 +51,10 @@ const reducer = (state: any, action: any): any => {
 };
 
 export const CreatePage = () => {
+  const formData = new FormData();
+
   const fileRef = useRef<HTMLInputElement>(null);
-  const [images, setImages] = useState<string[]>([]);
+  const [images, setImages] = useState<string>("");
   const handleClick = () => {
     fileRef?.current?.click();
   };
@@ -62,7 +64,8 @@ export const CreatePage = () => {
     const selectedFiles: string[] = targetFilesArray.map((file) => {
       return URL.createObjectURL(file);
     });
-    setImages((prev) => prev.concat(selectedFiles));
+
+    setImages(selectedFiles[0]);
   };
   const [form, setForm] = useReducer(reducer, {
     category: "",
@@ -74,11 +77,8 @@ export const CreatePage = () => {
     fee: "",
     desc: "",
   });
-
-  console.log(form);
-  console.log(images);
   return (
-    <div className="w-screen flex items-center pt-[10rem] justify-center">
+    <div className="w-screen flex items-center pt-[10rem] justify-center ">
       <div className="w-[75rem]">
         <div className="h-[3rem] border-b-2 items-center  text-3xl font-semibold">
           <span className="text-GreenLight-30">공동구매 파티</span>
@@ -143,8 +143,15 @@ export const CreatePage = () => {
             </div>
           </div>
 
-          <label htmlFor="chooseFile">
-            <div className="w-[20.5rem] h-[20.5rem] bg-GreenLight-30 mt-[1.5rem] rounded-md"></div>
+          <label
+            htmlFor="chooseFile"
+            className="mt-[1.5rem] rounded-md w-[20.5rem] h-[20.5rem] border-[1px]"
+          >
+            <div className={`${images ? "hidden" : null}`}></div>
+            <img
+              src={images}
+              className="object-contain w-[20.5rem] h-[20.5rem] rounded-md"
+            />
           </label>
           <input
             ref={fileRef}
@@ -154,7 +161,6 @@ export const CreatePage = () => {
             type="file"
             accept="image/png, image/jpeg, image/gif"
           ></input>
-          <img src={images[0]} className="w-[20.5rem] h-[20.5rem]"/>
         </div>
         <div className="mt-[1.5rem] flex items-start">
           <textarea
