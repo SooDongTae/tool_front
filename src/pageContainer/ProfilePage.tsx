@@ -65,7 +65,11 @@ const ProfilePage = () => {
             <div className="profile-modify-btn">수정</div>
           </div>
         </div>
-        <div className="profile-box"></div>
+        <div className="profile-box p-[4%]">
+          <p className="text-[1.5rem] border-b-[0.1rem] border-GrayScale-20">
+            <span className="text-GreenLight-30">My</span> 신용등급
+          </p>
+        </div>
       </div>
     </div>
   );
