@@ -9,10 +9,10 @@ export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     setIsClient(true);
   }, []);
-  // 서버 사이드 렌더링에서 사용할 수 없는 window 객체를 사용하기 위해서 클라이언트 사이드에서만 실행되도록 해줌
+  // 서버 사이드 렌더링에서 사용할 수 없는 window 객체를 사용하기 위해서 클라이언트 사이드에서만 실행되도록 해준거
   return (
     <>
-      {isClient && window.location.pathname !== "/profile" && <Header />}
+      {isClient && window.location.pathname == "/profile" && <Header />}
       {/* profile 페이지에는 header를 렌더링 하지 않음 */}
       <Component {...pageProps} />
       <ToastContainer limit={1} position="bottom-right" />

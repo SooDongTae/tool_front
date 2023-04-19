@@ -31,7 +31,7 @@
 }
 
 .history-box {
-  @apply w-full h-[5rem] flex flex-row items-center border-r-0 border-l-0 border-t-0 border-b-GrayScale-30 border-2;
+  @apply w-[100%] h-[5rem] flex flex-row items-center border-r-0 border-l-0 border-t-0 border-b-GrayScale-30 border-2;
 }
 
 .profile-box {
