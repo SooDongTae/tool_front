@@ -31,6 +31,21 @@
 }
 
 .history-box {
-  @apply w-full h-[5rem] flex flex-row items-center border-r-0 border-l-0 border-t-0 border-b-GrayScale-30 border-2;
+  @apply w-[100%] h-[5rem] flex flex-row items-center border-r-0 border-l-0 border-t-0 border-b-GrayScale-30 border-2;
 }
 
+.profile-box {
+  @apply w-[50%] h-[40%] border-GreenLight-30 border-2 rounded-[1.5rem] shadow-lg shadow-[#dfdfdf] bg-white;
+}
+
+.profile-modify-btn {
+  @apply w-[15%] h-[2rem] bg-GrayScale-15 border-[0.03rem] text-center leading-[2rem] rounded-[0.5rem] mr-[3%] cursor-pointer hover:bg-GrayScale-20 duration-[0.2s];
+}
+
+.profile-info-box {
+  @apply w-[70%] h-full flex flex-row items-center p-[3%] pl-[2%];
+}
+
+.profile-flex-box {
+  @apply flex flex-row items-center justify-between;
+}
