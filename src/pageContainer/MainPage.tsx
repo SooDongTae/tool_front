@@ -2,7 +2,6 @@ import { Party } from "@/components/Party";
 import { SearchBar } from "@/components/SearchBar";
 import { PartyProps } from "@/types/Party.type";
 import Link from "next/link";
-import { AiFillCaretDown } from "react-icons/ai";
 import { useState } from "react";
 import { CategoryModal } from "@/components/CategoryModal";
 const TestData: PartyProps = {
