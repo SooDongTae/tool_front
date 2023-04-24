@@ -1,32 +1,30 @@
-import { PartyProps } from "@/types/Party";
-
+import { PartyProps } from "@/types/Party.type";
 export const Party = ({
   title,
-  subtitle,
-  reserve,
+  maxPeople,
+  currentPeople,
   price,
   endDate,
 }: PartyProps) => {
-  const Reserving = reserve.map((item, idx) => {
-    return (
-      <div
-        className={`w-[2rem] h-[2rem] rounded-[10px] ${
-          item ? "bg-GrayScale-30" : "bg-GrayScale-10"
-        }`}
-      />
-    );
-  });
   return (
-    <div className="w-full h-[16rem] rounded-[10px] border-[1px] flex justify-center items-center">
+    <div className="w-full h-[16rem] rounded-[10px] border-[1px] border-GrayScale-15 flex justify-center items-center shadow-[rgba(0,_0,_0,_0.1)_0px_4px_16px_0px] hover:shadow-[rgba(0,_0,_0,_0.2)_0px_7px_16px_0px] hover:translate-y-[-.6rem] duration-300 cursor-pointer hover:border-GreenLight-30 ">
       <div className="w-[85%] h-[90%] flex flex-col">
-        <div className="text-3xl font-semibold w-full text-omit">{title}</div>
-        <div className="text-xl text-GrayScale-20 h-[6.5rem] overflow-hidden">{subtitle}</div>
-        <div className={`grid grid-cols-${reserve.length} mt-[.5rem] w-1/2`}>
-          {Reserving}
+        <div className="text-3xl font-semibold w-full text-omit ">{title}</div>
+        <span className="text-xs font-bold text-GrayScale-20">
+          {"3110 이동훈"}
+        </span>
+        <span className="text-sm mt-[6.5rem] font-semibold">{`${currentPeople}/${maxPeople} (${Math.floor(
+          (currentPeople / maxPeople) * 100
+        )}%)`}</span>
+        <div className="w-full h-[1rem] rounded-[20px] border-[1px]">
+          <div
+            className={`from-Gold to-GreenLight-30 rounded-l-[20px] h-full bg-gradient-to-r`}
+            style={{ width: `calc(100%/${maxPeople}*${currentPeople})` }}
+          ></div>
         </div>
-        <div className="flex justify-between items-center mt-[1rem]">
-          <div className="text-GrayScale-20 text-[.75rem]">~{endDate}</div>
-          <div className="font-bold text-xl">{price}원</div>
+        <div className="flex flex-row justify-between mt-[0.5rem]">
+          <span className="text-xs text-GrayScale-30 font-bold">{endDate}</span>
+          <span className=" text-lg font-bold">{price}원</span>
         </div>
       </div>
     </div>

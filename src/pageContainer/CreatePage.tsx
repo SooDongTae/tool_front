@@ -2,7 +2,10 @@ import { FormSelectInput } from "@/components/FormSelectInput";
 import { FormTextInput } from "@/components/FormTextInput";
 import { useReducer, useRef, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-
+import DatePicker from "react-datepicker";
+import { AiFillCamera } from "react-icons/ai";
+import { BiImageAdd } from "react-icons/bi";
+import "react-datepicker/dist/react-datepicker.css";
 export interface FormType {
   category: string;
   people: number;
@@ -52,12 +55,8 @@ const reducer = (state: any, action: any): any => {
 
 export const CreatePage = () => {
   const formData = new FormData();
-
   const fileRef = useRef<HTMLInputElement>(null);
   const [images, setImages] = useState<string>("");
-  const handleClick = () => {
-    fileRef?.current?.click();
-  };
   const handleChange = (e: React.ChangeEvent) => {
     const targetFiles = (e.target as HTMLInputElement).files as FileList;
     const targetFilesArray = Array.from(targetFiles);
@@ -133,6 +132,7 @@ export const CreatePage = () => {
                 width="24rem"
                 inputName="참여 금액"
               />
+
               <FormTextInput
                 type="EndDate"
                 title={form.endDate}
@@ -145,13 +145,20 @@ export const CreatePage = () => {
 
           <label
             htmlFor="chooseFile"
-            className="mt-[1.5rem] rounded-md w-[20.5rem] h-[20.5rem] border-[1px]"
+            className="mt-[1.5rem] rounded-md w-[20.5rem] h-[20.5rem] border-[1px] flex justify-center items-center relative cursor-pointer"
           >
+            {images ? (
+              <img
+                src={images}
+                className="object-contain w-[20.5rem] h-[20.5rem] rounded-md"
+              />
+            ) : (
+              <BiImageAdd
+                className="absolute text-GreenLight-30"
+                size={"3rem"}
+              />
+            )}
             <div className={`${images ? "hidden" : null}`}></div>
-            <img
-              src={images}
-              className="object-contain w-[20.5rem] h-[20.5rem] rounded-md"
-            />
           </label>
           <input
             ref={fileRef}

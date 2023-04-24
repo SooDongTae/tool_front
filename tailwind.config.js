@@ -37,7 +37,11 @@ module.exports = {
       "GrayScale-20": "#C6C6C6",
       "GrayScale-15": "#EEEEEE",
       "GrayScale-10": "#F4F4F4",
+      "GreenDark-30": "#20a26f",
+      "OrangeDark-30": "#ffa500",
+      Gold: "#ffd700",
       white: "#fff",
+      black: "#000",
     },
   },
 

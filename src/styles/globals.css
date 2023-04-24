@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .button-layout {
-  @apply h-full flex justify-center items-center rounded-[2rem];
+  @apply h-[2.5rem] flex justify-center items-center rounded-[2rem] w-[8rem];
 }
 
 .text-omit {
@@ -11,7 +11,7 @@
 }
 
 .input-box {
-  @apply flex items-center mt-[1.5rem];
+  @apply flex relative items-center mt-[1.5rem];
 }
 
 .form-input {
@@ -49,3 +49,4 @@
 .profile-flex-box {
   @apply flex flex-row items-center justify-between;
 }
+
