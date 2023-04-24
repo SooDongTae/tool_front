@@ -11,7 +11,7 @@ const TestData: PartyProps = {
   price: 50000,
   endDate: "2023.04.01",
 };
-const Category = [
+const Category = [                                                                   
   "전체",
   "카테고리 1",
   "카테고리 2",

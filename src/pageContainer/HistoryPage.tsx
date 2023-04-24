@@ -1,5 +1,5 @@
 import HistoryBox from "@/components/HistoryBox";
-import ProfileView from "@/components/ProfileView";
+import ProfileView from "@/components/Profile/ProfileView";
 import React from "react";
 
 const HistoryPage = () => {

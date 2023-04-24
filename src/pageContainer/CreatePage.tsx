@@ -1,5 +1,5 @@
-import { FormSelectInput } from "@/components/FormSelectInput";
-import { FormTextInput } from "@/components/FormTextInput";
+import { FormSelectInput } from "@/components/FormInput/FormSelectInput";
+import { FormTextInput } from "@/components/FormInput/FormTextInput";
 import { useReducer, useRef, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import DatePicker from "react-datepicker";
@@ -26,9 +26,6 @@ const reducer = (state: any, action: any): any => {
     case "People":
       if (parseInt(action.data) < 0 || parseInt(action.data) > 20) {
         notify("참가자 수는 0 ~ 20 사이의 숫자여야 합니다!");
-        return { ...state };
-      } else if (isNaN(action.data)) {
-        notify("참가자 수는 숫자여야 합니다!");
         return { ...state };
       }
       return { ...state, people: action.data };
