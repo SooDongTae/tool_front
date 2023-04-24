@@ -4,7 +4,7 @@ import ImgSrc from "../../public/12.png";
 
 const ProfileView = () => {
   return (
-    <div className="w-[35%] h-full flex flex-col items-center justify-start shadow-2xl shadow-[#777] pt-[3%] z-10">
+    <div className="w-[30%] h-[calc(100vh-6rem)] mt-[9rem] flex flex-col items-center justify-start">
       <h2 className="text-[2.5rem] font-semibold">
         <span className="text-GreenLight-30">My</span> 페이지
       </h2>
