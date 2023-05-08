@@ -2,8 +2,6 @@ import Image from "next/image";
 import React from "react";
 import { SlScreenSmartphone } from "react-icons/sl";
 import { TfiEmail } from "react-icons/tfi";
-import ImgSrc from "../../public/12.png";
-
 const ProfileInfo = () => {
   return (
     <div className="w-[70%] h-[calc(100vh-6rem)] mt-[6rem] flex flex-col justify-evenly items-center bg-[#fafafa] ">
@@ -13,7 +11,7 @@ const ProfileInfo = () => {
             className="rounded-full"
             width={70}
             height={70}
-            src={ImgSrc}
+            src={'/12.png'}
             alt="프로필 사진"
           />
           <div className="flex flex-col ml-[5%]">
@@ -51,7 +49,7 @@ const ProfileInfo = () => {
             <div
               className={`bg-GreenLight-20 rounded-l-[20px] rounded-r-[20px] h-full`}
               // style={{ width: `calc(${6 - 1}*20)` }}
-              style={{ width: `calc(${6 - 2}*${20})%` }}
+              style={{ width: `calc(100%/5*${6 - 1})` }}
             ></div>
           </div>
           <div className="flex flex-row justify-between">

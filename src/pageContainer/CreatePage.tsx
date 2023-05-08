@@ -1,9 +1,7 @@
 import { FormSelectInput } from "@/components/FormInput/FormSelectInput";
 import { FormTextInput } from "@/components/FormInput/FormTextInput";
 import { useReducer, useRef, useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
-import DatePicker from "react-datepicker";
-import { AiFillCamera } from "react-icons/ai";
+import { toast } from "react-toastify";
 import { BiImageAdd } from "react-icons/bi";
 import "react-datepicker/dist/react-datepicker.css";
 export interface FormType {
@@ -181,7 +179,7 @@ export const CreatePage = () => {
         </div>
         <div className="form-row w-[74rem]"></div>
         <div className="w-full flex justify-center mt-[4rem] mb-[4rem]">
-          <button className="w-[10rem] h-[5rem] bg-GreenLight-30 text-white text-[1.5rem] rounded-[10rem]">
+          <button className="w-[8rem] h-[4rem] bg-GreenLight-30 text-white text-[1.5rem] rounded-[10px]">
             등록하기
           </button>
         </div>

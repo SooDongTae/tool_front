@@ -26,7 +26,9 @@ export const MainPage = () => {
   return (
     <div className="w-screen h-screen flex justify-center pt-[8.5rem]">
       <div className="w-[75rem]">
-        <div className="w-full h-[18rem] rounded-[2rem] bg-BlueLight-20"></div>
+        <div className="w-full h-[18rem] rounded-[2rem] bg-BlueLight-20">
+          Tool 사용법이 궁금하다면?
+        </div>
         <div className="w-full h-[2.5rem] flex justify-between mt-8 items-center">
           <div className="flex flex-row items-center">
             <CategoryModal

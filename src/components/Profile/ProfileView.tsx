@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import ImgSrc from "../../public/12.png";
 
 const ProfileView = () => {
   return (
@@ -13,7 +12,7 @@ const ProfileView = () => {
           className="rounded-full"
           width={200}
           height={200}
-          src={ImgSrc}
+          src={'/12.png'}
           alt="프로필 사진"
         />
         <span className="text-[2rem]">태현</span>
