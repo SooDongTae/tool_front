@@ -15,7 +15,7 @@ export const useGetUser: any = async (code: string, options: QueryOptions) => {
   return useQuery([queryKey, code], queryFn, { ...options });
 };
 
-export const OAuth = ({ code }: any) => {
+export const OAuth = ({ code }: { code: string }) => {
   console.log(code);
   const { isLoading, isError, data, error } = useGetUser(code, {});
   console.log(isLoading, isError, data, error);
