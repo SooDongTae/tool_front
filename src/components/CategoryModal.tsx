@@ -25,7 +25,7 @@ export const CategoryModal = ({ setData, data, category }: CateModalType) => {
   return (
     <>
       <div
-        className={`w-[7rem] h-[2rem] shadow-[rgba(0,_0,_0,_0.08)_0px_0px_4px] flex flex-row justify-around items-center text-[0.9rem] relative ${
+        className={`w-[7rem] h-[2.5rem] shadow-[rgba(0,_0,_0,_0.08)_0px_0px_4px] flex flex-row justify-around items-center text-[0.9rem] relative border-[.5px] border-GrayScale-20 rounded-[5px] ${
           open ? "[&>svg]:rotate-180 " : null
         }`}
         onClick={() => setOpen((prev) => !prev)}
