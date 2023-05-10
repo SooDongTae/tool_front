@@ -4,4 +4,5 @@ export interface PartyProps {
   maxPeople: number;
   endDate: string;
   price: number;
+  owner: string;
 }
