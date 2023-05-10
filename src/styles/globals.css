@@ -49,3 +49,11 @@
 .profile-flex-box {
   @apply flex flex-row items-center justify-between;
 }
+
+.community-title {
+  @apply flex justify-center items-center bg-GrayScale-15 border-r-[1px];
+}
+
+.center {
+  @apply flex justify-center items-center;
+}

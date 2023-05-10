@@ -4,17 +4,7 @@ import { useReducer, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { BiImageAdd } from "react-icons/bi";
 import "react-datepicker/dist/react-datepicker.css";
-export interface FormType {
-  category: string;
-  people: number;
-  title: string;
-  account: string;
-  bank: string;
-  startDate: string;
-  endDate: string;
-  fee: number;
-  desc: string;
-}
+import { CreateParty } from "@/api/Party/CreateParty";
 
 const notify = (msg: string) => toast.error(msg);
 const reducer = (state: any, action: any): any => {
@@ -26,7 +16,7 @@ const reducer = (state: any, action: any): any => {
         notify("참가자 수는 0 ~ 20 사이의 숫자여야 합니다!");
         return { ...state };
       }
-      return { ...state, people: action.data };
+      return { ...state, maxPeople: action.data };
     case "Title":
       return { ...state, title: action.data };
     case "Account":
@@ -34,43 +24,43 @@ const reducer = (state: any, action: any): any => {
     case "Bank":
       return { ...state, bank: action.data };
     case "EndDate":
-      return { ...state, endDate: action.data };
+      return { ...state, untilAt: action.data };
     case "Fee":
       if (isNaN(action.data)) {
         notify("참여 금액은 숫자여야 합니다!");
         return { ...state };
       }
-      return { ...state, fee: parseInt(action.data) };
+      return { ...state, cost: parseInt(action.data) };
     case "Desc":
-      return { ...state, desc: action.data };
+      return { ...state, content: action.data };
     default:
       throw new Error("Unhandled action");
   }
 };
-
 export const CreatePage = () => {
   const formData = new FormData();
   const fileRef = useRef<HTMLInputElement>(null);
   const [images, setImages] = useState<string>("");
+  const [sendImage, setSendImage] = useState<any>();
   const handleChange = (e: React.ChangeEvent) => {
     const targetFiles = (e.target as HTMLInputElement).files as FileList;
     const targetFilesArray = Array.from(targetFiles);
     const selectedFiles: string[] = targetFilesArray.map((file) => {
       return URL.createObjectURL(file);
     });
-
     setImages(selectedFiles[0]);
   };
   const [form, setForm] = useReducer(reducer, {
     category: "",
-    people: "",
+    maxPeople: "",
     title: "",
     account: "",
     bank: "",
-    endDate: "",
-    fee: "",
-    desc: "",
+    untilAt: "",
+    cost: "",
+    content: "",
   });
+  console.log(form)
   return (
     <div className="w-screen flex items-center pt-[10rem] justify-center ">
       <div className="w-[75rem]">
@@ -98,7 +88,7 @@ export const CreatePage = () => {
               <FormTextInput
                 type="People"
                 setData={setForm}
-                title={form.people}
+                title={form.maxPeople}
                 inputName="참가 인원수"
                 width="24rem"
               />
@@ -122,7 +112,7 @@ export const CreatePage = () => {
             <div className="form-row w-[49rem]">
               <FormTextInput
                 type="Fee"
-                title={form.fee}
+                title={form.cost}
                 setData={setForm}
                 width="24rem"
                 inputName="참여 금액"
@@ -130,7 +120,7 @@ export const CreatePage = () => {
 
               <FormTextInput
                 type="EndDate"
-                title={form.endDate}
+                title={form.untilAt}
                 setData={setForm}
                 width="24rem"
                 inputName="종료 날짜"
@@ -157,7 +147,11 @@ export const CreatePage = () => {
           </label>
           <input
             ref={fileRef}
-            onChange={handleChange}
+            // onChange={handleChange}
+            onChange={(file: React.ChangeEvent<HTMLInputElement>) => {
+              const target = file.currentTarget;
+              setSendImage((target.files as FileList)[0]);
+            }}
             className="hidden"
             id="chooseFile"
             type="file"
@@ -171,7 +165,7 @@ export const CreatePage = () => {
           />
           <div
             className={`peer-focus:animate-TextAreaHover absolute pl-4 pt-4 text-[1.3rem] text-GrayScale-30 font-bold ${
-              form.desc ? "animate-TextAreaHover" : null
+              form.content ? "animate-TextAreaHover" : null
             }`}
           >
             상세정보
@@ -179,7 +173,20 @@ export const CreatePage = () => {
         </div>
         <div className="form-row w-[74rem]"></div>
         <div className="w-full flex justify-center mt-[4rem] mb-[4rem]">
-          <button className="w-[8rem] h-[4rem] bg-GreenLight-30 text-white text-[1.5rem] rounded-[10px]">
+          <button
+            onClick={() => {
+              formData.append(
+                "request",
+                new Blob([JSON.stringify({ ...form, category: "FOOD" })], {
+                  type: "application/json",
+                })
+              );
+              formData.append("file", sendImage);
+              console.log(formData);
+              CreateParty(formData);
+            }}
+            className="w-[8rem] h-[4rem] bg-GreenLight-30 text-white text-[1.5rem] rounded-[10px]"
+          >
             등록하기
           </button>
         </div>
