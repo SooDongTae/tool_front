@@ -1,30 +1,22 @@
-import { GetUserInfo } from "@/api/user/getUserInfo";
-import axios from "axios";
 import { NextPageContext } from "next";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { QueryClient, QueryOptions, useQueries, useQuery } from "react-query";
-
-export const useGetUser: any = async (code: string, options: QueryOptions) => {
-  const headers = {
-    authCode: code,
-  };
-  const queryKey = "getUser";
-  const queryFn = await axios
-    .post("/api/auth/oauth/bsm", null, { headers })
-    .then((res) => res.data);
-  return useQuery([queryKey, code], queryFn, { ...options });
-};
+import { SetUserToken } from "@/api/user/setUserToken";
 
 export const OAuth = ({ code }: { code: string }) => {
+  const router = useRouter();
+  useEffect(() => {
+    SetUserToken(code);
+    router.push("/");
+  }, []);
   console.log(code);
-  const { isLoading, isError, data, error } = useGetUser(code, {});
-  console.log(isLoading, isError, data, error);
   return <div></div>;
 };
 
 export const getServerSideProps = async (context: NextPageContext) => {
   const { code } = context.query;
-  return { props: { code } };
+  return {
+    props: { code },
+  };
 };
-
 export default OAuth;
