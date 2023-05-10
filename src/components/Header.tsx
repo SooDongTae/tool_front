@@ -1,4 +1,6 @@
+import { RemoveUserToken } from "@/api/user/removeUserToken";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export const Header = () => {
   return (
@@ -10,7 +12,13 @@ export const Header = () => {
             <div className="w-[4rem] h-full leading-[4rem]">커뮤니티</div>
           </Link>
         </div>
-
+        <button
+          onClick={() => {
+            RemoveUserToken();
+          }}
+        >
+          로그아웃
+        </button>
         <Link href="https://auth.bssm.kro.kr/oauth?clientId=98fd44ad&redirectURI=http://localhost:3000/oauth">
           <button>로그인</button>
         </Link>
