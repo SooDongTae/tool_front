@@ -1,4 +1,4 @@
-import { RemoveUserToken } from "@/api/user/removeUserToken";
+import { RemoveUserToken } from "@/api/User/removeUserToken";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
