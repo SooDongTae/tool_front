@@ -2,16 +2,12 @@ import { Party } from "@/components/Party";
 import { SearchBar } from "@/components/SearchBar";
 import { PartyProps } from "@/types/Party.type";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CategoryModal } from "@/components/CategoryModal";
-const TestData: PartyProps = {
-  title: "파티 제목을 적어",
-  maxPeople: 13,
-  currentPeople: 6,
-  price: 50000,
-  endDate: "2023.04.01",
-};
-const Category = [                                                                   
+import { useQuery } from "react-query";
+import axios from "axios";
+import { GetPartyList } from "@/api/party/getPartyList";
+const Category = [
   "전체",
   "카테고리 1",
   "카테고리 2",
@@ -20,17 +16,34 @@ const Category = [
   "카테고리 5",
 ];
 export const MainPage = () => {
-  const [open, setOpen] = useState(false);
   const [category, setCategory] = useState(0);
   const [title, setTitle] = useState("");
+  const partyQuery = useQuery(["party"], GetPartyList);
+  const party = useMemo(
+    () => partyQuery.data?.groupBuyingResponseList || [],
+    [partyQuery]
+  );
+  const PartyList = party.map((item: any, idx: number) => {
+    return (
+      <Party
+        key={idx}
+        owner={item.owner}
+        title={item.title}
+        maxPeople={item.maxPeople}
+        currentPeople={item.currentPeople}
+        endDate={item.untilAt}
+        price={1000}
+      />
+    );
+  });
   return (
     <div className="w-screen h-screen flex justify-center pt-[8.5rem]">
       <div className="w-[75rem]">
-        <div className="w-full h-[18rem] rounded-[2rem] bg-BlueLight-20">
+        <div className="w-full h-[18rem] rounded-[10px] bg-BlueLight-20">
           Tool 사용법이 궁금하다면?
         </div>
         <div className="w-full h-[2.5rem] flex justify-between mt-8 items-center">
-          <div className="flex flex-row items-center">
+          <div className="flex flex-row items-center ">
             <CategoryModal
               setData={setCategory}
               data={category}
@@ -45,10 +58,7 @@ export const MainPage = () => {
           </Link>
         </div>
         <div className="w-full lg:grid-cols-3 md:grid-cols-2 grid grid-cols-1 gap-8 mt-[2rem] gap-y-[4rem] pb-[8rem]">
-          <Party {...TestData} />
-          <Party {...TestData} />
-          <Party {...TestData} />
-          <Party {...TestData} />
+          {PartyList}
         </div>
       </div>
     </div>
