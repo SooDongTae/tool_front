@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { CategoryModal } from "@/components/CategoryModal";
 import { useQuery } from "react-query";
 import axios from "axios";
-import { GetPartyList } from "@/api/party/getPartyList";
+import { GetAllPartyList } from "@/api/Party/getPartyList";
 const Category = [
   "전체",
   "카테고리 1",
@@ -18,7 +18,7 @@ const Category = [
 export const MainPage = () => {
   const [category, setCategory] = useState(0);
   const [title, setTitle] = useState("");
-  const partyQuery = useQuery(["party"], GetPartyList);
+  const partyQuery = useQuery(["party"], GetAllPartyList);
   const party = useMemo(
     () => partyQuery.data?.groupBuyingResponseList || [],
     [partyQuery]
@@ -32,7 +32,7 @@ export const MainPage = () => {
         maxPeople={item.maxPeople}
         currentPeople={item.currentPeople}
         endDate={item.untilAt}
-        price={1000}
+        price={item.cost}
       />
     );
   });
