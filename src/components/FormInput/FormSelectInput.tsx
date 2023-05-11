@@ -4,6 +4,7 @@ interface FormSelectInputType {
   setData: ({}) => void;
   options: string[];
   type: string;
+  values: string[];
 }
 
 export const FormSelectInput = ({
@@ -12,10 +13,11 @@ export const FormSelectInput = ({
   title,
   options,
   type,
+  values,
 }: FormSelectInputType) => {
   const Options = options.map((data, idx) => {
     return (
-      <option value={data} key={idx}>
+      <option value={values[idx]} key={idx}>
         {data}
       </option>
     );

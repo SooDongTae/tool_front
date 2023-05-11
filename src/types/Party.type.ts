@@ -5,6 +5,9 @@ export interface PartyProps {
   endDate: string;
   price: number;
   owner: string;
+  grade : number;
+  classNum : number;
+  studentNum : number;
 }
 
 export interface FormType {

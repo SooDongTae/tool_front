@@ -3,13 +3,6 @@ import { PartyProps } from "@/types/Party.type";
 import Image from "next/image";
 import React from "react";
 
-const TestData: PartyProps = {
-  title: "파티 제목을 적어",
-  subtitle: "파티의 설명을 적어",
-  reserve: [true, true, false, false],
-  price: 50000,
-  endDate: "2023.04.01",
-};
 
 const GroupBuyPage = () => {
   return (

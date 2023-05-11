@@ -6,6 +6,9 @@ export const Party = ({
   price,
   endDate,
   owner,
+  grade,
+  studentNum,
+  classNum,
 }: PartyProps) => {
   return (
     <div className="w-full h-[16rem] rounded-[10px] border-[1px] border-GrayScale-20 flex justify-center items-center shadow-[rgba(0,_0,_0,_0.1)_0px_4px_16px_0px] hover:shadow-[rgba(0,_0,_0,_0.2)_0px_7px_16px_0px] hover:translate-y-[-.6rem] duration-300 cursor-pointer hover:border-GreenLight-30 ">
@@ -14,6 +17,11 @@ export const Party = ({
           {title}
         </div>
         <span className="text-xs font-bold text-GrayScale-20 h-[7rem]">
+          {grade}
+          {classNum}
+          {studentNum < 10 ? "0" : null}
+          {studentNum}
+          {" "}
           {owner}
         </span>
         <span className="text-sm  font-semibold h-[2rem]">{`${currentPeople}/${maxPeople} (${Math.floor(

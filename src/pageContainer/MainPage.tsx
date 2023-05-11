@@ -26,6 +26,9 @@ export const MainPage = () => {
   const PartyList = party.map((item: any, idx: number) => {
     return (
       <Party
+        grade={item.grade}
+        classNum={item.class_no}
+        studentNum={item.student_no}
         key={idx}
         owner={item.owner}
         title={item.title}
