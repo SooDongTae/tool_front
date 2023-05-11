@@ -1,7 +1,7 @@
-import { FormType } from "@/types/Party.type";
 import axios from "axios";
+import { QueryClient } from "react-query";
 
-export const CreateParty = async (data: FormData) => {
+export const CreateParty = async (data: FormData, queryClient: QueryClient) => {
   try {
     const response = await axios.post(`/api/groupBuying/create`, data, {
       headers: {
@@ -9,6 +9,8 @@ export const CreateParty = async (data: FormData) => {
         "Content-Type": "multipart/form-data",
       },
     });
+    queryClient.invalidateQueries(["party"]);
+    console.log(response.data);
     return response.data;
   } catch (e) {
     console.log(e);
