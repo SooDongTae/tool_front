@@ -19,7 +19,7 @@ export const CommunityPage = ({ school }: { school: string }) => {
             data={category}
             category={Category}
           />
-          <SearchBar setData={setTitle} />
+          <SearchBar setData={setTitle} data={title} />
         </div>
         <div className="flex flex-col w-full mt-[2rem]">
           <div className="w-full flex h-[2.5rem]">
