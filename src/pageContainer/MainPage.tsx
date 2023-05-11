@@ -9,8 +9,8 @@ const Category = ["all", "FOOD", "CLOTHES", "ETC"];
 export const MainPage = () => {
   const [category, setCategory] = useState(0);
   const [title, setTitle] = useState("");
-  const partyQuery = useQuery(["party"], () =>
-    PartyAPI.GetAllPartyList({ title: title })
+  const partyQuery = useQuery(["party", title, category], () =>
+    PartyAPI.GetAllPartyList({ title: title, category: Category[category] })
   );
   const party = useMemo(
     () => partyQuery.data?.groupBuyingResponseList || [],
@@ -32,7 +32,7 @@ export const MainPage = () => {
       />
     );
   });
-  console.log(title);
+
   return (
     <div className="w-screen h-screen flex justify-center pt-[8.5rem]">
       <div className="w-[75rem]">
@@ -48,7 +48,7 @@ export const MainPage = () => {
               data={category}
               category={["전체", "음식", "옷", "기타"]}
             />
-            <SearchBar setData={setTitle} />
+            <SearchBar setData={setTitle} data={title} />
           </div>
           <Link href="/create">
             <div className="button-layout text-GreenLight-30 hover:bg-GreenLight-30 bg-[white] hover:text-[white] border-[.5px] border-[GreenLight-30]">

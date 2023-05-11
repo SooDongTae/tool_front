@@ -21,9 +21,9 @@ class Party {
   GetAllPartyList = async (criteria: GetPartyListType) => {
     try {
       const response = await axios.get(
-        `/api/groupBuying/list?limit=${5}&offset=${0}&sortField=${"views"}&sortWay=${"desc"}&category=${"all"}&title=${
-          criteria.title
-        }&status=${"ACTIVATED"}`
+        `/api/groupBuying/list?limit=${5}&offset=${0}&sortField=${"views"}&sortWay=${"desc"}&category=${
+          criteria.category
+        }&title=${criteria.title}&status=${"ACTIVATED"}`
       );
       return response.data;
     } catch (e) {
