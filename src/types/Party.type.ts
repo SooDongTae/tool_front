@@ -16,8 +16,7 @@ export interface FormType {
   title: string;
   account: string;
   bank: string;
-  startDate: string;
   untilAt: string;
   cost: number;
-  desc: string;
+  content: string;
 }

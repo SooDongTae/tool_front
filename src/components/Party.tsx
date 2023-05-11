@@ -20,9 +20,7 @@ export const Party = ({
           {grade}
           {classNum}
           {studentNum < 10 ? "0" : null}
-          {studentNum}
-          {" "}
-          {owner}
+          {studentNum} {owner}
         </span>
         <span className="text-sm  font-semibold h-[2rem]">{`${currentPeople}/${maxPeople} (${Math.floor(
           (currentPeople / maxPeople) * 100
@@ -34,7 +32,9 @@ export const Party = ({
           ></div>
         </div>
         <div className="flex flex-row justify-between mt-[0.5rem]">
-          <span className="text-xs text-GrayScale-30 font-bold">{endDate}</span>
+          <span className="text-xs text-GrayScale-30 font-bold">
+            {endDate.substring(0, 10)}
+          </span>
           <span className=" text-lg font-bold">{price}원</span>
         </div>
       </div>

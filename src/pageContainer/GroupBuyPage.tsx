@@ -1,9 +1,4 @@
-import { Party } from "@/components/Party";
-import { PartyProps } from "@/types/Party.type";
-import Image from "next/image";
 import React from "react";
-
-
 const GroupBuyPage = () => {
   return (
     <div className="w-screen h-[200vh] flex justify-center pt-[10rem]">
