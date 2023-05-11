@@ -1,20 +1,10 @@
 import { Party } from "@/components/Party";
 import { SearchBar } from "@/components/SearchBar";
-import { PartyProps } from "@/types/Party.type";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { CategoryModal } from "@/components/CategoryModal";
 import { useQuery } from "react-query";
-import axios from "axios";
-import { GetAllPartyList } from "@/api/Party/getPartyList";
-const Category = [
-  "전체",
-  "카테고리 1",
-  "카테고리 2",
-  "카테고리 3",
-  "카테고리 4",
-  "카테고리 5",
-];
+import { GetAllPartyList } from "@/api/Party/getAllPartyList";
 export const MainPage = () => {
   const [category, setCategory] = useState(0);
   const [title, setTitle] = useState("");
@@ -43,14 +33,16 @@ export const MainPage = () => {
     <div className="w-screen h-screen flex justify-center pt-[8.5rem]">
       <div className="w-[75rem]">
         <div className="w-full h-[18rem] rounded-[10px] bg-BlueLight-20">
-          Tool 사용법이 궁금하다면?
+          <a href="https://tool-landing-page.vercel.app">
+            Tool 사용법이 궁금하다면?
+          </a>
         </div>
         <div className="w-full h-[2.5rem] flex justify-between mt-8 items-center">
           <div className="flex flex-row items-center ">
             <CategoryModal
               setData={setCategory}
               data={category}
-              category={Category}
+              category={["전체", "음식", "옷", "기타"]}
             />
             <SearchBar setData={setTitle} />
           </div>

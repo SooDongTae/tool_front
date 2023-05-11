@@ -1,5 +1,3 @@
-import { FormType } from "@/pageContainer/CreatePage";
-
 interface FormTextInputType {
   title?: string;
   inputName: string;
