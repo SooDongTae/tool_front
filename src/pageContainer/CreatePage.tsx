@@ -4,12 +4,10 @@ import { useReducer, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { BiImageAdd } from "react-icons/bi";
 import "react-datepicker/dist/react-datepicker.css";
-import { CreateParty } from "@/api/Party/CreateParty";
-import { Router, useRouter } from "next/router";
+import PartyAPI from "@/api/Party";
 import { FormType } from "@/types/Party.type";
 import router from "next/router";
-import { useMutation, useQueryClient } from "react-query";
-import axios from "axios";
+import { useQueryClient } from "react-query";
 export const CreatePage = () => {
   const formData = new FormData();
   const queryClient = useQueryClient();
@@ -154,7 +152,7 @@ export const CreatePage = () => {
                 })
               );
               formData.append("file", sendImage);
-              CreateParty(formData, queryClient);
+              PartyAPI.CreateParty(formData, queryClient);
               toast.success("파티 만들기 성공!");
               router.push("/");
             }}

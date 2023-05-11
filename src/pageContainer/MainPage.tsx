@@ -4,11 +4,14 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { CategoryModal } from "@/components/CategoryModal";
 import { useQuery } from "react-query";
-import { GetAllPartyList } from "@/api/Party/getAllPartyList";
+import PartyAPI from "@/api/Party";
+const Category = ["all", "FOOD", "CLOTHES", "ETC"];
 export const MainPage = () => {
   const [category, setCategory] = useState(0);
   const [title, setTitle] = useState("");
-  const partyQuery = useQuery(["party"], GetAllPartyList);
+  const partyQuery = useQuery(["party"], () =>
+    PartyAPI.GetAllPartyList({ title: title })
+  );
   const party = useMemo(
     () => partyQuery.data?.groupBuyingResponseList || [],
     [partyQuery]
@@ -29,6 +32,7 @@ export const MainPage = () => {
       />
     );
   });
+  console.log(title);
   return (
     <div className="w-screen h-screen flex justify-center pt-[8.5rem]">
       <div className="w-[75rem]">
