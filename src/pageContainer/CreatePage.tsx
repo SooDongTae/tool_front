@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { BiImageAdd } from "react-icons/bi";
 import "react-datepicker/dist/react-datepicker.css";
 import { CreateParty } from "@/api/Party/CreateParty";
+import { render } from "react-dom";
 
 const notify = (msg: string) => toast.error(msg);
 const reducer = (state: any, action: any): any => {
@@ -40,16 +41,8 @@ const reducer = (state: any, action: any): any => {
 export const CreatePage = () => {
   const formData = new FormData();
   const fileRef = useRef<HTMLInputElement>(null);
-  const [images, setImages] = useState<string>("");
-  const [sendImage, setSendImage] = useState<any>();
-  const handleChange = (e: React.ChangeEvent) => {
-    const targetFiles = (e.target as HTMLInputElement).files as FileList;
-    const targetFilesArray = Array.from(targetFiles);
-    const selectedFiles: string[] = targetFilesArray.map((file) => {
-      return URL.createObjectURL(file);
-    });
-    setImages(selectedFiles[0]);
-  };
+  const [previewImg, setPreviewImg] = useState<any>(null);
+  const [sendImage, setSendImage] = useState<any>(null);
   const [form, setForm] = useReducer(reducer, {
     category: "",
     maxPeople: "",
@@ -60,7 +53,7 @@ export const CreatePage = () => {
     cost: "",
     content: "",
   });
-  console.log(form)
+  console.log(form, previewImg, sendImage);
   return (
     <div className="w-screen flex items-center pt-[10rem] justify-center ">
       <div className="w-[75rem]">
@@ -83,7 +76,8 @@ export const CreatePage = () => {
                 setData={setForm}
                 title={form.category}
                 inputName="카테고리"
-                options={["", "카테1", "카테2", "카테3"]}
+                options={["", "상품", "음식", "옷", "기타"]}
+                values={["", "PRODUCT", "FOOD", "CLOTHES", "ETC"]}
               />
               <FormTextInput
                 type="People"
@@ -107,6 +101,7 @@ export const CreatePage = () => {
                 setData={setForm}
                 inputName="은행"
                 options={["", "신한", "국민", "우리", "토스"]}
+                values={["", "신한", "국민", "우리", "토스"]}
               />
             </div>
             <div className="form-row w-[49rem]">
@@ -132,9 +127,9 @@ export const CreatePage = () => {
             htmlFor="chooseFile"
             className="mt-[1.5rem] rounded-md w-[20.5rem] h-[20.5rem] border-[1px] flex justify-center items-center relative cursor-pointer"
           >
-            {images ? (
+            {previewImg ? (
               <img
-                src={images}
+                src={previewImg}
                 className="object-contain w-[20.5rem] h-[20.5rem] rounded-md"
               />
             ) : (
@@ -143,13 +138,14 @@ export const CreatePage = () => {
                 size={"3rem"}
               />
             )}
-            <div className={`${images ? "hidden" : null}`}></div>
+            <div className={`${previewImg ? "hidden" : null}`}></div>
           </label>
           <input
             ref={fileRef}
-            // onChange={handleChange}
             onChange={(file: React.ChangeEvent<HTMLInputElement>) => {
               const target = file.currentTarget;
+              const imgSrc = URL.createObjectURL((target.files as FileList)[0]);
+              setPreviewImg(imgSrc);
               setSendImage((target.files as FileList)[0]);
             }}
             className="hidden"
@@ -177,7 +173,7 @@ export const CreatePage = () => {
             onClick={() => {
               formData.append(
                 "request",
-                new Blob([JSON.stringify({ ...form, category: "FOOD" })], {
+                new Blob([JSON.stringify(form)], {
                   type: "application/json",
                 })
               );
