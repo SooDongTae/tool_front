@@ -1,12 +1,12 @@
 import { NextPageContext } from "next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { SetUserToken } from "@/api/User/setUserToken";
+import UserAPI from "@/api/User";
 
 export const OAuth = ({ code }: { code: string }) => {
   const router = useRouter();
   useEffect(() => {
-    SetUserToken(code);
+    UserAPI.SetUserToken(code);
     router.push("/");
   }, []);
   console.log(code);

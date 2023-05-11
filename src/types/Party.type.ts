@@ -5,9 +5,9 @@ export interface PartyProps {
   endDate: string;
   price: number;
   owner: string;
-  grade : number;
-  classNum : number;
-  studentNum : number;
+  grade: number;
+  classNum: number;
+  studentNum: number;
 }
 
 export interface FormType {
@@ -19,4 +19,14 @@ export interface FormType {
   untilAt: string;
   cost: number;
   content: string;
+}
+
+export interface GetPartyListType {
+  limit?: number;
+  offset?: number;
+  sortField?: string;
+  sortWay?: string;
+  category?: string;
+  title: string;
+  status?: "ACTIVATED" | "DEACTIVATED";
 }
