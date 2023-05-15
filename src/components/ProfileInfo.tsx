@@ -2,18 +2,17 @@ import Image from "next/image";
 import React from "react";
 import { SlScreenSmartphone } from "react-icons/sl";
 import { TfiEmail } from "react-icons/tfi";
-import ImgSrc from "../../public/12.png";
 
 const ProfileInfo = () => {
   return (
-    <div className="w-[70%] h-[calc(100vh-6rem)] mt-[6rem] flex flex-col justify-evenly items-center bg-[#fafafa] ">
-      <div className="profile-box p-[2%]">
+    <div className="w-[70%] h-screen flex flex-col justify-evenly items-center bg-[#fafafa] ">
+      <div className="profile-box p-[2%] flex flex-col justify-evenly">
         <div className="flex flex-row items-center border-b-[0.1rem] border-b-GrayScale-20 p-[2%]">
           <Image
             className="rounded-full"
             width={70}
             height={70}
-            src={ImgSrc}
+            src={"/12.png"}
             alt="프로필 사진"
           />
           <div className="flex flex-col ml-[5%]">
