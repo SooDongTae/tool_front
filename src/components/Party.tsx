@@ -1,4 +1,5 @@
 import { PartyProps } from "@/types/Party.type";
+import { ProgressBar } from "./ProgressBar";
 export const Party = ({
   title,
   maxPeople,
@@ -22,15 +23,15 @@ export const Party = ({
           {studentNum < 10 ? "0" : null}
           {studentNum} {owner}
         </span>
+        <ProgressBar
+          width="full"
+          height="[1rem]"
+          maxi={maxPeople}
+          current={currentPeople}
+        />
         <span className="text-sm  font-semibold h-[2rem]">{`${currentPeople}/${maxPeople} (${Math.floor(
           (currentPeople / maxPeople) * 100
         )}%)`}</span>
-        <div className="w-full h-[1rem] rounded-[20px] border-[1px]">
-          <div
-            className={` rounded-l-[20px] h-full bg-GreenLight-30`}
-            style={{ width: `calc(100%/${maxPeople}*${currentPeople})` }}
-          ></div>
-        </div>
         <div className="flex flex-row justify-between mt-[0.5rem]">
           <span className="text-xs text-GrayScale-30 font-bold">
             {endDate.substring(0, 10)}
