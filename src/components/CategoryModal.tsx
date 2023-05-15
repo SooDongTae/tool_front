@@ -10,7 +10,9 @@ export const CategoryModal = ({ setData, data, category }: CateModalType) => {
   const CategoryItem = category.map((item, idx) => {
     return (
       <div
-        className={`${
+        className={`
+        cursor-pointer
+        ${
           idx == data
             ? "text-GreenLight-30 font-bold"
             : "text-GrayScale-30 hover:text-black "
@@ -25,7 +27,7 @@ export const CategoryModal = ({ setData, data, category }: CateModalType) => {
   return (
     <>
       <div
-        className={`w-[7rem] h-[2.5rem] shadow-[rgba(0,_0,_0,_0.08)_0px_0px_4px] flex flex-row justify-around items-center text-[0.9rem] relative border-[.5px] border-GrayScale-20 rounded-[5px] ${
+        className={`w-[7rem] h-[2.5rem] shadow-[rgba(0,_0,_0,_0.08)_0px_0px_4px] flex flex-row justify-around items-center text-[0.9rem] relative border-[.5px] border-GrayScale-20 rounded-[5px] cursor-pointer ${
           open ? "[&>svg]:rotate-180 " : null
         }`}
         onClick={() => setOpen((prev) => !prev)}
