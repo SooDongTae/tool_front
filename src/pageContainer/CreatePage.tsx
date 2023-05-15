@@ -1,81 +1,30 @@
-import { FormSelectInput } from "@/components/FormSelectInput";
-import { FormTextInput } from "@/components/FormTextInput";
+import { FormSelectInput } from "@/components/FormInput/FormSelectInput";
+import { FormTextInput } from "@/components/FormInput/FormTextInput";
 import { useReducer, useRef, useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
-import DatePicker from "react-datepicker";
-import { AiFillCamera } from "react-icons/ai";
+import { toast } from "react-toastify";
 import { BiImageAdd } from "react-icons/bi";
 import "react-datepicker/dist/react-datepicker.css";
-export interface FormType {
-  category: string;
-  people: number;
-  title: string;
-  account: string;
-  bank: string;
-  startDate: string;
-  endDate: string;
-  fee: number;
-  desc: string;
-}
-
-const notify = (msg: string) => toast.error(msg);
-const reducer = (state: any, action: any): any => {
-  switch (action.type) {
-    case "Category":
-      return { ...state, category: action.data };
-    case "People":
-      if (parseInt(action.data) < 0 || parseInt(action.data) > 20) {
-        notify("참가자 수는 0 ~ 20 사이의 숫자여야 합니다!");
-        return { ...state };
-      } else if (isNaN(action.data)) {
-        notify("참가자 수는 숫자여야 합니다!");
-        return { ...state };
-      }
-      return { ...state, people: action.data };
-    case "Title":
-      return { ...state, title: action.data };
-    case "Account":
-      return { ...state, account: action.data };
-    case "Bank":
-      return { ...state, bank: action.data };
-    case "EndDate":
-      return { ...state, endDate: action.data };
-    case "Fee":
-      if (isNaN(action.data)) {
-        notify("참여 금액은 숫자여야 합니다!");
-        return { ...state };
-      }
-      return { ...state, fee: parseInt(action.data) };
-    case "Desc":
-      return { ...state, desc: action.data };
-    default:
-      throw new Error("Unhandled action");
-  }
-};
-
+import PartyAPI from "@/api/Party";
+import { FormType } from "@/types/Party.type";
+import router from "next/router";
+import { useQueryClient } from "react-query";
 export const CreatePage = () => {
   const formData = new FormData();
+  const queryClient = useQueryClient();
   const fileRef = useRef<HTMLInputElement>(null);
-  const [images, setImages] = useState<string>("");
-  const handleChange = (e: React.ChangeEvent) => {
-    const targetFiles = (e.target as HTMLInputElement).files as FileList;
-    const targetFilesArray = Array.from(targetFiles);
-    const selectedFiles: string[] = targetFilesArray.map((file) => {
-      return URL.createObjectURL(file);
-    });
-
-    setImages(selectedFiles[0]);
-  };
+  const [previewImg, setPreviewImg] = useState<any>(null);
+  const [sendImage, setSendImage] = useState<any>(null);
   const [form, setForm] = useReducer(reducer, {
     category: "",
-    people: "",
+    maxPeople: "",
     title: "",
     account: "",
     bank: "",
-    endDate: "",
-    fee: "",
-    desc: "",
+    untilAt: "",
+    cost: "",
+    content: "",
   });
+  console.log(form, previewImg, sendImage);
   return (
     <div className="w-screen flex items-center pt-[10rem] justify-center ">
       <div className="w-[75rem]">
@@ -98,12 +47,13 @@ export const CreatePage = () => {
                 setData={setForm}
                 title={form.category}
                 inputName="카테고리"
-                options={["", "카테1", "카테2", "카테3"]}
+                options={["", "상품", "음식", "옷", "기타"]}
+                values={["", "PRODUCT", "FOOD", "CLOTHES", "ETC"]}
               />
               <FormTextInput
                 type="People"
                 setData={setForm}
-                title={form.people}
+                title={form.maxPeople}
                 inputName="참가 인원수"
                 width="24rem"
               />
@@ -122,34 +72,33 @@ export const CreatePage = () => {
                 setData={setForm}
                 inputName="은행"
                 options={["", "신한", "국민", "우리", "토스"]}
+                values={["", "신한", "국민", "우리", "토스"]}
               />
             </div>
             <div className="form-row w-[49rem]">
               <FormTextInput
                 type="Fee"
-                title={form.fee}
+                title={form.cost}
                 setData={setForm}
                 width="24rem"
                 inputName="참여 금액"
               />
-
               <FormTextInput
                 type="EndDate"
-                title={form.endDate}
+                title={form.untilAt}
                 setData={setForm}
                 width="24rem"
                 inputName="종료 날짜"
               />
             </div>
           </div>
-
           <label
             htmlFor="chooseFile"
             className="mt-[1.5rem] rounded-md w-[20.5rem] h-[20.5rem] border-[1px] flex justify-center items-center relative cursor-pointer"
           >
-            {images ? (
+            {previewImg ? (
               <img
-                src={images}
+                src={previewImg}
                 className="object-contain w-[20.5rem] h-[20.5rem] rounded-md"
               />
             ) : (
@@ -158,11 +107,16 @@ export const CreatePage = () => {
                 size={"3rem"}
               />
             )}
-            <div className={`${images ? "hidden" : null}`}></div>
+            <div className={`${previewImg ? "hidden" : null}`}></div>
           </label>
           <input
             ref={fileRef}
-            onChange={handleChange}
+            onChange={(file: React.ChangeEvent<HTMLInputElement>) => {
+              const target = file.currentTarget;
+              const imgSrc = URL.createObjectURL((target.files as FileList)[0]);
+              setPreviewImg(imgSrc);
+              setSendImage((target.files as FileList)[0]);
+            }}
             className="hidden"
             id="chooseFile"
             type="file"
@@ -176,7 +130,7 @@ export const CreatePage = () => {
           />
           <div
             className={`peer-focus:animate-TextAreaHover absolute pl-4 pt-4 text-[1.3rem] text-GrayScale-30 font-bold ${
-              form.desc ? "animate-TextAreaHover" : null
+              form.content ? "animate-TextAreaHover" : null
             }`}
           >
             상세정보
@@ -184,11 +138,87 @@ export const CreatePage = () => {
         </div>
         <div className="form-row w-[74rem]"></div>
         <div className="w-full flex justify-center mt-[4rem] mb-[4rem]">
-          <button className="w-[10rem] h-[5rem] bg-GreenLight-30 text-white text-[1.5rem] rounded-[10rem]">
+          <button
+            onClick={() => {
+              if (!isValid(form)) return;
+              if (!sendImage) {
+                notify("이미지를 업로드해 주세요!");
+                return;
+              }
+              formData.append(
+                "request",
+                new Blob([JSON.stringify(form)], {
+                  type: "application/json",
+                })
+              );
+              formData.append("file", sendImage);
+              PartyAPI.CreateParty(formData, queryClient);
+              toast.success("파티 만들기 성공!");
+              router.push("/");
+            }}
+            className="w-[8rem] h-[4rem] bg-GreenLight-30 text-white text-[1.5rem] rounded-[10px]"
+          >
             등록하기
           </button>
         </div>
       </div>
     </div>
   );
+};
+const notify = (msg: string) => toast.error(msg);
+const isValid = (form: FormType) => {
+  if (form.title === "") {
+    notify("제목을 입력해 주세요!");
+    return false;
+  } else if (form.maxPeople === 0) {
+    notify("참가 인원수를 입력해 주세요!");
+    return false;
+  } else if (form.category === "") {
+    notify("카테고리를 선택해 주세요!");
+    return false;
+  } else if (form.account === "") {
+    notify("계좌번호를 입력해 주세요!");
+    return false;
+  } else if (form.bank === "") {
+    notify("은행을 선택해 주세요!");
+    return false;
+  } else if (form.untilAt === "") {
+    notify("종료 날짜를 선택해 주세요!");
+    return false;
+  } else if (form.cost === 0) {
+    notify("참여 금액을 입력해 주세요!");
+    return false;
+  } else if (form.content === "") {
+    notify("세부사항을 입력해 주세요!");
+    return false;
+  } else if (isNaN(form.cost)) {
+    notify("참여 금액은 숫자여야 합니다!");
+    return false;
+  } else if (form.maxPeople < 1 || form.maxPeople > 20) {
+    notify("참가자 수는 1 ~ 20 사이의 숫자여야 합니다!");
+    return false;
+  }
+  return true;
+};
+const reducer = (state: any, action: any): any => {
+  switch (action.type) {
+    case "Category":
+      return { ...state, category: action.data };
+    case "People":
+      return { ...state, maxPeople: action.data };
+    case "Title":
+      return { ...state, title: action.data };
+    case "Account":
+      return { ...state, account: action.data };
+    case "Bank":
+      return { ...state, bank: action.data };
+    case "EndDate":
+      return { ...state, untilAt: action.data };
+    case "Fee":
+      return { ...state, cost: parseInt(action.data) };
+    case "Desc":
+      return { ...state, content: action.data };
+    default:
+      throw new Error("Unhandled action");
+  }
 };

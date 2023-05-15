@@ -1,10 +1,10 @@
 import Image from "next/image";
-import React from "react";
 import Link from "next/link";
+import React from "react";
 
 const ProfileView = () => {
   return (
-    <div className="w-[30%] h-[calc(100vh-6rem)] pt-[7rem] flex flex-col items-center justify-start">
+    <div className="w-[35%] h-[calc(100vh-6rem)] pt-[7rem] flex flex-col items-center justify-start">
       <h2 className="text-[2.5rem] font-semibold">
         <span className="text-GreenLight-30">My</span> 페이지
       </h2>

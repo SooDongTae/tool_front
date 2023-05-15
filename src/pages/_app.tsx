@@ -1,27 +1,31 @@
 import { Header } from "@/components/Header";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { useRouter } from "next/router";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
+import { RecoilRoot } from "recoil";
 export default function App({ Component, pageProps }: AppProps) {
-  const path = useRouter().pathname;
-  if (path === "/profile" || path === "/history") {
-    return <Component {...pageProps} />;
-  } else {
-    return (
-      <>
+  const [queryClient] = useState(() => new QueryClient());
+  return (
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
         <Header />
         <Component {...pageProps} />
         <ToastContainer limit={1} position="bottom-right" />
-      </>
-    );
-  }
-  // return (
-  //   <>
-  //     <Header />
-  //     <Component {...pageProps} />
-  //     <ToastContainer limit={1} position="bottom-right" />
-  //   </>
-  // );
+      </QueryClientProvider>
+    </RecoilRoot>
+  );
+  // if (path === "/profile" || path === "/history") {
+  //   return <Component {...pageProps} />;
+  // } else {
+  //   return (
+  //     <>
+  //       <Header />
+  //       <Component {...pageProps} />
+  //       <ToastContainer limit={1} position="bottom-right" />
+  //     </>
+  //   );
+  // }
 }

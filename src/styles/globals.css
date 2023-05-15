@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .button-layout {
-  @apply h-[2.5rem] flex justify-center items-center rounded-[2rem] w-[8rem];
+  @apply h-[2.5rem] flex justify-center items-center rounded-[10px] w-[8rem];
 }
 
 .text-omit {
@@ -35,7 +35,7 @@
 }
 
 .profile-box {
-  @apply w-[50%] h-[40%] border-GreenLight-30 border-2 rounded-[1.5rem] shadow-lg shadow-[#dfdfdf] bg-white;
+  @apply w-[55%] h-[40%] border-GreenLight-30 border-2 rounded-[1.5rem] shadow-lg shadow-[#dfdfdf] bg-white;
 }
 
 .profile-modify-btn {
@@ -48,4 +48,12 @@
 
 .profile-flex-box {
   @apply flex flex-row items-center justify-between;
+}
+
+.community-title {
+  @apply flex justify-center items-center bg-GrayScale-15 border-r-[1px];
+}
+
+.center {
+  @apply flex justify-center items-center;
 }

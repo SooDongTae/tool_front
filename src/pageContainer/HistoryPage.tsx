@@ -1,12 +1,12 @@
 import HistoryBox from "@/components/HistoryBox";
-import ProfileView from "@/components/ProfileView";
+import ProfileView from "@/components/Profile/ProfileView";
 import React from "react";
 
 const HistoryPage = () => {
   return (
     <div className="w-screen h-screen flex flex-row justify-between">
       <ProfileView />
-      <div className="w-[70%] h-screen flex flex-col items-center bg-[#fafafa] overflow-scroll">
+      <div className="w-[65%] h-screen flex flex-col items-center bg-[#fafafa] overflow-scroll">
         <div className="w-full h-full flex flex-col items-center justify-start mt-[10rem]">
           <h2 className="w-[65%] text-[2rem] font-semibold text-left">
             <span className="text-GreenLight-30">My</span> 결제 내역

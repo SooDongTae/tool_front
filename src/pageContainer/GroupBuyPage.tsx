@@ -1,20 +1,8 @@
-import { Party } from "@/components/Party";
-import { PartyProps } from "@/types/Party.type";
-import Image from "next/image";
 import React from "react";
-
-const TestData: PartyProps = {
-  title: "파티 제목을 적어",
-  subtitle: "파티의 설명을 적어",
-  reserve: [true, true, false, false],
-  price: 50000,
-  endDate: "2023.04.01",
-};
-
 const GroupBuyPage = () => {
   return (
-    <div className="w-screen h-[200vh] flex justify-center pt-[10rem]">
-      <div className="w-[75rem] h-full">
+    <div className="relative w-screen h-[200vh] flex justify-center pt-[10rem]">
+      <div className="w-[55rem] h-full flex flex-col">
         <div className="w-full h-[2.5rem] flex justify-between mt-8">
           <div className="button-layout w-[8rem] bg-GrayScale-20 ">
             카테고리
@@ -44,9 +32,9 @@ const GroupBuyPage = () => {
           </div>
           {/* <hr className="border-[1px] w-full"></hr> */}
           {/* <Image src={""} alt="" /> */}
-          <div className="w-full h-[70vh] bg-BlueLight-20"></div>
-          <div className="w-[20rem] h-[5rem] bg-GreenLight-30 text-white rounded-3xl text-center text-4xl font-semibold items-center justify-center flex">
-            카테고리
+          <div className="w-full h-[37rem] bg-BlueLight-20"></div>
+          <div className="w-[15rem] h-[4rem] bg-GreenLight-30 text-white rounded-2xl text-center text-4xl items-center justify-center flex">
+            참여하기
           </div>
         </div>
       </div>

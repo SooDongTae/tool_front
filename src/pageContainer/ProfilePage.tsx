@@ -1,6 +1,6 @@
 import React from "react";
-import ProfileInfo from "@/components/ProfileInfo";
-import ProfileView from "@/components/ProfileView";
+import ProfileInfo from "@/components/Profile/ProfileInfo";
+import ProfileView from "@/components/Profile/ProfileView";
 
 const ProfilePage = () => {
   return (

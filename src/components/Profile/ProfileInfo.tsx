@@ -5,7 +5,7 @@ import { TfiEmail } from "react-icons/tfi";
 
 const ProfileInfo = () => {
   return (
-    <div className="w-[70%] h-screen flex flex-col justify-evenly items-center bg-[#fafafa] ">
+    <div className="w-[65%] h-[calc(100vh-6rem)] mt-[6rem] flex flex-col justify-evenly items-center bg-[#fafafa] ">
       <div className="profile-box p-[2%] flex flex-col justify-evenly">
         <div className="flex flex-row items-center border-b-[0.1rem] border-b-GrayScale-20 p-[2%]">
           <Image
@@ -50,7 +50,7 @@ const ProfileInfo = () => {
             <div
               className={`bg-GreenLight-20 rounded-l-[20px] rounded-r-[20px] h-full`}
               // style={{ width: `calc(${6 - 1}*20)` }}
-              style={{ width: `calc(${6 - 2}*${20})%` }}
+              style={{ width: `calc(100%/5*${6 - 1})` }}
             ></div>
           </div>
           <div className="flex flex-row justify-between">
