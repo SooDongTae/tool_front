@@ -28,6 +28,7 @@ export const Party = ({
           height="[1rem]"
           maxi={maxPeople}
           current={currentPeople}
+          color={"GreenLight-30"}
         />
         <span className="text-sm  font-semibold h-[2rem]">{`${currentPeople}/${maxPeople} (${Math.floor(
           (currentPeople / maxPeople) * 100
