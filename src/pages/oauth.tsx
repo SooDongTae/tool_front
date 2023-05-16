@@ -1,14 +1,11 @@
 import { NextPageContext } from "next";
-import { useRouter } from "next/router";
 import { useEffect } from "react";
-import UserAPI from "@/api/User";
-
+import useLoginMutation from "@/hooks/useLogin";
 export const OAuth = ({ code }: { code: string }) => {
-  const router = useRouter();
+  const { mutate } = useLoginMutation();
   useEffect(() => {
-    UserAPI.SetUserToken(code);
-    router.push("/");
-  }, []);
+    mutate();
+  }, [mutate]);
   console.log(code);
   return <div></div>;
 };
