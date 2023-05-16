@@ -17,15 +17,4 @@ export default function App({ Component, pageProps }: AppProps) {
       </QueryClientProvider>
     </RecoilRoot>
   );
-  // if (path === "/profile" || path === "/history") {
-  //   return <Component {...pageProps} />;
-  // } else {
-  //   return (
-  //     <>
-  //       <Header />
-  //       <Component {...pageProps} />
-  //       <ToastContainer limit={1} position="bottom-right" />
-  //     </>
-  //   );
-  // }
 }

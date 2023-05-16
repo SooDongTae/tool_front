@@ -6,7 +6,7 @@ const Tab = () => {
   const path = useRouter().pathname;
   return (
     <div className="absolute w-[17rem] h-full left-[43%]">
-      <div className="w-full h-full relative flex flex-row items-center justify-evenly">
+      <div className="w-full h-full relative flex flex-row items-center">
         <Link className="block w-[50%]" href="/groupbuy">
           <div
             className={`w-full text-center ${
