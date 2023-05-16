@@ -16,12 +16,13 @@ class Party {
       return response.data;
     } catch (e) {
       console.log(e);
+      throw e;
     }
   };
   GetAllPartyList = async (criteria: GetPartyListType) => {
     try {
       const response = await axios.get(
-        `/api/groupBuying/list?limit=${5}&offset=${0}&sortField=${"views"}&sortWay=${"desc"}&category=${
+        `/api/groupBuying/list?limit=${20}&offset=${0}&sortField=${"views"}&sortWay=${"desc"}&category=${
           criteria.category
         }&title=${criteria.title}&status=${"ACTIVATED"}`
       );
