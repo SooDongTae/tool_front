@@ -1,11 +1,17 @@
-import UserAPI from "@/api/User";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Tab from "./Tab";
+
 import { HeaderText } from "./HeaderText";
-import { useQuery } from "react-query";
-import { useMemo } from "react";
+import { useQueryClient } from "react-query";
+import { useState } from "react";
+import useUser from "@/hooks/useUser";
 export const Header = () => {
+
+  const [clicked, setClicked] = useState(false);
+  const queryClinet = useQueryClient();
+  const { isLogged, user, logout } = useUser();
+  console.log(user);
   const router = useRouter();
   const userQuery = useQuery(
     ["user"],
@@ -33,10 +39,45 @@ export const Header = () => {
           </Link>
           <HeaderText target="/" text="공동구매" />
           <HeaderText target="/community" text="커뮤니티" />
-          {/* <HeaderText target="" text="중고거래" /> */}
         </div>
-        {userName ? (
-          <HeaderText target="" text={userName} />
+        {isLogged ? (
+          <div className="relative">
+            <div onClick={() => setClicked((prev) => !prev)}>
+              <HeaderText
+                target=""
+                text={
+                  user?.grade.toString() +
+                  user?.classNo.toString() +
+                  (user?.stuNo < 10 ? "0" : "") +
+                  user?.stuNo.toString() +
+                  " " +
+                  user?.name
+                }
+                ml="0"
+              />
+            </div>
+            {clicked ? (
+              <div className="absolute top-full left-1/2 translate-x-[-50%] w-[8rem] flex-col shadow-[rgba(0,_0,_0,_0.08)_0px_0px_4px] rounded-[10px] bg-white cursor-pointer">
+                <div
+                  className="h-[3.5rem] flex justify-center items-center border-b-[1px] border-b-GrayScale-15"
+                  onClick={() => setClicked(false)}
+              
+                >
+                  <HeaderText text="마이페이지" target="/profile" ml="0" />
+                </div>
+                <div
+                  className="h-[3.5rem] flex justify-center items-center"
+                  onClick={() => {
+                    setClicked(false);
+                    logout();
+                    queryClinet.invalidateQueries(["user"]);
+                  }}
+                >
+                  <HeaderText text="로그아웃" target="" ml="0" />
+                </div>
+              </div>
+            ) : null}
+          </div>
         ) : (
           <HeaderText
             target="https://auth.bssm.kro.kr/oauth?clientId=98fd44ad&redirectURI=http://localhost:3000/oauth"

@@ -25,7 +25,7 @@ export const Party = ({
         </span>
         <ProgressBar
           width="full"
-          height="[1rem]"
+          height="1rem"
           maxi={maxPeople}
           current={currentPeople}
           color={"GreenLight-30"}

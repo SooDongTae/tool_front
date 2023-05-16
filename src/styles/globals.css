@@ -23,7 +23,7 @@
 }
 
 .form-row {
-  @apply flex flex-row justify-between;
+  @apply flex md:flex-col lg:flex-row justify-between;
 }
 
 .history-content {
@@ -56,4 +56,8 @@
 
 .center {
   @apply flex justify-center items-center;
+}
+
+.header-dropdown {
+  @apply h-[3.5rem] w-full flex justify-center items-center text-[1.1rem] font-bold cursor-pointer  hover:text-GrayScale-40;
 }

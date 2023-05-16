@@ -1,7 +1,7 @@
 import { Party } from "@/components/Party";
 import { SearchBar } from "@/components/SearchBar";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useLayoutEffect, useMemo, useState } from "react";
 import { CategoryModal } from "@/components/CategoryModal";
 import { useQuery } from "react-query";
 import PartyAPI from "@/api/Party";
@@ -37,7 +37,7 @@ export const MainPage = () => {
     <div className="w-screen h-screen flex justify-center pt-[8.5rem]">
       <div className="w-[75rem]">
         <div className="w-full h-[18rem] rounded-[10px] bg-BlueLight-20">
-          <a href="https://tool-landing-page.vercel.app">
+          <a href="https://tool-landingpage.bssm.kro.kr" target="_blink">
             Tool 사용법이 궁금하다면?
           </a>
         </div>
