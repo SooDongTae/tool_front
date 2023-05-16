@@ -41,7 +41,7 @@ export const CreatePage = () => {
               width="49rem"
               title={form.title}
             />
-            <div className="form-row w-[49rem]">
+            <div className="form-row ">
               <FormSelectInput
                 type="Category"
                 setData={setForm}
