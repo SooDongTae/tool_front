@@ -3,4 +3,5 @@ export interface ProgressType {
   height: string;
   maxi: number;
   current: number;
+  color: string;
 }

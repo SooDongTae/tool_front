@@ -1,12 +1,16 @@
 import axios from "axios";
 
+import { SetterOrUpdater } from "recoil";
 class User {
-  GetUserName = async (accessToken: string) => {
+  GetUserName = async (accessToken: string | null) => {
+    console.log("user", accessToken);
     try {
-      const { data } = await axios.get("/api/auth/oauth/bsm", {
-        headers: { Authorization: accessToken },
+      const { data } = await axios.get("/api/auth", {
+        headers: {
+          Authorization: `Bearer${localStorage.getItem("accessToken")}`,
+        },
       });
-      localStorage.setItem("accessToken", data.accessToken);
+      return data;
     } catch (e) {
       console.log(e);
     }
@@ -27,7 +31,8 @@ class User {
     }
   };
 
-  SetUserToken = async (code: string) => {
+  SetUserToken = async (code: any) => {
+    console.log(code);
     const headers = { authCode: code };
     try {
       const { data } = await axios.post("/api/auth/oauth/bsm", null, {
