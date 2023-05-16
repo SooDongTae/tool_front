@@ -35,7 +35,7 @@
 }
 
 .profile-box {
-  @apply w-[50%] h-[40%] border-GreenLight-30 border-2 rounded-[1.5rem] shadow-lg shadow-[#dfdfdf] bg-white;
+  @apply w-[55%] h-[40%] border-GreenLight-30 border-2 rounded-[1.5rem] shadow-lg shadow-[#dfdfdf] bg-white;
 }
 
 .profile-modify-btn {
