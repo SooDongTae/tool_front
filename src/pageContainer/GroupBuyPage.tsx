@@ -32,9 +32,9 @@ const GroupBuyPage = () => {
           </div>
           {/* <hr className="border-[1px] w-full"></hr> */}
           {/* <Image src={""} alt="" /> */}
-          <div className="w-full h-[70vh] bg-BlueLight-20"></div>
-          <div className="w-[20rem] h-[5rem] bg-GreenLight-30 text-white rounded-3xl text-center text-4xl font-semibold items-center justify-center flex">
-            카테고리
+          <div className="w-full h-[37rem] bg-BlueLight-20"></div>
+          <div className="w-[15rem] h-[4rem] bg-GreenLight-30 text-white rounded-2xl text-center text-4xl items-center justify-center flex">
+            참여하기
           </div>
         </div>
       </div>
