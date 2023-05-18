@@ -1,4 +1,4 @@
-import { CommunityPostType } from "@/types/Community";
+import { CommunityPostType } from "@/types/Community.type";
 
 export const CommunityPost = ({
   owner,

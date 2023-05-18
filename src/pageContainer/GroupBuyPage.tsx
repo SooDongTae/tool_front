@@ -46,7 +46,7 @@ const GroupBuyPage = () => {
             <div className="text-2xl">10/20(50%)</div>
             <ProgressBar
               width="full"
-              height="[2.3rem]"
+              height="[2rem]"
               maxi={5}
               current={2}
               color="BlueLight-20"

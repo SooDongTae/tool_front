@@ -22,18 +22,10 @@ const ProfileView = () => {
         <span className="text-[1.3rem] text-[#777]">taehyun5820@gmail.com</span>
       </div>
       <div className="relative mt-[12%] h-[20%] flex flex-col justify-evenly">
-        <div
-          className={`text-4xl ${
-            path === "/profile" ? "text-GreenLight-30" : ""
-          }`}
-        >
+        <div className={`text-4xl ${path === "/profile" ? "font-bold" : ""}`}>
           <Link href={"/profile"}>내 프로필</Link>
         </div>
-        <div
-          className={`text-4xl ${
-            path === "/history" ? "text-GreenLight-30" : ""
-          }`}
-        >
+        <div className={`text-4xl ${path === "/history" ? "font-bold" : ""}`}>
           <Link href={"/history"}>결제 내역</Link>
         </div>
         <div
