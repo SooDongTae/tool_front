@@ -6,7 +6,8 @@ import { HeaderText } from "./HeaderText";
 import { useState } from "react";
 import useUser from "@/hooks/useUser";
 export const Header = () => {
-
+  const router = useRouter();
+  const path = router.pathname;
   const [clicked, setClicked] = useState(false);
   const { isLogged, user, logout, isLoading } = useUser();
   return (
