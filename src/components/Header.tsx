@@ -1,13 +1,10 @@
 import Link from "next/link";
 import { HeaderText } from "./HeaderText";
-import { useQueryClient } from "react-query";
 import { useState } from "react";
 import useUser from "@/hooks/useUser";
 export const Header = () => {
   const [clicked, setClicked] = useState(false);
-  const queryClinet = useQueryClient();
-  const { isLogged, user, logout } = useUser();
-  console.log(user);
+  const { isLogged, user, logout, isLoading } = useUser();
   return (
     <div className="w-full h-[6rem] fixed shadow-md bg-[white] z-50 flex justify-center items-center">
       <div className="w-[75rem]  flex flex-row items-center justify-between">
@@ -39,7 +36,6 @@ export const Header = () => {
                 <div
                   className="h-[3.5rem] flex justify-center items-center border-b-[1px] border-b-GrayScale-15"
                   onClick={() => setClicked(false)}
-              
                 >
                   <HeaderText text="마이페이지" target="/profile" ml="0" />
                 </div>
@@ -48,7 +44,6 @@ export const Header = () => {
                   onClick={() => {
                     setClicked(false);
                     logout();
-                    queryClinet.invalidateQueries(["user"]);
                   }}
                 >
                   <HeaderText text="로그아웃" target="" ml="0" />
@@ -56,6 +51,8 @@ export const Header = () => {
               </div>
             ) : null}
           </div>
+        ) : isLoading && !isLogged ? (
+          <HeaderText target="" text="로딩중..." />
         ) : (
           <HeaderText
             target="https://auth.bssm.kro.kr/oauth?clientId=98fd44ad&redirectURI=http://localhost:3000/oauth"
