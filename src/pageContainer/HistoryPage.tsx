@@ -4,7 +4,7 @@ import React from "react";
 
 const HistoryPage = () => {
   return (
-    <div className="w-screen h-screen flex flex-row justify-between">
+    <div className="w-screen h-screen flex flex-row justify-between bg-Background-Gray">
       <ProfileView />
       <div className="w-[65%] h-screen flex flex-col items-center">
         <div className="w-full h-full flex flex-col items-center justify-start mt-[12rem]">

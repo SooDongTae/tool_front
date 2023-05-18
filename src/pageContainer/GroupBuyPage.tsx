@@ -1,7 +1,7 @@
 import React from "react";
 const GroupBuyPage = () => {
   return (
-    <div className="w-screen h-[200vh] flex justify-center pt-[10rem]">
+    <div className="w-screen h-[200vh] flex justify-center pt-[10rem] bg-Background-Gray">
       <div className="w-[75rem] h-full">
         <div className="w-full h-[2.5rem] flex justify-between mt-8">
           <div className="button-layout w-[8rem] bg-GrayScale-20 ">
