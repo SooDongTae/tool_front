@@ -3,31 +3,13 @@ import { useRouter } from "next/router";
 import Tab from "./Tab";
 
 import { HeaderText } from "./HeaderText";
-import { useQueryClient } from "react-query";
 import { useState } from "react";
 import useUser from "@/hooks/useUser";
 export const Header = () => {
-
-  const [clicked, setClicked] = useState(false);
-  const queryClinet = useQueryClient();
-  const { isLogged, user, logout } = useUser();
-  console.log(user);
   const router = useRouter();
-  const userQuery = useQuery(
-    ["user"],
-    () => UserAPI.GetUserName(localStorage.getItem("accessToken"))
-    // { enabled:  !!localStorage.getItem("accessToken") }
-  );
-  const userName = useMemo(
-    () =>
-      userQuery.data?.grade.toString() +
-        userQuery.data?.classNo.toString() +
-        (userQuery.data?.stuNo < 10 ? "0" : "") +
-        userQuery.data?.stuNo.toString() +
-        userQuery.data?.name || "",
-    [userQuery]
-  );
-  const path = useRouter().pathname;
+  const path = router.pathname;
+  const [clicked, setClicked] = useState(false);
+  const { isLogged, user, logout, isLoading } = useUser();
   return (
     <div className="w-full h-[6rem] fixed shadow-md bg-[white] z-50 flex justify-center items-center">
       {path === "/groupbuy" ? <Tab></Tab> : ""}
@@ -61,7 +43,6 @@ export const Header = () => {
                 <div
                   className="h-[3.5rem] flex justify-center items-center border-b-[1px] border-b-GrayScale-15"
                   onClick={() => setClicked(false)}
-              
                 >
                   <HeaderText text="마이페이지" target="/profile" ml="0" />
                 </div>
@@ -70,7 +51,6 @@ export const Header = () => {
                   onClick={() => {
                     setClicked(false);
                     logout();
-                    queryClinet.invalidateQueries(["user"]);
                   }}
                 >
                   <HeaderText text="로그아웃" target="" ml="0" />
@@ -78,6 +58,8 @@ export const Header = () => {
               </div>
             ) : null}
           </div>
+        ) : isLoading && !isLogged ? (
+          <HeaderText target="" text="로딩중..." />
         ) : (
           <HeaderText
             target="https://auth.bssm.kro.kr/oauth?clientId=98fd44ad&redirectURI=http://localhost:3000/oauth"
