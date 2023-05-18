@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import { useRecoilState } from "recoil";
 import axios from "axios";
 import { InitUserState, userState } from "@/context/userState";
 import { UserType } from "@/types/User.type";
-
 const getUser = async () => {
   const { data } = await axios.get("/api/auth", {
     headers: {
@@ -22,8 +21,9 @@ const useUser = () => {
     data: userInfo,
     remove,
     isLoading,
-  } = useQuery<UserType>("getUser", getUser, {
+  } = useQuery<UserType>(["user"], getUser, {
     retry: 1,
+    refetchOnMount: false,
   });
 
   const logout = () => {
@@ -43,7 +43,7 @@ const useUser = () => {
     [router.query, setUser, userInfo]
   );
 
-  return { user, isLogged: !!userInfo, logout };
+  return { user, isLogged: !!userInfo, logout, isLoading };
 };
 
 export default useUser;
