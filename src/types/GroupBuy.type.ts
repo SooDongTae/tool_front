@@ -14,6 +14,6 @@ export interface IGroupBuy {
   status: string;
   student_no: number;
   title: string;
-  untilAt: string;
+  untilAt: Date;
   views: number;
 }

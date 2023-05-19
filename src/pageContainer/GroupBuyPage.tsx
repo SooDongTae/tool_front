@@ -1,13 +1,15 @@
 import { ProgressBar } from "@/components/ProgressBar";
 import { IGroupBuy } from "@/types/GroupBuy.type";
+import Image from "next/image";
 import React from "react";
 
 const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
   const now = new Date();
-  const futureTime = new Date(party.untilAt);
+  console.log(party?.untilAt);
+  const futureTime = new Date(party?.untilAt);
   const timeDifference = futureTime.getTime() - now.getTime();
-  const minutesDifference = Math.floor(timeDifference / (1000 * 60));
-  console.log(minutesDifference);
+  const hoursDifference = Math.floor(timeDifference / (1000 * 60 * 60));
+  console.log(hoursDifference);
   return (
     <div className="relative w-screen h-[155vh] flex justify-center pt-[10rem] bg-Background-Gray">
       <div className="w-[55rem] h-full flex flex-col">
@@ -19,7 +21,9 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
             파티 만들기
           </div>
         </div> */}
-        <div className="w-full h-[60rem] bg-BlueLight-20" />
+        <div className="w-full h-[60rem]">
+          <Image src={party?.imgSrc} alt="공동구매 이미지" />
+        </div>
         <div className="flex flex-row justify-between items-center border-b-[0.1rem] border-GrayScale-20">
           <div className="text-3xl text-GreenLight-30 font-bold">
             {party?.owner}
@@ -42,7 +46,7 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
               {party?.title}
             </h2>
             <span className="text-[1.3rem] text-GrayScale-40 w-[60%]">
-              음식 • {minutesDifference}남음
+              음식 • {hoursDifference}남음
             </span>
             <span className="text-3xl w-[20%] text-end">
               {party?.cost.toLocaleString()}원
