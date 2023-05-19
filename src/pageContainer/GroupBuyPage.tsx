@@ -1,13 +1,20 @@
 import { ProgressBar } from "@/components/ProgressBar";
+import { IGroupBuy } from "@/types/GroupBuy.type";
 import React from "react";
-const GroupBuyPage = () => {
+
+const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
+  const now = new Date();
+  const futureTime = new Date(party.untilAt);
+  const timeDifference = futureTime.getTime() - now.getTime();
+  const minutesDifference = Math.floor(timeDifference / (1000 * 60));
+  console.log(minutesDifference);
   return (
-    <div className="relative w-screen h-[155vh] flex justify-center pt-[10rem]">
+    <div className="relative w-screen h-[155vh] flex justify-center pt-[10rem] bg-Background-Gray">
       <div className="w-[55rem] h-full flex flex-col">
         {/* <div className="w-full h-[2.5rem] flex justify-between mt-8">
           <div className="button-layout w-[8rem] bg-GrayScale-20 ">
             카테고리
-          </div>
+</div>                                                                                                                                                                                                                        
           <div className="w-[8rem] button-layout text-GreenLight-30 hover:bg-GreenLight-30 bg-[white] hover:text-[white] border-[.5px] border-[GreenLight-30]">
             파티 만들기
           </div>
@@ -15,7 +22,7 @@ const GroupBuyPage = () => {
         <div className="w-full h-[60rem] bg-BlueLight-20" />
         <div className="flex flex-row justify-between items-center border-b-[0.1rem] border-GrayScale-20">
           <div className="text-3xl text-GreenLight-30 font-bold">
-            3112 전수향
+            {party?.owner}
           </div>
           <div className="flex flex-col items-end justify-between h-[6rem]">
             <div className="text-GreenLight-30 p-[0.5rem]">1등급</div>
@@ -31,22 +38,27 @@ const GroupBuyPage = () => {
         </div>
         <div className="w-full h-full flex flex-col items-center">
           <div className="w-full flex flex-row items-center mt-[3%]">
-            <h2 className="text-[2.3rem] font-semibold w-[20%]">공동구매</h2>
+            <h2 className="text-[2.3rem] font-semibold w-[20%]">
+              {party?.title}
+            </h2>
             <span className="text-[1.3rem] text-GrayScale-40 w-[60%]">
-              음식 * 3시간 전
+              음식 • {minutesDifference}남음
             </span>
-            <span className="text-3xl w-[20%] text-end">50000원</span>
+            <span className="text-3xl w-[20%] text-end">
+              {party?.cost.toLocaleString()}원
+            </span>
           </div>
           <p className="w-[60%] text-2xl text-GrayScale-30 mr-[40%] mt-[5%]">
-            파티 설명, 파티 설명, 파티 설명, 파티 설명, 파티 설명, 파티 설명,
-            파티 설명, 파티 설명, 파티 설명, 파티 설명, 파티 설명, 파티 설명,
-            파티
+            {party?.content}
           </p>
           <div className="flex flex-col justify-between w-full h-[8rem] mt-[5%]">
-            <div className="text-2xl">10/20(50%)</div>
+            <div className="text-2xl">
+              {party?.currentPeople}/{party?.maxPeople}(
+              {party?.currentPeople / party?.maxPeople}%)
+            </div>
             <ProgressBar
               width="full"
-              height="[2rem]"
+              height="2rem"
               maxi={5}
               current={2}
               color="BlueLight-20"

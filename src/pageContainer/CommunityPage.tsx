@@ -7,7 +7,7 @@ export const CommunityPage = ({ school }: { school: string }) => {
   const [category, setCategory] = useState(0);
   const [title, setTitle] = useState("");
   return (
-    <div className="w-screen pt-[10rem] flex justify-center">
+    <div className="w-screen pt-[10rem] h-screen flex justify-center bg-Background-Gray">
       <div className="w-[75rem] ">
         <div className="text-3xl tracking-wider">
           <span className="font-bold">{school}</span>

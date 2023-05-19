@@ -8,6 +8,7 @@ export interface PartyProps {
   grade: number;
   classNum: number;
   studentNum: number;
+  imgSrc: string;
 }
 
 export interface FormType {

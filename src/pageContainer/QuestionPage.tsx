@@ -9,13 +9,16 @@ const QuestionPage = () => {
       <Modal
         isOpen={visible}
         onRequestClose={() => setVisible(false)}
-        className="absolute w-[50%] h-[50%] left-[25%] top-[25%] bg-GrayScale-10 rounded-[2rem] focus:outline-none"
+        className="absolute w-[40%] h-[8%] left-[30%] top-[37.5%] bg-GrayScale-10 border-[0.1rem] border-GrayScale-40 rounded-[10px] focus:outline-none"
       >
-        <div className="w-full h-full">
+        <div className="w-full h-full flex flex-row">
           <input
-            className="w-[70%] h-[10%]"
+            className="w-[80%] h-full rounded-[10px] rounded-r-none pl-[1rem] focus:outline-none text-[1.2rem]"
             placeholder="질문을 입력해주세요."
           />
+          <div className="w-[20%] h-full text-GrayScale-40 text-2xl flex justify-center items-center valid:[bg-GreenLight-30]">
+            질문
+          </div>
         </div>
       </Modal>
       <div

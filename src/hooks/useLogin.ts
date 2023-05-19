@@ -11,14 +11,14 @@ const onLogin = async (authCode: string) => {
   return data;
 };
 
-const useLoginMutation = () => {
+const useLoginMutation = (authCode: string) => {
   const router = useRouter();
   const queryClient = useQueryClient();
-  return useMutation(() => onLogin(router.asPath.replace("/oauth?code=", "")), {
+  return useMutation(() => onLogin(authCode), {
     onSuccess: (data) => {
       localStorage.setItem("accessToken", data.accessToken);
       localStorage.setItem("refreshToken", data.refreshToken);
-      queryClient.invalidateQueries("getUser");
+      queryClient.invalidateQueries("user");
       toast.success("로그인 성공!");
       router.push("/");
     },

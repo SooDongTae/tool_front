@@ -4,16 +4,13 @@ import { useReducer, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { BiImageAdd } from "react-icons/bi";
 import "react-datepicker/dist/react-datepicker.css";
-import PartyAPI from "@/api/Party";
-import { FormType } from "@/types/Party.type";
-import router from "next/router";
-import { useQueryClient } from "react-query";
+import usePartyMutation from "@/hooks/useCreate";
 export const CreatePage = () => {
   const formData = new FormData();
-  const queryClient = useQueryClient();
   const fileRef = useRef<HTMLInputElement>(null);
   const [previewImg, setPreviewImg] = useState<any>(null);
   const [sendImage, setSendImage] = useState<any>(null);
+  const { mutate } = usePartyMutation(formData);
   const [form, setForm] = useReducer(reducer, {
     category: "",
     maxPeople: "",
@@ -24,9 +21,8 @@ export const CreatePage = () => {
     cost: "",
     content: "",
   });
-  console.log(form, previewImg, sendImage);
   return (
-    <div className="w-screen flex items-center pt-[10rem] justify-center ">
+    <div className="w-screen flex items-center pt-[10rem] justify-center bg-Background-Gray">
       <div className="w-[75rem]">
         <div className="h-[3rem] border-b-2 items-center  text-3xl font-semibold">
           <span className="text-GreenLight-30">공동구매 파티</span>
@@ -140,9 +136,9 @@ export const CreatePage = () => {
         <div className="w-full flex justify-center mt-[4rem] mb-[4rem]">
           <button
             onClick={() => {
-              if (!isValid(form)) return;
+              // if (!isValid) return;
               if (!sendImage) {
-                notify("이미지를 업로드해 주세요!");
+                toast.error("이미지를 업로드해 주세요!");
                 return;
               }
               formData.append(
@@ -152,9 +148,7 @@ export const CreatePage = () => {
                 })
               );
               formData.append("file", sendImage);
-              PartyAPI.CreateParty(formData, queryClient);
-              toast.success("파티 만들기 성공!");
-              router.push("/");
+              mutate();
             }}
             className="w-[8rem] h-[4rem] bg-GreenLight-30 text-white text-[1.5rem] rounded-[10px]"
           >
@@ -165,41 +159,7 @@ export const CreatePage = () => {
     </div>
   );
 };
-const notify = (msg: string) => toast.error(msg);
-const isValid = (form: FormType) => {
-  if (form.title === "") {
-    notify("제목을 입력해 주세요!");
-    return false;
-  } else if (form.maxPeople === 0) {
-    notify("참가 인원수를 입력해 주세요!");
-    return false;
-  } else if (form.category === "") {
-    notify("카테고리를 선택해 주세요!");
-    return false;
-  } else if (form.account === "") {
-    notify("계좌번호를 입력해 주세요!");
-    return false;
-  } else if (form.bank === "") {
-    notify("은행을 선택해 주세요!");
-    return false;
-  } else if (form.untilAt === "") {
-    notify("종료 날짜를 선택해 주세요!");
-    return false;
-  } else if (form.cost === 0) {
-    notify("참여 금액을 입력해 주세요!");
-    return false;
-  } else if (form.content === "") {
-    notify("세부사항을 입력해 주세요!");
-    return false;
-  } else if (isNaN(form.cost)) {
-    notify("참여 금액은 숫자여야 합니다!");
-    return false;
-  } else if (form.maxPeople < 1 || form.maxPeople > 20) {
-    notify("참가자 수는 1 ~ 20 사이의 숫자여야 합니다!");
-    return false;
-  }
-  return true;
-};
+
 const reducer = (state: any, action: any): any => {
   switch (action.type) {
     case "Category":

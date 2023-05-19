@@ -1,40 +1,44 @@
 import { Party } from "@/components/Party";
 import { SearchBar } from "@/components/SearchBar";
 import Link from "next/link";
-import { useLayoutEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { CategoryModal } from "@/components/CategoryModal";
-import { useQuery } from "react-query";
-import PartyAPI from "@/api/Party";
-const Category = ["all", "FOOD", "CLOTHES", "ETC"];
+import usePartyList from "@/hooks/useParty";
+const Category = ["all", "PRODUCT", "FOOD", "CLOTHES", "ETC"];
 export const MainPage = () => {
   const [category, setCategory] = useState(0);
   const [title, setTitle] = useState("");
-  const partyQuery = useQuery(["party", title, category], () =>
-    PartyAPI.GetAllPartyList({ title: title, category: Category[category] })
-  );
+  const { partyList, isLoading } = usePartyList({
+    title: title,
+    category: Category[category],
+  });
+  console.log(partyList);
   const party = useMemo(
-    () => partyQuery.data?.groupBuyingResponseList || [],
-    [partyQuery]
+    () => partyList?.groupBuyingResponseList || [],
+    [partyList]
   );
   const PartyList = party.map((item: any, idx: number) => {
     return (
-      <Party
-        grade={item.grade}
-        classNum={item.class_no}
-        studentNum={item.student_no}
-        key={idx}
-        owner={item.owner}
-        title={item.title}
-        maxPeople={item.maxPeople}
-        currentPeople={item.currentPeople}
-        endDate={item.untilAt}
-        price={item.cost}
-      />
+      <Link href={`/groupbuy/${item.id}`}>
+        <Party
+          grade={item.grade}
+          classNum={item.class_no}
+          studentNum={item.student_no}
+          key={idx}
+          owner={item.owner}
+          title={item.title}
+          maxPeople={item.maxPeople}
+          currentPeople={item.currentPeople}
+          endDate={item.untilAt}
+          price={item.cost}
+          imgSrc={item.imgSrc}
+        />
+      </Link>
     );
   });
 
   return (
-    <div className="w-screen h-screen flex justify-center pt-[8.5rem]">
+    <div className="w-screen h-full flex justify-center pt-[8.5rem] bg-Background-Gray">
       <div className="w-[75rem]">
         <div className="w-full h-[18rem] rounded-[10px] bg-BlueLight-20">
           <a href="https://tool-landingpage.bssm.kro.kr" target="_blink">
@@ -46,7 +50,7 @@ export const MainPage = () => {
             <CategoryModal
               setData={setCategory}
               data={category}
-              category={["전체", "음식", "옷", "기타"]}
+              category={["전체", "상품", "음식", "옷", "기타"]}
             />
             <SearchBar setData={setTitle} data={title} />
           </div>
@@ -56,7 +60,7 @@ export const MainPage = () => {
             </div>
           </Link>
         </div>
-        <div className="w-full lg:grid-cols-3 md:grid-cols-2 grid grid-cols-1 gap-8 mt-[2rem] gap-y-[4rem] pb-[8rem]">
+        <div className="w-full lg:grid-cols-4 md:grid-cols-3 grid grid-cols-1 gap-6 mt-[2rem] gap-y-[4rem] pb-[4rem]">
           {PartyList}
         </div>
       </div>
