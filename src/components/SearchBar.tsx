@@ -10,11 +10,11 @@ export const SearchBar = ({ setData, data }: StateType) => {
     300
   );
   return (
-    <div className="w-fit h-fit relative flex items-center ml-[2rem]">
+    <div className="w-fit h-fit relative flex items-center ">
       <button className=" bg-Background-Gray border-none text-[1.3rem] font-bold outline-none absolute right-0 text-[black] flex justify-end items-center peer">
         <AiOutlineSearch
           size={"2rem"}
-          className=" hover:bg-GrayScale-15 duration-300 text-GreenLight-30"
+          className="duration-300 text-GreenLight-30"
         />
       </button>
       <input
