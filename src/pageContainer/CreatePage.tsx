@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { BiImageAdd } from "react-icons/bi";
 import "react-datepicker/dist/react-datepicker.css";
 import usePartyMutation from "@/hooks/useCreate";
+import { FormDateInput } from "@/components/FormInput/FormDateInput";
 export const CreatePage = () => {
   const formData = new FormData();
   const fileRef = useRef<HTMLInputElement>(null);
@@ -17,10 +18,11 @@ export const CreatePage = () => {
     title: "",
     account: "",
     bank: "",
-    untilAt: "",
+    untilAt: null,
     cost: "",
     content: "",
   });
+  console.log(form)
   return (
     <div className="w-screen flex items-center pt-[10rem] justify-center bg-Background-Gray">
       <div className="w-[75rem]">
@@ -79,9 +81,9 @@ export const CreatePage = () => {
                 width="24rem"
                 inputName="참여 금액"
               />
-              <FormTextInput
+              <FormDateInput
                 type="EndDate"
-                title={form.untilAt}
+                date={form.untilAt}
                 setData={setForm}
                 width="24rem"
                 inputName="종료 날짜"
