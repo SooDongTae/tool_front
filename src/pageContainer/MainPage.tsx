@@ -6,6 +6,7 @@ import { CategoryModal } from "@/components/CategoryModal";
 import usePartyList from "@/hooks/useParty";
 import { BsGraphUp } from "react-icons/bs";
 import { AiOutlineClockCircle } from "react-icons/ai";
+import { Observer } from "@/components/Observer";
 const Category = ["all", "PRODUCT", "FOOD", "CLOTHES", "ETC"];
 export const MainPage = () => {
   const [category, setCategory] = useState(0);
@@ -17,6 +18,11 @@ export const MainPage = () => {
     sortField: sortField,
   });
   console.log("partyList", partyList);
+  const handleIntersection = () => {
+    if (hasNextPage) {
+      fetchNextPage();
+    }
+  };
   const party = useMemo(
     () =>
       partyList?.pages.flatMap((page) => page.groupBuyingResponseList) || [],
@@ -41,7 +47,7 @@ export const MainPage = () => {
   });
 
   return (
-    <div className="w-screen h-full flex justify-center pt-[8.5rem] bg-Background-Gray">
+    <div className="w-screen h-full flex justify-center pt-[8.5rem] bg-Background-Gray flex-col items-center">
       <div className="w-[75rem]">
         <div className="w-full h-[18rem] rounded-[10px] bg-BlueLight-20">
           <a href="https://tool-landingpage.bssm.kro.kr" target="_blink">
@@ -91,14 +97,7 @@ export const MainPage = () => {
           {PartyList}
         </div>
       </div>
-      <button
-        className="w-[10rem] h-[10rem]"
-        onClick={async () => {
-          await fetchNextPage();
-        }}
-      >
-        click
-      </button>
+      {hasNextPage && <Observer handleIntersection={handleIntersection} />}
     </div>
   );
 };
