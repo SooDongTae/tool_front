@@ -1,34 +1,45 @@
 import { useState } from "react";
-import ReactDatePicker from "react-datepicker";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import ko from "date-fns/locale/ko";
 interface FormDateInputType {
-  title?: string;
-  inputName: string;
+  date?: null | Date;
+  inputName?: string;
   setData: ({}) => void;
-  width: string;
-  type: string;
+  width?: string;
+  type?: string;
 }
 export const FormDateInput = ({
   setData,
   width,
-  title,
+  date,
   inputName,
   type,
 }: FormDateInputType) => {
-  const [startDate, setStartDate] = useState<Date | null>(new Date());
+  const [isFocus, setIsFocus] = useState(false);
   return (
     <div className="input-box">
-      <ReactDatePicker
-        customInput={
-          <input
-            className={`form-input peer w-[${width}] h-[4rem]`}
-            // onChange={(e) => setData({ type: type, data: e.target.value })}
-            value={"124"}
-          />
+      <DatePicker
+        locale="ko"
+        className={`form-input peer w-[${width}] h-[4rem]`}
+        selected={date}
+        onChange={(date) => setData({ type: type, data: date })}
+        onFocus={() => setIsFocus(true)}
+        value={
+          date
+            ? date.getFullYear().toString() +
+              "/" +
+              date.getMonth().toString() +
+              "/" +
+              date.getDate().toString()
+            : ""
         }
-        selected={startDate}
-        onChange={(e) => setData({ type: type, data: e })}
       />
-      <div className={`input-text ${title ? "animate-InputHover" : null}`}>
+      <div
+        className={`input-text ${
+          isFocus || !!date ? "animate-InputHover" : null
+        }`}
+      >
         {inputName}
       </div>
     </div>

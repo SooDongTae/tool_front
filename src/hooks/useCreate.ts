@@ -15,10 +15,10 @@ const usePartyMutation = (form: FormData) => {
   const router = useRouter();
   const queryClient = useQueryClient();
   return useMutation(() => onCreate(form), {
-    onSuccess: () => {
+    onSuccess: (res) => {
       queryClient.invalidateQueries(["party"]);
       toast.success("파티 생성 성공!");
-      router.push("/");
+      router.push("/groupbuy/" + res);
     },
     onError: () => {
       toast.error("파티 생성 실패!");

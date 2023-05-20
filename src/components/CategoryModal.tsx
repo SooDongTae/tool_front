@@ -12,6 +12,7 @@ export const CategoryModal = ({ setData, data, category }: CateModalType) => {
       <div
         className={`
         cursor-pointer
+        duration-300
         ${
           idx == data
             ? "text-GreenLight-30 font-bold"

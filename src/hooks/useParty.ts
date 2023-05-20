@@ -1,25 +1,38 @@
 import { GetPartyListType } from "@/types/Party.type";
 import axios from "axios";
-import { useQuery } from "react-query";
+import { useInfiniteQuery, useQuery } from "react-query";
 
 const onRequest = async (criteria: GetPartyListType) => {
   const { data } = await axios.get(
-    `/api/groupBuying/list?limit=${20}&offset=${0}&sortField=${"views"}&sortWay=${"desc"}&category=${
-      criteria.category
-    }&title=${criteria.title}&status=${"ACTIVATED"}`
+    `/api/groupBuying/list?size=${8}&page=${criteria.offset}&sortField=${
+      criteria.sortField
+    }&sortWay=${"asc"}&category=${criteria.category}&title=${
+      criteria.title
+    }&status=${"ACTIVATED"}`
   );
   return data;
 };
 
 const usePartyList = (criteria: GetPartyListType) => {
-  const { data: partyList, isLoading } = useQuery(
-    ["party", criteria.title, criteria.category],
-    () => onRequest(criteria),
+  const {
+    data: partyList,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+  } = useInfiniteQuery(
+    ["party"],
+    ({ pageParam = 1 }) => {
+      console.log("pageParam", pageParam);
+      return onRequest({ ...criteria, offset: pageParam });
+    },
     {
-      retry: 1,
+      getNextPageParam: (lastPage, pages) => {
+        if (lastPage?.maxPage === pages?.length) return false;
+        return pages?.length + 1;
+      },
     }
   );
-  return { partyList, isLoading };
+  return { partyList, fetchNextPage, isLoading, hasNextPage };
 };
 
 export default usePartyList;

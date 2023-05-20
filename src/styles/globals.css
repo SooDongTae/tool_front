@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .button-layout {
-  @apply h-[2.5rem] flex justify-center items-center rounded-[10px] w-[8rem];
+  @apply h-[2.5rem] flex justify-center items-center rounded-[10px] w-[8rem] duration-300;
 }
 
 .text-omit {
