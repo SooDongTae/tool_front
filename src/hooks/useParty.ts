@@ -4,7 +4,7 @@ import { useInfiniteQuery, useQuery } from "react-query";
 
 const onRequest = async (criteria: GetPartyListType) => {
   const { data } = await axios.get(
-    `/api/groupBuying/list?limit=${8}&offset=${criteria.offset}&sortField=${
+    `/api/groupBuying/list?size=${8}&page=${criteria.offset}&sortField=${
       criteria.sortField
     }&sortWay=${"asc"}&category=${criteria.category}&title=${
       criteria.title
