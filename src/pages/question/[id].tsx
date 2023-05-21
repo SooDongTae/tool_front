@@ -1,8 +1,17 @@
+import { groupId } from "@/context/selectedGroupState";
+import useQuestion from "@/hooks/useQuestion";
 import QuestionPage from "@/pageContainer/QuestionPage";
 import { NextPage, NextPageContext } from "next";
-import React from "react";
+import React, { useEffect } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 const question = ({ id }: { id: string }) => {
+  const [grpId, setGrpId] = useRecoilState(groupId);
+  useEffect(() => {
+    setGrpId(id);
+  }, []);
+  const { questions, isLoading } = useQuestion(id);
+  console.log(questions);
   return <QuestionPage />;
 };
 
