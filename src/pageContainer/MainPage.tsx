@@ -29,20 +29,23 @@ export const MainPage = () => {
     [partyList]
   );
   const PartyList = party.map((item: any, idx: number) => {
+    console.log(item);
     return (
-      <Party
-        grade={item.grade}
-        classNum={item.class_no}
-        studentNum={item.student_no}
-        key={idx}
-        owner={item.owner}
-        title={item.title}
-        maxPeople={item.maxPeople}
-        currentPeople={item.currentPeople}
-        endDate={item.untilAt}
-        price={item.cost}
-        imgSrc={item.imgSrc}
-      />
+      <Link href={`/groupbuy/${item.id}`}>
+        <Party
+          grade={item.grade}
+          classNum={item.class_no}
+          studentNum={item.student_no}
+          key={idx}
+          owner={item.owner}
+          title={item.title}
+          maxPeople={item.maxPeople}
+          currentPeople={item.currentPeople}
+          endDate={item.untilAt}
+          price={item.cost}
+          imgSrc={item.imgSrc}
+        />
+      </Link>
     );
   });
 
