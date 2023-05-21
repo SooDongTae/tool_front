@@ -5,11 +5,10 @@ import React from "react";
 
 const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
   const now = new Date();
-  console.log(party?.untilAt);
   const futureTime = new Date(party?.untilAt);
   const timeDifference = futureTime.getTime() - now.getTime();
   const hoursDifference = Math.floor(timeDifference / (1000 * 60 * 60));
-  console.log(hoursDifference);
+  console.log(party?.imgSrc);
   return (
     <div className="relative w-screen h-[155vh] flex justify-center pt-[10rem] bg-Background-Gray">
       <div className="w-[55rem] h-full flex flex-col">
@@ -21,15 +20,22 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
             파티 만들기
           </div>
         </div> */}
-        <div className="w-full h-[60rem]">
-          <Image src={party?.imgSrc} alt="공동구매 이미지" />
-        </div>
+        {/* <div className="w-full h-[60rem]"> */}
+        <Image
+          src={party?.imgSrc}
+          alt="공동구매 이미지"
+          width={880}
+          height={960}
+        />
+        {/* </div> */}
         <div className="flex flex-row justify-between items-center border-b-[0.1rem] border-GrayScale-20">
           <div className="text-3xl text-GreenLight-30 font-bold">
             {party?.owner}
           </div>
           <div className="flex flex-col items-end justify-between h-[6rem]">
-            <div className="text-GreenLight-30 p-[0.5rem]">1등급</div>
+            <div className="text-GreenLight-30 p-[0.5rem]">
+              {party?.ownerRating}등급
+            </div>
             <div className="w-[10rem] h-[0.8rem] rounded-[20px] border-[1px] border-GrayScale-20 pr-[0.5rem]">
               <div
                 className={`bg-GreenLight-30 rounded-l-[20px] rounded-r-[20px] h-full`}
