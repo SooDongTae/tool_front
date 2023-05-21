@@ -4,6 +4,7 @@ import Modal from "react-modal";
 
 const QuestionPage = () => {
   const [visible, setVisible] = useState(false);
+  const [input, setInput] = useState("");
   return (
     <div className="relative w-screen h-screen flex justify-center">
       <Modal
@@ -13,10 +14,17 @@ const QuestionPage = () => {
       >
         <div className="w-full h-full flex flex-row">
           <input
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              setInput(e.target.value);
+            }}
             className="w-[80%] h-full rounded-[10px] rounded-r-none pl-[1rem] focus:outline-none text-[1.2rem]"
             placeholder="질문을 입력해주세요."
           />
-          <div className="w-[20%] h-full text-GrayScale-40 text-2xl flex justify-center items-center valid:[bg-GreenLight-30]">
+          <div
+            className={`w-[20%] h-full text-GrayScale-40 text-2xl flex justify-center rounded-r-[8px] items-center ${
+              input ? "bg-GreenLight-30 text-white" : ""
+            }`}
+          >
             질문
           </div>
         </div>
