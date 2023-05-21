@@ -20,5 +20,5 @@ export const Observer = ({ handleIntersection }: any) => {
     return () => observer.disconnect();
   }, []);
 
-  return <div ref={target}>이게 보이면? 다음 데이터를!</div>;
+  return <div ref={target} className="mb-[2rem]"></div>;
 };
