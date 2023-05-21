@@ -20,7 +20,7 @@ const usePartyList = (criteria: GetPartyListType) => {
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery(
-    ["party"],
+    ["party",criteria],
     ({ pageParam = 1 }) => {
       console.log("pageParam", pageParam);
       return onRequest({ ...criteria, offset: pageParam });
