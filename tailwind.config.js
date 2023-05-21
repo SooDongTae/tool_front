@@ -42,12 +42,12 @@ module.exports = {
       "GrayScale-5": "#F2F2F2",
       "GreenDark-30": "#20a26f",
       "OrangeDark-30": "#ffa500",
-      "Background-Gray" : "#fafafa",
+      "Background-Gray": "#fafafa",
       Gold: "#ffd700",
       white: "#fff",
       black: "#000",
     },
   },
 
-  plugins: [],
+  plugins: [require("tailwind-scrollbar-hide")],
 };

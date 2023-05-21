@@ -14,10 +14,10 @@ export const Header = () => {
     <div className="w-full h-[6rem] fixed shadow-md bg-[white] z-50 flex justify-center items-center">
       {path === "/groupbuy" ? <Tab></Tab> : ""}
       {path === "/question" ? <Tab></Tab> : ""}
-      <div className="w-[75rem]  flex flex-row items-center justify-between">
+      <div className="lg:w-[75rem] w-[80%] flex flex-row items-center justify-between">
         <div className="h-[4rem] flex justify-between flex-row items-center">
           <Link href="/">
-            <div className="h-[4rem] w-[4rem] bg-GreenLight-30 " />
+            <div className="lg:h-[4rem] lg:w-[4rem] w-[3rem] h-[3rem] bg-GreenLight-30 " />
           </Link>
           <HeaderText target="/" text="공동구매" />
           <HeaderText target="/community" text="커뮤니티" />
