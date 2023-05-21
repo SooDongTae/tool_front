@@ -12,8 +12,8 @@ export const Header = () => {
   const { isLogged, user, logout, isLoading } = useUser();
   return (
     <div className="w-full h-[6rem] fixed shadow-md bg-[white] z-50 flex justify-center items-center">
-      {path === "/groupbuy" ? <Tab></Tab> : ""}
-      {path === "/question" ? <Tab></Tab> : ""}
+      {path === "/groupbuy/[id]" ? <Tab></Tab> : ""}
+      {path === "/question/[id]" ? <Tab></Tab> : ""}
       <div className="w-[75rem]  flex flex-row items-center justify-between">
         <div className="h-[4rem] flex justify-between flex-row items-center">
           <Link href="/">
