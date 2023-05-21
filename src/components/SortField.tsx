@@ -16,11 +16,11 @@ export const SortField = ({
   return (
     <div
       onClick={() => setData(target)}
-      className={`flex flex-row items-center text-lg font-semibold h-full cursor-pointer duration-300 ${
+      className={`flex flex-row items-center lg:text-lg text-sm font-semibold  whitespace-nowrap  cursor-pointer duration-300 ${
         data === target ? "text-GreenLight-30" : "hover:text-GrayScale-40"
       }`}
     >
-      {Icon}
+      {Icon}  
       {text}
     </div>
   );

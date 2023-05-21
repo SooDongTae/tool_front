@@ -1,24 +1,23 @@
 import { Party } from "@/components/Party";
 import { SearchBar } from "@/components/SearchBar";
 import Link from "next/link";
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { CategoryModal } from "@/components/CategoryModal";
 import usePartyList from "@/hooks/useParty";
 import { BsGraphUp } from "react-icons/bs";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { Observer } from "@/components/Observer";
 import { SortField } from "@/components/SortField";
-const Category = ["all", "PRODUCT", "FOOD", "CLOTHES", "ETC"];
+const category = ["all", "PRODUCT", "FOOD", "CLOTHES", "ETC"];
 export const MainPage = () => {
-  const [category, setCategory] = useState(0);
+  const [cateIdx, setCateIdx] = useState(0);
   const [title, setTitle] = useState("");
   const [sortField, setSortField] = useState("views");
   const { partyList, isLoading, hasNextPage, fetchNextPage } = usePartyList({
     title: title,
-    category: Category[category],
+    category: category[cateIdx],
     sortField: sortField,
   });
-  console.log("partyList", partyList);
   const handleIntersection = () => {
     if (hasNextPage) {
       fetchNextPage();
@@ -51,15 +50,20 @@ export const MainPage = () => {
   });
 
   return (
-    <div className="w-screen h-full flex justify-center pt-[8.5rem] bg-Background-Gray flex-col items-center">
-      <div className="w-[75rem]">
-        <div className="w-full h-[18rem] rounded-[10px] bg-BlueLight-20">
+    <div className="min-h-screen flex pt-[8.5rem] bg-Background-Gray flex-col items-center scrollbar-hide">
+      <div className="lg:w-[75rem] w-[80%]">
+        <div className="h-[18rem] rounded-[10px] bg-BlueLight-20">
           <a href="https://tool-landingpage.bssm.kro.kr" target="_blink">
             Tool 사용법이 궁금하다면?
           </a>
         </div>
-        <div className="w-full h-[2.5rem] flex justify-between mt-8 items-center">
+        <div className="lg:h-[2.5rem] h-[7rem] flex justify-between mt-8 lg:items-center lg:flex-row flex-col">
           <div className="flex flex-row items-center justify-between w-[20rem] h-full">
+            <CategoryModal
+              setData={setCateIdx}
+              data={cateIdx}
+              category={["전체", "상품", "음식", "옷", "기타"]}
+            />
             <SortField
               data={sortField}
               setData={setSortField}
@@ -74,22 +78,17 @@ export const MainPage = () => {
               target="create_at"
               text="최신순"
             />
-            <CategoryModal
-              setData={setCategory}
-              data={category}
-              category={["전체", "상품", "음식", "옷", "기타"]}
-            />
           </div>
-          <div className="flex flex-row">
+          <div className="flex flex-row justify-between items-center">
             <SearchBar setData={setTitle} data={title} />
             <Link href="/create">
-              <div className="button-layout text-GreenLight-30 hover:bg-GreenLight-30 bg-[white] hover:text-[white] border-[.5px] border-[GreenLight-30] ml-8">
+              <div className="lg:text-base text-sm button-layout text-GreenLight-30 hover:bg-GreenLight-30 bg-[white] hover:text-[white] border-[.5px] border-[GreenLight-30] ml-8">
                 파티 만들기
               </div>
             </Link>
           </div>
         </div>
-        <div className="w-full lg:grid-cols-4 md:grid-cols-3 grid grid-cols-1 gap-6 mt-[2rem] gap-y-[4rem] pb-[4rem]">
+        <div className="lg:grid-cols-4 md:grid-cols-3 grid grid-cols-1 gap-6 lg:mt-[2rem] mt-[3rem] gap-y-[4rem] pb-[4rem]">
           {PartyList}
         </div>
       </div>

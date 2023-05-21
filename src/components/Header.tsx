@@ -15,9 +15,10 @@ export const Header = () => {
       {path === "/groupbuy/[id]" ? <Tab></Tab> : ""}
       {path === "/question/[id]" ? <Tab></Tab> : ""}
       <div className="w-[75rem]  flex flex-row items-center justify-between">
+
         <div className="h-[4rem] flex justify-between flex-row items-center">
           <Link href="/">
-            <div className="h-[4rem] w-[4rem] bg-GreenLight-30 " />
+            <div className="lg:h-[4rem] lg:w-[4rem] w-[3rem] h-[3rem] bg-GreenLight-30 " />
           </Link>
           <HeaderText target="/" text="공동구매" />
           <HeaderText target="/community" text="커뮤니티" />
