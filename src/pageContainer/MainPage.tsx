@@ -7,6 +7,7 @@ import usePartyList from "@/hooks/useParty";
 import { BsGraphUp } from "react-icons/bs";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { Observer } from "@/components/Observer";
+import { SortField } from "@/components/SortField";
 const Category = ["all", "PRODUCT", "FOOD", "CLOTHES", "ETC"];
 export const MainPage = () => {
   const [category, setCategory] = useState(0);
@@ -58,28 +59,20 @@ export const MainPage = () => {
         </div>
         <div className="w-full h-[2.5rem] flex justify-between mt-8 items-center">
           <div className="flex flex-row items-center justify-between w-[20rem] h-full">
-            <div
-              onClick={() => setSortField("views")}
-              className={`flex flex-row items-center text-lg font-semibold h-full cursor-pointer duration-300 ${
-                sortField === "views"
-                  ? "text-GreenLight-30"
-                  : "hover:text-GrayScale-40"
-              }`}
-            >
-              <BsGraphUp size={"1.5rem"} />
-              조회수순
-            </div>
-            <div
-              onClick={() => setSortField("create_at")}
-              className={`flex flex-row items-center text-lg font-semibold h-full cursor-pointer duration-300 ${
-                sortField === "create_at"
-                  ? "text-GreenLight-30"
-                  : "hover:text-GrayScale-40"
-              }`}
-            >
-              <AiOutlineClockCircle size="1.5rem" />
-              최신순
-            </div>
+            <SortField
+              data={sortField}
+              setData={setSortField}
+              Icon={<BsGraphUp size="1.5rem" />}
+              target="views"
+              text="조회수순"
+            />
+            <SortField
+              data={sortField}
+              setData={setSortField}
+              Icon={<AiOutlineClockCircle size="1.5rem" />}
+              target="create_at"
+              text="최신순"
+            />
             <CategoryModal
               setData={setCategory}
               data={category}
