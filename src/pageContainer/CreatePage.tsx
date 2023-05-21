@@ -22,7 +22,13 @@ export const CreatePage = () => {
     cost: "",
     content: "",
   });
-  console.log(form)
+  console.log(
+    form.untilAt?.getFullYear().toString() +
+      "-" +
+      form.untilAt?.getMonth().toString() +
+      "-" +
+      form.untilAt?.getDate().toString()
+  );
   return (
     <div className="w-screen flex items-center pt-[10rem] justify-center bg-Background-Gray">
       <div className="w-[75rem]">
@@ -145,9 +151,28 @@ export const CreatePage = () => {
               }
               formData.append(
                 "request",
-                new Blob([JSON.stringify(form)], {
-                  type: "application/json",
-                })
+                new Blob(
+                  [
+                    JSON.stringify({
+                      ...form,
+                      untilAt:
+                        form.untilAt.getFullYear().toString() +
+                        "-" +
+                        (parseInt(form.untilAt.getMonth().toString()) < 10
+                          ? "0"
+                          : "") +
+                        form.untilAt.getMonth().toString() +
+                        "-" +
+                        (parseInt(form.untilAt.getDate().toString()) < 10
+                          ? "0"
+                          : "") +
+                        form.untilAt.getDate().toString(),
+                    }),
+                  ],
+                  {
+                    type: "application/json",
+                  }
+                )
               );
               formData.append("file", sendImage);
               mutate();
@@ -177,7 +202,7 @@ const reducer = (state: any, action: any): any => {
     case "EndDate":
       return { ...state, untilAt: action.data };
     case "Fee":
-      return { ...state, cost: parseInt(action.data) };
+      return { ...state, cost: action.data };
     case "Desc":
       return { ...state, content: action.data };
     default:
