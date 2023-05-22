@@ -6,7 +6,7 @@ const onRequest = async (criteria: GetPartyListType) => {
   const { data } = await axios.get(
     `/api/groupBuying/list?size=${8}&page=${criteria.offset}&sortField=${
       criteria.sortField
-    }&sortWay=${"asc"}&category=${criteria.category}&title=${
+    }&sortWay=${"desc"}&category=${criteria.category}&title=${
       criteria.title
     }&status=${"ACTIVATED"}`
   );
@@ -20,7 +20,7 @@ const usePartyList = (criteria: GetPartyListType) => {
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery(
-    ["party",criteria],
+    ["party", criteria],
     ({ pageParam = 1 }) => {
       return onRequest({ ...criteria, offset: pageParam });
     },
