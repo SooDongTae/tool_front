@@ -22,7 +22,7 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
         </div> */}
         {/* <div className="w-full h-[60rem]"> */}
         <Image
-          src={party?.imgSrc}
+          src={party?.imgSrc.substring(21)}
           alt="공동구매 이미지"
           width={880}
           height={960}

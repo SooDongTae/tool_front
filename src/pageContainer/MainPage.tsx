@@ -8,6 +8,7 @@ import { BsGraphUp } from "react-icons/bs";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { Observer } from "@/components/Observer";
 import { SortField } from "@/components/SortField";
+import { Loading } from "@/components/Loading";
 const category = ["all", "PRODUCT", "FOOD", "CLOTHES", "ETC"];
 export const MainPage = () => {
   const [cateIdx, setCateIdx] = useState(0);
@@ -58,7 +59,7 @@ export const MainPage = () => {
           </a>
         </div>
         <div className="lg:h-[2.5rem] h-[7rem] flex justify-between mt-8 lg:items-center lg:flex-row flex-col">
-          <div className="flex flex-row items-center justify-between w-[20rem] h-full">
+          <div className="flex flex-row items-center justify-between lg:w-[20rem] w-full h-full">
             <CategoryModal
               setData={setCateIdx}
               data={cateIdx}
@@ -89,7 +90,7 @@ export const MainPage = () => {
           </div>
         </div>
         <div className="lg:grid-cols-4 md:grid-cols-3 grid grid-cols-1 gap-6 lg:mt-[2rem] mt-[3rem] gap-y-[4rem] pb-[4rem]">
-          {PartyList}
+          {isLoading ? <Loading /> : <>{PartyList}</>}
         </div>
       </div>
       {hasNextPage && <Observer handleIntersection={handleIntersection} />}
