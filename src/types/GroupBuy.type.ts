@@ -17,3 +17,9 @@ export interface IGroupBuy {
   untilAt: Date;
   views: number;
 }
+export interface ILeftTime {
+  leftDay: number;
+  leftHour: number;
+  leftMinute: number;
+  leftSecond: number;
+}
