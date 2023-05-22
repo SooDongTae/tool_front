@@ -30,7 +30,7 @@ export const CreatePage = () => {
       form.untilAt?.getDate().toString()
   );
   return (
-    <div className="w-screen flex items-center pt-[10rem] justify-center bg-Background-Gray">
+    <div className="flex items-center pt-[10rem] justify-center bg-Background-Gray">
       <div className="w-[75rem]">
         <div className="h-[3rem] border-b-2 items-center  text-3xl font-semibold">
           <span className="text-GreenLight-30">공동구매 파티</span>
@@ -161,7 +161,7 @@ export const CreatePage = () => {
                         (parseInt(form.untilAt.getMonth().toString()) < 10
                           ? "0"
                           : "") +
-                        form.untilAt.getMonth().toString() +
+                        (form.untilAt.getMonth() + 1).toString() +
                         "-" +
                         (parseInt(form.untilAt.getDate().toString()) < 10
                           ? "0"

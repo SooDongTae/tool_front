@@ -29,7 +29,7 @@ export const FormDateInput = ({
           date
             ? date.getFullYear().toString() +
               "/" +
-              date.getMonth().toString() +
+              (date.getMonth() + 1).toString() +
               "/" +
               date.getDate().toString()
             : ""
