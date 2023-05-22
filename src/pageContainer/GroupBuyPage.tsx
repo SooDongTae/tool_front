@@ -1,22 +1,8 @@
+import LeftTime, { GetLeftTime } from "@/components/LeftTime";
 import { ProgressBar } from "@/components/ProgressBar";
 import { IGroupBuy } from "@/types/GroupBuy.type";
 import Image from "next/image";
 import React, { useState } from "react";
-
-const GetLeftTime = (untilAt: Date) => {
-  const now = new Date();
-  const futureTime = new Date(untilAt);
-  const timeDifference = futureTime.getTime() - now.getTime();
-  const hoursDifference = Math.floor(timeDifference / (1000 * 60 * 60));
-  const minutesDifference = Math.floor(timeDifference / (1000 * 60)) % 60;
-  const secondsDifference = Math.floor(timeDifference / 1000) % 60;
-  return {
-    leftDay: Math.floor(hoursDifference / 24),
-    leftHour: hoursDifference % 24,
-    leftMinute: minutesDifference,
-    leftSecond: secondsDifference,
-  };
-};
 
 const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
   const [leftTime, setLeftTime] = useState({
@@ -72,12 +58,7 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
             <h2 className="text-[2.3rem] font-semibold whitespace-nowrap mr-[3%]">
               {party?.title}
             </h2>
-            <span className="text-[1.3rem] text-GrayScale-40 w-[60%]">
-              음식 • {leftTime.leftDay !== 0 ? leftTime.leftDay + "일" : ""}{" "}
-              {leftTime.leftHour !== 0 ? leftTime.leftHour + "시간" : ""}{" "}
-              {leftTime.leftMinute !== 0 ? leftTime.leftMinute + "분" : ""}{" "}
-              {leftTime.leftSecond !== 0 ? leftTime.leftSecond + "초" : ""} 남음
-            </span>
+            <LeftTime leftTime={leftTime} />
             <span className="text-3xl w-[20%] text-end">
               {party?.cost.toLocaleString()}원
             </span>
