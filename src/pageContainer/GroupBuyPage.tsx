@@ -1,9 +1,14 @@
 import { ProgressBar } from "@/components/ProgressBar";
 import { IGroupBuy } from "@/types/GroupBuy.type";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
+import { useQueryClient } from "react-query";
 
 const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
+  const queryClient = useQueryClient();
+  useEffect(() => {
+    queryClient.invalidateQueries(["party"]);
+  }, []);
   const now = new Date();
   const futureTime = new Date(party?.untilAt);
   const timeDifference = futureTime.getTime() - now.getTime();
