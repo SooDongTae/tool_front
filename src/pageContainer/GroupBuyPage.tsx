@@ -1,23 +1,41 @@
 import { ProgressBar } from "@/components/ProgressBar";
 import { IGroupBuy } from "@/types/GroupBuy.type";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 const GetLeftTime = (untilAt: Date) => {
   const now = new Date();
   const futureTime = new Date(untilAt);
   const timeDifference = futureTime.getTime() - now.getTime();
   const hoursDifference = Math.floor(timeDifference / (1000 * 60 * 60));
+  const minutesDifference = Math.floor(timeDifference / (1000 * 60)) % 60;
+  const secondsDifference = Math.floor(timeDifference / 1000) % 60;
   return {
     leftDay: Math.floor(hoursDifference / 24),
     leftHour: hoursDifference % 24,
+    leftMinute: minutesDifference,
+    leftSecond: secondsDifference,
   };
 };
 
 const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
-  console.log(party?.imgSrc);
-  const { leftDay, leftHour } = GetLeftTime(party?.untilAt);
-  console.log(leftDay, leftHour);
+  const [leftTime, setLeftTime] = useState({
+    leftDay: 0,
+    leftHour: 0,
+    leftMinute: 0,
+    leftSecond: 0,
+  });
+  setInterval(() => {
+    const { leftDay, leftHour, leftMinute, leftSecond } = GetLeftTime(
+      party?.untilAt
+    );
+    setLeftTime({
+      leftDay: leftDay,
+      leftHour: leftHour,
+      leftMinute: leftMinute,
+      leftSecond: leftSecond,
+    });
+  }, 1000);
   return (
     <div className="relative w-screen h-auto flex justify-center pt-[10rem] bg-Background-Gray">
       <div className="w-[55rem] h-full flex flex-col">
@@ -51,12 +69,14 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
         </div>
         <div className="w-full h-full flex flex-col items-center">
           <div className="w-full flex flex-row items-center mt-[3%]">
-            <h2 className="text-[2.3rem] font-semibold w-[20%]">
+            <h2 className="text-[2.3rem] font-semibold whitespace-nowrap mr-[3%]">
               {party?.title}
             </h2>
             <span className="text-[1.3rem] text-GrayScale-40 w-[60%]">
-              음식 • {leftDay !== 0 ? leftDay + "일" : ""}{" "}
-              {leftHour !== 0 ? leftHour + "시간" : ""} 남음
+              음식 • {leftTime.leftDay !== 0 ? leftTime.leftDay + "일" : ""}{" "}
+              {leftTime.leftHour !== 0 ? leftTime.leftHour + "시간" : ""}{" "}
+              {leftTime.leftMinute !== 0 ? leftTime.leftMinute + "분" : ""}{" "}
+              {leftTime.leftSecond !== 0 ? leftTime.leftSecond + "초" : ""} 남음
             </span>
             <span className="text-3xl w-[20%] text-end">
               {party?.cost.toLocaleString()}원
@@ -73,8 +93,8 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
             <ProgressBar
               width="full"
               height="2rem"
-              maxi={5}
-              current={2}
+              maxi={party?.maxPeople}
+              current={party?.currentPeople}
               color="BlueLight-20"
             />
             <div className="text-GreenLight-30 text-2xl cursor-pointer">
