@@ -18,6 +18,11 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/hooks/useObserve.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/hooks/useObserve.ts"
+  ],
   "exclude": ["node_modules"]
 }
