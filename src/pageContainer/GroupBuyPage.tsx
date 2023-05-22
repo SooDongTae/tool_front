@@ -2,6 +2,21 @@ import LeftTime, { GetLeftTime } from "@/components/LeftTime";
 import { ProgressBar } from "@/components/ProgressBar";
 import { IGroupBuy } from "@/types/GroupBuy.type";
 import Image from "next/image";
+
+import React, { useEffect } from "react";
+import { useQueryClient } from "react-query";
+
+const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
+  const queryClient = useQueryClient();
+  useEffect(() => {
+    queryClient.invalidateQueries(["party"]);
+  }, []);
+  const now = new Date();
+  const futureTime = new Date(party?.untilAt);
+  const timeDifference = futureTime.getTime() - now.getTime();
+  const hoursDifference = Math.floor(timeDifference / (1000 * 60 * 60));
+  console.log(party?.imgSrc);
+
 import React, { useState } from "react";
 
 const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
@@ -22,6 +37,7 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
       leftSecond: leftSecond,
     });
   }, 1000);
+
   return (
     <div className="relative w-screen h-auto flex justify-center pt-[10rem] bg-Background-Gray">
       <div className="w-[55rem] h-full flex flex-col">
