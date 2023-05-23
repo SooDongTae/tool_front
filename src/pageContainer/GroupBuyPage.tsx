@@ -3,8 +3,9 @@ import { ProgressBar } from "@/components/ProgressBar";
 import { IGroupBuy } from "@/types/GroupBuy.type";
 import Image from "next/image";
 
-import React, { useEffect } from "react";
 import { useQueryClient } from "react-query";
+
+import React, { useEffect, useState } from "react";
 
 const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
   const queryClient = useQueryClient();
@@ -15,11 +16,7 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
   const futureTime = new Date(party?.untilAt);
   const timeDifference = futureTime.getTime() - now.getTime();
   const hoursDifference = Math.floor(timeDifference / (1000 * 60 * 60));
-  console.log(party?.imgSrc);
-
-import React, { useState } from "react";
-
-const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
+  console.log(party?.imgSrc.substring(21));
   const [leftTime, setLeftTime] = useState({
     leftDay: 0,
     leftHour: 0,
