@@ -2,9 +2,7 @@ import LeftTime, { GetLeftTime } from "@/components/LeftTime";
 import { ProgressBar } from "@/components/ProgressBar";
 import { IGroupBuy } from "@/types/GroupBuy.type";
 import Image from "next/image";
-
 import { useQueryClient } from "react-query";
-
 import React, { useEffect, useState } from "react";
 
 const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
