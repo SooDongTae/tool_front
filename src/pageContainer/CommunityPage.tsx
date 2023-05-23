@@ -22,8 +22,8 @@ export const CommunityPage = ({ school }: { school: string }) => {
           <SearchBar setData={setTitle} data={title} />
         </div>
         <div className="flex flex-col w-full mt-[2rem]">
-          <div className="w-full flex h-[2.5rem]">
-            <div className="w-[15%] community-title border-l-[1px]">작성자</div>
+          <div className="w-full flex h-[2.5rem] border-b-[1px] border-GrayScale-30">
+            <div className="w-[15%] community-title ">작성자</div>
             <div className="w-[50%] community-title">제목</div>
             <div className="w-[15%] community-title">작성일</div>
             <div className="w-[10%] community-title">조회수</div>

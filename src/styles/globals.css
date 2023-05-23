@@ -51,7 +51,7 @@
 }
 
 .community-title {
-  @apply flex justify-center items-center bg-GrayScale-15 border-r-[1px];
+  @apply flex justify-center items-center text-[1.1rem] font-bold;
 }
 
 .center {
