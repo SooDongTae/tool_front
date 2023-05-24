@@ -23,3 +23,9 @@ export interface ILeftTime {
   leftMinute: number;
   leftSecond: number;
 }
+
+export interface ICreateQuestion {
+  id: string;
+  content: string;
+  isSecret: boolean;
+}
