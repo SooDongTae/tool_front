@@ -10,7 +10,7 @@ const QuestionPage = () => {
         <div>질문 비공개</div>
         <input className="scale-[130%]" type="checkbox" />
       </div>
-      <div className="absolute w-[40%] h-[6%] left-[30%] bottom-[8%] bg-GrayScale-10 border-[0.1rem] border-GrayScale-40 rounded-[10px] flex flex-row">
+      <div className="absolute w-[40%] h-[7%] left-[30%] bottom-[8%] bg-GrayScale-10 border-[0.1rem] border-GrayScale-40 rounded-[10px] flex flex-row">
         <input
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setInput(e.target.value);
