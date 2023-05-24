@@ -23,6 +23,6 @@
     "**/*.ts",
     "**/*.tsx",
     "src/hooks/useObserve.ts"
-  ],
+, "src/test.js"  ],
   "exclude": ["node_modules"]
 }

@@ -32,8 +32,7 @@ const Question = ({ question }: { question: IQuestion }) => {
               A
             </div>
             <div className="w-[80%] h-full flex justify-start items-start text-[1.2rem] text-GrayScale-40 p-[1rem]">
-              어쩌라고요 어쩌라고요 어쩌라고요 어쩌라고요 어쩌라고요 어쩌라고요
-              어쩌라고요
+              환불 완료 되었습니다.
             </div>
           </>
         ) : (
