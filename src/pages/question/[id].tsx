@@ -10,8 +10,6 @@ const question = ({ id }: { id: string }) => {
   useEffect(() => {
     setGrpId(id);
   }, []);
-  const { questions, isLoading } = useQuestion(id);
-  console.log(questions);
   return <QuestionPage id={id} />;
 };
 

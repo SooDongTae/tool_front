@@ -1,6 +1,7 @@
+import { IQuestion } from "@/types/GroupBuy.type";
 import React, { useState } from "react";
 
-const Question = () => {
+const Question = ({ question }: { question: IQuestion }) => {
   const [isClicked, setIsClicked] = useState(false);
   return (
     <>
@@ -14,7 +15,7 @@ const Question = () => {
           Q
         </div>
         <div className="w-[80%] h-full flex justify-start items-center text-[1.5rem]">
-          환불해주세요
+          {question.content}
         </div>
         <div className="w-[10%] h-full flex justify-center items-center">
           1시간 전

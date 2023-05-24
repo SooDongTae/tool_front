@@ -16,7 +16,7 @@ const useQuestionMutate = (form: ICreateQuestion) => {
   const queryClient = useQueryClient();
   return useMutation((form: ICreateQuestion) => createQuestion(form), {
     onSuccess: () => {
-      // queryClient.invalidateQueries(["question"]);
+      queryClient.invalidateQueries(["question"]);
       toast.success("질문 생성 성공!");
     },
     onError: () => {

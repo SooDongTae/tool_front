@@ -1,20 +1,29 @@
 import Question from "@/components/QnA/Question";
 import useQuestionMutate from "@/hooks/uesQuestionMutation";
-import { ICreateQuestion } from "@/types/GroupBuy.type";
+import useQuestion from "@/hooks/useQuestion";
+import { ICreateQuestion, IQuestion } from "@/types/GroupBuy.type";
 import React, { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
+interface IQuestionList {
+  questionResponseList: [IQuestion];
+}
+
 const QuestionPage = ({ id }: { id: string }) => {
-  const { register, handleSubmit, watch } = useForm();
-  const [form, setForm] = useState({
-    id: id,
+  const { register, handleSubmit, watch, reset } = useForm();
+  const {
+    questions,
+    isLoading,
+  }: { questions: IQuestionList; isLoading: boolean } = useQuestion(id);
+  const questionList = questions?.questionResponseList;
+  const { mutate } = useQuestionMutate({
+    id: "",
     content: "",
     isSecret: false,
   });
-  const { mutate } = useQuestionMutate(form);
-
   const onValid: SubmitHandler<FieldValues> = (data) => {
     mutate({ id: id, content: data.content, isSecret: data.isSecret });
+    reset();
   };
   const onInvalid = () => {
     alert("질문 폼을 다시 확인해주세요");
@@ -54,7 +63,9 @@ const QuestionPage = ({ id }: { id: string }) => {
             공동구매 질문
           </div>
         </div>
-        <Question />
+        {questionList?.map((question: IQuestion, key: number) => (
+          <Question question={question} key={question.id} />
+        ))}
       </div>
     </form>
   );
