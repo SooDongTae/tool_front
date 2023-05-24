@@ -12,7 +12,7 @@ const question = ({ id }: { id: string }) => {
   }, []);
   const { questions, isLoading } = useQuestion(id);
   console.log(questions);
-  return <QuestionPage />;
+  return <QuestionPage id={id} />;
 };
 
 export const getServerSideProps = async (ctx: NextPageContext) => {

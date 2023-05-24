@@ -1,19 +1,25 @@
 import Question from "@/components/QnA/Question";
-import useQuestionMutate from "@/hooks/useQuestion";
+import useQuestionMutate from "@/hooks/uesQuestionMutation";
 import { ICreateQuestion } from "@/types/GroupBuy.type";
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 const QuestionPage = ({ id }: { id: string }) => {
   const { register, handleSubmit, watch } = useForm();
-  const [visible, setVisible] = useState(false);
-  const onValid = (data: ICreateQuestion) => {
-    data.id = id;
-    const { mutate } = useQuestionMutate(data);
+  const [form, setForm] = useState({
+    id: id,
+    content: "",
+    isSecret: false,
+  });
+  const { mutate } = useQuestionMutate(form);
+
+  const onValid: SubmitHandler<FieldValues> = (data) => {
+    mutate({ id: id, content: data.content, isSecret: data.isSecret });
   };
   const onInvalid = () => {
     alert("질문 폼을 다시 확인해주세요");
   };
+
   return (
     <form
       onSubmit={handleSubmit(onValid, onInvalid)}
@@ -29,7 +35,7 @@ const QuestionPage = ({ id }: { id: string }) => {
       </div>
       <div className="absolute w-[40%] h-[7%] left-[30%] bottom-[8%] bg-GrayScale-10 border-[0.1rem] border-GrayScale-40 rounded-[10px] flex flex-row">
         <input
-          {...register("content")}
+          {...register("content", { required: "질문 입력은 필수입니다." })}
           className="w-[80%] h-full rounded-[10px] rounded-r-none pl-[1rem] focus:outline-none text-[1.2rem]"
           placeholder="질문을 입력해주세요."
         />
