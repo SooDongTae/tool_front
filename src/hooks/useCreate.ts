@@ -2,7 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
-const onCreate = async (form: FormData) => {
+export const onCreate = async (form: FormData) => {
   const { data } = await axios.post(`/api/groupBuying/create`, form, {
     headers: {
       Authorization: `Bearer${localStorage.getItem("accessToken")}`,
