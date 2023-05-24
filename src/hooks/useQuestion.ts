@@ -1,5 +1,7 @@
+import { ICreateQuestion } from "@/types/GroupBuy.type";
 import axios from "axios";
 import { useQuery } from "react-query";
+import { toast } from "react-toastify";
 
 const getQuestionList = async (id: string) => {
   const { data } = await axios.get(`/api/question/${id}`, {
@@ -9,6 +11,7 @@ const getQuestionList = async (id: string) => {
   });
   return data;
 };
+
 const useQuestion = (id: string) => {
   const { data: questions, isLoading } = useQuery(["question", id], () =>
     getQuestionList(id)

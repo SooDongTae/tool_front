@@ -23,3 +23,18 @@ export interface ILeftTime {
   leftMinute: number;
   leftSecond: number;
 }
+
+export interface ICreateQuestion {
+  id: string;
+  content: string;
+  isSecret: boolean;
+}
+
+export interface IQuestion {
+  content: string;
+  createdAt: string;
+  id: number;
+  isSecret: boolean;
+  lastModifiedAt: string;
+  writerName: string;
+}
