@@ -10,10 +10,6 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
   useEffect(() => {
     queryClient.invalidateQueries(["party"]);
   }, []);
-  const now = new Date();
-  const futureTime = new Date(party?.untilAt);
-  const timeDifference = futureTime.getTime() - now.getTime();
-  const hoursDifference = Math.floor(timeDifference / (1000 * 60 * 60));
   console.log(party?.imgSrc.substring(21));
   const [leftTime, setLeftTime] = useState({
     leftDay: 0,
