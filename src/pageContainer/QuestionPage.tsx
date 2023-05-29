@@ -1,8 +1,8 @@
 import Question from "@/components/QnA/Question";
 import useQuestionMutate from "@/hooks/uesQuestionMutation";
 import useQuestion from "@/hooks/useQuestion";
-import { ICreateQuestion, IQuestion } from "@/types/GroupBuy.type";
-import React, { useState } from "react";
+import { IQuestion } from "@/types/GroupBuy.type";
+import React from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 interface IQuestionList {
@@ -66,6 +66,17 @@ const QuestionPage = ({ id }: { id: string }) => {
         {questionList?.map((question: IQuestion, key: number) => (
           <Question question={question} key={question.id} />
         ))}
+        <Question
+          question={{
+            content: "string",
+            createdAt: new Date(),
+            id: 1,
+            isSecret: false,
+            lastModifiedAt: new Date(),
+            writerName: "string",
+          }}
+          key={1}
+        />
       </div>
     </form>
   );

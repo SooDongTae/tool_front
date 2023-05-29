@@ -5,6 +5,7 @@ import Tab from "./Tab";
 import { HeaderText } from "./HeaderText";
 import { useState } from "react";
 import useUser from "@/hooks/useUser";
+
 export const Header = () => {
   const router = useRouter();
   const path = router.pathname;
@@ -15,7 +16,6 @@ export const Header = () => {
       {path === "/groupbuy/[id]" ? <Tab></Tab> : ""}
       {path === "/question/[id]" ? <Tab></Tab> : ""}
       <div className="w-[75rem]  flex flex-row items-center justify-between">
-
         <div className="h-[4rem] flex justify-between flex-row items-center">
           <Link href="/">
             <div className="lg:h-[4rem] lg:w-[4rem] w-[3rem] h-[3rem] bg-GreenLight-30 " />

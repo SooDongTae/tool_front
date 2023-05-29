@@ -9,6 +9,7 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import { Observer } from "@/components/Observer";
 import { SortField } from "@/components/SortField";
 import { Loading } from "@/components/Loading";
+import { IGroupBuy } from "@/types/GroupBuy.type";
 const category = ["all", "PRODUCT", "FOOD", "CLOTHES", "ETC"];
 export const MainPage = () => {
   const [cateIdx, setCateIdx] = useState(0);
@@ -29,10 +30,10 @@ export const MainPage = () => {
       partyList?.pages.flatMap((page) => page.groupBuyingResponseList) || [],
     [partyList]
   );
-  const PartyList = party.map((item: any, idx: number) => {
+  const PartyList = party.map((item: IGroupBuy, idx: number) => {
     console.log(item);
     return (
-      <Link href={`/groupbuy/${item.id}`}>
+      <Link href="/groupbuy/[id]" as={`/groupbuy/${item.id}`}>
         <Party
           grade={item.grade}
           classNum={item.class_no}

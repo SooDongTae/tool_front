@@ -1,8 +1,11 @@
 import { IQuestion } from "@/types/GroupBuy.type";
 import React, { useState } from "react";
+import { BiDotsVerticalRounded } from "react-icons/bi";
 
 const Question = ({ question }: { question: IQuestion }) => {
   const [isClicked, setIsClicked] = useState(false);
+  const [isMouseOver, setIsMouseOver] = useState(false);
+  const [showOption, setShowOption] = useState(false);
   return (
     <>
       <div
@@ -14,11 +17,43 @@ const Question = ({ question }: { question: IQuestion }) => {
         <div className="w-[10%] h-full flex justify-center items-center text-4xl">
           Q
         </div>
-        <div className="w-[80%] h-full flex justify-start items-center text-[1.5rem]">
+        <div className="w-[85%] h-full flex justify-start items-center text-[1.5rem]">
           {question.content}
         </div>
-        <div className="w-[10%] h-full flex justify-center items-center">
-          1시간 전
+        <div className="relative flex justify-center items-center">
+          <BiDotsVerticalRounded
+            type="button"
+            size={30}
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowOption(!showOption);
+            }}
+          />
+          {showOption ? (
+            <div
+              onMouseUp={() => setShowOption(false)}
+              className="absolute right-0 top-0 z-50 w-[5rem] h-[5rem] rounded-[15px] bg-GreenLight-20 flex flex-col"
+            >
+              <div
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                className="w-full h-1/2 flex justify-center items-center"
+              >
+                수정
+              </div>
+              <div
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                className="w-full h-1/2 flex justify-center items-center"
+              >
+                삭제
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <div
