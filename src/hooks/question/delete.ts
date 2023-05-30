@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
 
 const deleteQuestion = async (form: ICreateQuestion) => {
-  const { data } = await axios.put(`/api/question/${form.id}`, form, {
+  const { data } = await axios.delete(`/api/question/${form.id}`, {
     headers: {
       Authorization: `Bearer${localStorage.getItem("accessToken")}`,
     },

@@ -66,7 +66,7 @@ const QuestionPage = ({ id }: { id: string }) => {
         {questionList?.map((question: IQuestion, key: number) => (
           <Question question={question} key={question.id} />
         ))}
-        <Question
+        {/* <Question
           question={{
             content: "string",
             createdAt: new Date(),
@@ -76,7 +76,7 @@ const QuestionPage = ({ id }: { id: string }) => {
             writerName: "string",
           }}
           key={1}
-        />
+        /> */}
       </div>
     </form>
   );

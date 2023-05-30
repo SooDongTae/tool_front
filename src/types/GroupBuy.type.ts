@@ -33,7 +33,7 @@ export interface ICreateQuestion {
 export interface IQuestion {
   content: string;
   createdAt: Date;
-  id: number;
+  id: string;
   isSecret: boolean;
   lastModifiedAt: Date;
   writerName: string;

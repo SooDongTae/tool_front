@@ -75,7 +75,7 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
           <div className="flex flex-col justify-between w-full h-[8rem] mt-[5%]">
             <div className="text-2xl">
               {party?.currentPeople}/{party?.maxPeople}(
-              {party?.currentPeople / party?.maxPeople}%)
+              {(party?.currentPeople / party?.maxPeople) * 100}%)
             </div>
             <ProgressBar
               width="full"
