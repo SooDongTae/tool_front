@@ -1,6 +1,6 @@
 import Question from "@/components/QnA/Question";
-import useQuestionMutate from "@/hooks/uesQuestionMutation";
-import useQuestion from "@/hooks/useQuestion";
+import useCreateQuestion from "@/hooks/question/create";
+import useQuestion from "@/hooks/question/get";
 import { IQuestion } from "@/types/GroupBuy.type";
 import React from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
@@ -16,7 +16,7 @@ const QuestionPage = ({ id }: { id: string }) => {
     isLoading,
   }: { questions: IQuestionList; isLoading: boolean } = useQuestion(id);
   const questionList = questions?.questionResponseList;
-  const { mutate } = useQuestionMutate({
+  const { mutate } = useCreateQuestion({
     id: "",
     content: "",
     isSecret: false,

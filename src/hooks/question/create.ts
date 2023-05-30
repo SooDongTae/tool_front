@@ -12,7 +12,7 @@ const createQuestion = async (form: ICreateQuestion) => {
   return data;
 };
 
-const useQuestionMutate = (form: ICreateQuestion) => {
+const useCreateQuestion = (form: ICreateQuestion) => {
   const queryClient = useQueryClient();
   return useMutation((form: ICreateQuestion) => createQuestion(form), {
     onSuccess: () => {
@@ -25,4 +25,4 @@ const useQuestionMutate = (form: ICreateQuestion) => {
   });
 };
 
-export default useQuestionMutate;
+export default useCreateQuestion;

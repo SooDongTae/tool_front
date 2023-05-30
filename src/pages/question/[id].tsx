@@ -1,5 +1,5 @@
 import { groupId } from "@/context/selectedGroupState";
-import useQuestion from "@/hooks/useQuestion";
+import useQuestion from "@/hooks/question/get";
 import QuestionPage from "@/pageContainer/QuestionPage";
 import { NextPage, NextPageContext } from "next";
 import React, { useEffect } from "react";
