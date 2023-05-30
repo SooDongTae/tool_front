@@ -4,9 +4,18 @@ import { IGroupBuy } from "@/types/GroupBuy.type";
 import Image from "next/image";
 import { useQueryClient } from "react-query";
 import React, { useEffect, useState } from "react";
+import ReactModal from "react-modal";
+import { IoCloseOutline } from "react-icons/io5";
 
 const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
   const [modalOpened, setModalOpened] = useState(false);
+  // const [closeDown, setCloseDown] = useState(false);
+  const [onMouseDown, setOnMouseDown] = useState({
+    close: false,
+    submit: false,
+  });
+  const ex =
+    "초코에몽 같이 공동구매할 사람을 구합니다. 초코에몽이 먹고싶은 사람은 참가해주세요!";
   const [leftTime, setLeftTime] = useState({
     leftDay: 0,
     leftHour: 0,
@@ -92,11 +101,57 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
               참여자 리스트 보기
             </div>
           </div>
-          <div className="w-[15rem] h-[3rem] bg-GreenLight-30 m-[5%] text-white rounded-[10rem] text-center text-2xl items-center justify-center flex">
+          <div
+            onClick={() => {
+              setModalOpened(true);
+            }}
+            className="w-[15rem] h-[3rem] bg-GreenLight-30 m-[5%] text-white rounded-[10rem] text-center text-2xl items-center justify-center flex cursor-pointer hover:bg-GreenDark-30"
+          >
             참여하기
           </div>
         </div>
       </div>
+      <ReactModal
+        className="fixed top-[35%] left-[35%] w-[30%] h-[30%] bg-white rounded-[10px] shadow-[0_0_20px_0_rgba(0,0,0,0.3)] flex flex-col focus:outline-none"
+        isOpen={modalOpened}
+        onAfterClose={() => setModalOpened(false)}
+      >
+        <div className="w-full h-[20%] border-b-[0.1rem] border-GrayScale-15 flex flex-row justify-between items-center text-[1.3rem] pl-[3%]">
+          <span>초코에몽 공동구매 / 이동훈</span>
+          <div
+            className={`w-[2.3rem] h-[2.3rem] mr-[3%] ${
+              onMouseDown.close ? "bg-GrayScale-20" : "bg-GrayScale-15"
+            } rounded-[10px] flex justify-center items-center`}
+          >
+            <IoCloseOutline
+              size={30}
+              color={onMouseDown.close ? "black" : "grey"}
+              onMouseDown={() =>
+                setOnMouseDown({ ...onMouseDown, close: true })
+              }
+              onMouseUp={() => setOnMouseDown({ ...onMouseDown, close: false })}
+              onClick={() => setModalOpened(false)}
+            />
+          </div>
+        </div>
+        <div className="w-full h-[55%] border-b-[0.1rem] border-GrayScale-15 flex flex-col justify-center items-center">
+          <span className="text-[1.8rem]">초코에몽 공동구매</span>
+          <p className="text-GrayScale-40">
+            {ex.length > 30 ? ex.substring(0, 30) + "..." : ex}
+          </p>
+        </div>
+        <div className="w-full h-[25%] flex justify-center items-center">
+          <div
+            onMouseDown={() => setOnMouseDown({ ...onMouseDown, submit: true })}
+            onMouseUp={() => setOnMouseDown({ ...onMouseDown, submit: false })}
+            className={`${
+              onMouseDown.submit ? "bg-GrayScale-20" : "bg-GrayScale-15"
+            } w-[95%] h-[60%] rounded-[10px] flex justify-center items-center`}
+          >
+            공동구매 참여하기
+          </div>
+        </div>
+      </ReactModal>
     </div>
   );
 };
