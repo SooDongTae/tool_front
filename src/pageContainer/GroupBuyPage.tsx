@@ -17,7 +17,6 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
     leftDay: 0,
     leftHour: 0,
     leftMinute: 0,
-    leftSecond: 0,
   });
   setInterval(() => {
     const { leftDay, leftHour, leftMinute, leftSecond } = GetLeftTime(
@@ -27,12 +26,11 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
       leftDay: leftDay,
       leftHour: leftHour,
       leftMinute: leftMinute,
-      leftSecond: leftSecond,
     });
-  }, 1000);
+  }, 60000);
 
   return (
-    <div className="relative w-screen h-auto flex justify-center pt-[10rem] bg-Background-Gray">
+    <div className="relative  h-auto flex justify-center pt-[10rem] bg-Background-Gray">
       <div className="w-[55rem] h-full flex flex-col">
         <img
           src={party?.imgSrc.substring(21)}
@@ -55,7 +53,6 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
             <div className="w-[10rem] h-[0.8rem] rounded-[20px] border-[1px] border-GrayScale-20 pr-[0.5rem]">
               <div
                 className={`bg-GreenLight-30 rounded-l-[20px] rounded-r-[20px] h-full`}
-                // style={{ width: `calc(${6 - 1}*20)` }}
                 style={{ width: `calc(100%/5*${6 - 2})` }}
               ></div>
             </div>
@@ -91,8 +88,6 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
               참여자 리스트 보기
             </div>
           </div>
-          {/* <hr className="border-[1px] w-full"></hr> */}
-          {/* <Image src={""} alt="" /> */}
           <div className="w-[15rem] h-[3rem] bg-GreenLight-30 m-[5%] text-white rounded-[10rem] text-center text-2xl items-center justify-center flex">
             참여하기
           </div>

@@ -21,5 +21,4 @@ export interface ILeftTime {
   leftDay: number;
   leftHour: number;
   leftMinute: number;
-  leftSecond: number;
 }
