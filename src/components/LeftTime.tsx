@@ -21,8 +21,7 @@ const LeftTime = ({ leftTime }: { leftTime: ILeftTime }) => {
     <span className="text-[1.3rem] text-GrayScale-40 w-[60%]">
       음식 • {leftTime.leftDay !== 0 ? leftTime.leftDay + "일" : ""}{" "}
       {leftTime.leftHour !== 0 ? leftTime.leftHour + "시간" : ""}{" "}
-      {leftTime.leftMinute !== 0 ? leftTime.leftMinute + "분" : ""}{" "}
-      {leftTime.leftSecond !== 0 ? leftTime.leftSecond + "초" : ""} 남음
+      {leftTime.leftMinute !== 0 ? leftTime.leftMinute + "분" : ""} 남음
     </span>
   );
 };

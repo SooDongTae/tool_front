@@ -9,7 +9,7 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import { Observer } from "@/components/Observer";
 import { SortField } from "@/components/SortField";
 import { Loading } from "@/components/Loading";
-import { IGroupBuy } from "@/types/GroupBuy.type";
+import { constSelector } from "recoil";
 const category = ["all", "PRODUCT", "FOOD", "CLOTHES", "ETC"];
 export const MainPage = () => {
   const [cateIdx, setCateIdx] = useState(0);
@@ -30,8 +30,8 @@ export const MainPage = () => {
       partyList?.pages.flatMap((page) => page.groupBuyingResponseList) || [],
     [partyList]
   );
-  const PartyList = party.map((item: IGroupBuy, idx: number) => {
-    console.log(item);
+  console.log("rerender");
+  const PartyList = party.map((item: any, idx: number) => {
     return (
       <Link href="/groupbuy/[id]" as={`/groupbuy/${item.id}`}>
         <Party
@@ -54,7 +54,7 @@ export const MainPage = () => {
   return (
     <div className="min-h-screen flex pt-[8.5rem] bg-Background-Gray flex-col items-center scrollbar-hide">
       <div className="lg:w-[75rem] w-[80%]">
-        <div className="h-[18rem] rounded-[10px] bg-BlueLight-20">
+        <div className="h-[18rem] rounded-[10px] bg-BlueLight-20 text-4xl font-bold text-GreenLight-30 flex justify-center items-center">
           <a href="https://tool-landingpage.bssm.kro.kr" target="_blink">
             Tool 사용법이 궁금하다면?
           </a>

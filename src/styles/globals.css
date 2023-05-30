@@ -19,7 +19,7 @@
 }
 
 .input-text {
-  @apply peer-focus:animate-InputHover absolute pl-4 text-[1.2rem] text-GrayScale-30 font-bold;
+  @apply peer-focus:animate-InputHover absolute pl-4 text-[1.2rem] text-GrayScale-30 font-bold pointer-events-none;
 }
 
 .form-row {

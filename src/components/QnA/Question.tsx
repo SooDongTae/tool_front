@@ -21,7 +21,7 @@ const Question = ({ question }: { question: IQuestion }) => {
   return (
     <>
       <div
-        className="w-full h-[6rem] flex flex-row border-b-[0.1rem] border-GrayScale-30"
+        className="w-full h-[6rem] flex flex-row border-b-[0.1rem] border-GrayScale-30 cursor-pointer"
         onClick={() => {
           showOption ? setShowOption(false) : setIsClicked(!isClicked);
         }}
@@ -88,8 +88,7 @@ const Question = ({ question }: { question: IQuestion }) => {
               A
             </div>
             <div className="w-[80%] h-full flex justify-start items-start text-[1.2rem] text-GrayScale-40 p-[1rem]">
-              어쩌라고요 어쩌라고요 어쩌라고요 어쩌라고요 어쩌라고요 어쩌라고요
-              어쩌라고요
+              환불 완료 되었습니다.
             </div>
           </>
         ) : (

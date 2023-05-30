@@ -1,5 +1,6 @@
 import { PartyProps } from "@/types/Party.type";
 import { ProgressBar } from "./ProgressBar";
+import { GetLeftTime } from "./LeftTime";
 export const Party = ({
   title,
   maxPeople,
@@ -12,7 +13,7 @@ export const Party = ({
   classNum,
   imgSrc,
 }: PartyProps) => {
-  console.log(imgSrc);
+  const { leftDay } = GetLeftTime(endDate);
   return (
     <div className="bg-white h-[22rem] rounded-[10px]  border-GrayScale-20  shadow-[rgba(0,_0,_0,_0.1)_0px_4px_16px_0px] hover:shadow-[rgba(0,_0,_0,_0.2)_0px_7px_16px_0px] hover:translate-y-[-.6rem] duration-300 cursor-pointer  flex items-center flex-col">
       <img
@@ -41,8 +42,13 @@ export const Party = ({
             color="GreenLight-30"
           />
         </div>
-        <div className="text-GreenLight-30 font-semibold mt-2">
-          {price.toLocaleString()}원
+        <div className="flex justify-between items-center">
+          <div className="text-GreenLight-30 font-semibold mt-2">
+            {price.toLocaleString()}원
+          </div>
+          <div className="text-xs text-GrayScale-40">
+            {leftDay + 1 ? leftDay + 1 + "일 남음" : "오늘 마감"}
+          </div>
         </div>
       </div>
     </div>
