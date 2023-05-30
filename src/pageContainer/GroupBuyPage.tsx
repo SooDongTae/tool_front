@@ -6,19 +6,26 @@ import { useQueryClient } from "react-query";
 import React, { useEffect, useState } from "react";
 
 const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
-  const queryClient = useQueryClient();
-  useEffect(() => {
-    queryClient.invalidateQueries(["party"]);
-  }, []);
+  const [modalOpened, setModalOpened] = useState(false);
   const [leftTime, setLeftTime] = useState({
     leftDay: 0,
     leftHour: 0,
     leftMinute: 0,
   });
+  const queryClient = useQueryClient();
+  useEffect(() => {
+    queryClient.invalidateQueries(["party"]);
+    if (party) {
+      const { leftDay, leftHour, leftMinute } = GetLeftTime(party.untilAt);
+      setLeftTime({
+        leftDay: leftDay,
+        leftHour: leftHour,
+        leftMinute: leftMinute,
+      });
+    }
+  }, [party]);
   setInterval(() => {
-    const { leftDay, leftHour, leftMinute, leftSecond } = GetLeftTime(
-      party?.untilAt
-    );
+    const { leftDay, leftHour, leftMinute } = GetLeftTime(party?.untilAt);
     setLeftTime({
       leftDay: leftDay,
       leftHour: leftHour,
