@@ -105,7 +105,7 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
             onClick={() => {
               setModalOpened(true);
             }}
-            className="w-[15rem] h-[3rem] bg-GreenLight-30 m-[5%] text-white rounded-[10rem] text-center text-2xl items-center justify-center flex cursor-pointer hover:bg-GreenDark-30"
+            className="w-[15rem] h-[3rem] bg-GreenLight-30 m-[5%] text-white rounded-[10rem] text-center text-2xl items-center justify-center flex cursor-pointer hover:bg-GreenDark-30 duration-300"
           >
             참여하기
           </div>
@@ -135,6 +135,7 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
           </div>
         </div>
         <div className="w-full h-[55%] border-b-[0.1rem] border-GrayScale-15 flex flex-col justify-center items-center">
+          {/* <img src={party.imgSrc.substring(21)} className="w-[4rem]" /> */}
           <span className="text-[1.8rem]">초코에몽 공동구매</span>
           <p className="text-GrayScale-40">
             {ex.length > 30 ? ex.substring(0, 30) + "..." : ex}
@@ -145,8 +146,8 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
             onMouseDown={() => setOnMouseDown({ ...onMouseDown, submit: true })}
             onMouseUp={() => setOnMouseDown({ ...onMouseDown, submit: false })}
             className={`${
-              onMouseDown.submit ? "bg-GrayScale-20" : "bg-GrayScale-15"
-            } w-[95%] h-[60%] rounded-[10px] flex justify-center items-center`}
+              onMouseDown.submit ? "bg-GreenDark-30" : "bg-GreenLight-30"
+            } w-[95%] h-[60%] rounded-[10px] text-white flex justify-center items-center cursor-pointer duration-200`}
           >
             공동구매 참여하기
           </div>
