@@ -11,6 +11,7 @@
     "test:ci": "jest --ci"
   },
   "dependencies": {
+    "@tinymce/tinymce-react": "^4.3.0",
     "@types/http-proxy-middleware": "^1.0.0",
     "@types/node": "18.15.11",
     "@types/react": "18.0.32",
