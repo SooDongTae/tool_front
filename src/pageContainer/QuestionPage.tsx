@@ -1,9 +1,11 @@
+import Answer from "@/components/QnA/Answer";
 import Question from "@/components/QnA/Question";
 import useCreateQuestion from "@/hooks/question/create";
 import useQuestion from "@/hooks/question/get";
 import { IQuestion } from "@/types/GroupBuy.type";
 import React from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { RecoilRoot } from "recoil";
 
 interface IQuestionList {
   questionResponseList: [IQuestion];
@@ -64,7 +66,10 @@ const QuestionPage = ({ id }: { id: string }) => {
           </div>
         </div>
         {questionList?.map((question: IQuestion, key: number) => (
-          <Question question={question} key={question.id} />
+          <div className="w-full">
+            <Question question={question} key={question.id} />
+            <Answer id={question.id} key={question.id} />
+          </div>
         ))}
         {/* <Question
           question={{
