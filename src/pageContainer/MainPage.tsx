@@ -3,7 +3,7 @@ import { SearchBar } from "@/components/SearchBar";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { CategoryModal } from "@/components/CategoryModal";
-import usePartyList from "@/hooks/useParty";
+import usePartyList from "@/hooks/party/useParty";
 import { BsGraphUp } from "react-icons/bs";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { Observer } from "@/components/Observer";

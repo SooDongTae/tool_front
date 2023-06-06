@@ -4,7 +4,7 @@ import { useReducer, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { BiImageAdd } from "react-icons/bi";
 import "react-datepicker/dist/react-datepicker.css";
-import usePartyMutation from "@/hooks/useCreate";
+import usePartyMutation from "@/hooks/party/useCreate";
 import { FormDateInput } from "@/components/FormInput/FormDateInput";
 export const CreatePage = () => {
   const formData = new FormData();
