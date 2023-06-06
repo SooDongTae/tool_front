@@ -9,7 +9,7 @@ export const CommunityPost = ({
   category
 }: CommunityPostType) => {
   return (
-    <div className="w-full flex h-[3.5rem]">
+    <div className="w-full flex h-[3.5rem] hover:bg-GrayScale-15 duration-300 cursor-pointer">
       <div className="w-[15%] h-full center">{owner}</div>
       <div className="w-[50%] h-full center"><span className="text-GreenLight-30 font-bold mr-[.3rem]">[{category}]</span>{title}</div>
       <div className="w-[15%] h-full center">{created_at}</div>
