@@ -22,7 +22,7 @@ export const Party = ({
       />
       <div className="w-[80%] flex flex-col">
         <div className="flex ">
-          <div className="font-semibold text-2xl mt-2">{title}</div>
+          <div className="font-semibold text-2xl mt-2 overflow-hidden text-ellipsis whitespace-nowrap break-words">{title}</div>
         </div>
         <div className="text-xs text-GrayScale-40 ">
           {grade}
