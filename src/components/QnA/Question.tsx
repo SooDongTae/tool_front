@@ -17,7 +17,7 @@ const Question = ({ question }: { question: IQuestion }) => {
     isSecret: false,
   });
   const { answer, isLoading } = useAnswer(question.id);
-  console.log(answer);
+  console.log(answer, "answer");
   return (
     <>
       <div

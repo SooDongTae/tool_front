@@ -37,3 +37,8 @@ export interface IQuestion {
   lastModifiedAt: Date;
   writerName: string;
 }
+
+export interface IAnswer {
+  id: string;
+  content: string;
+}
