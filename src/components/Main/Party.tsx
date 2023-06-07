@@ -1,6 +1,6 @@
 import { PartyProps } from "@/types/Party.type";
-import { ProgressBar } from "./ProgressBar";
-import { GetLeftTime } from "./LeftTime";
+import { ProgressBar } from "../Shared/ProgressBar";
+import { GetLeftTime } from "../Shared/LeftTime";
 export const Party = ({
   title,
   maxPeople,

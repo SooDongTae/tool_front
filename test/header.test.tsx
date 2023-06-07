@@ -1,4 +1,4 @@
-import { Header } from "@/components/Header";
+import { Header } from "@/components/Header/Header";
 import GroupBuyPage from "@/pageContainer/GroupBuyPage";
 import { render } from "@testing-library/react";
 describe("<Header/>", () => {

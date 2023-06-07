@@ -4,7 +4,7 @@ import React from "react";
 import { SlScreenSmartphone } from "react-icons/sl";
 import { TfiEmail } from "react-icons/tfi";
 import { useRecoilValue } from "recoil";
-import { ProgressBar } from "../ProgressBar";
+import { ProgressBar } from "../Shared/ProgressBar";
 
 const ProfileInfo = () => {
   const user = useRecoilValue(userState);

@@ -1,14 +1,14 @@
-import { Party } from "@/components/Party";
-import { SearchBar } from "@/components/SearchBar";
+import { Party } from "@/components/Main/Party";
+import { SearchBar } from "@/components/Shared/SearchBar";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { CategoryModal } from "@/components/CategoryModal";
+import { CategoryModal } from "@/components/Shared/CategoryModal";
 import usePartyList from "@/hooks/party/useParty";
 import { BsGraphUp } from "react-icons/bs";
 import { AiOutlineClockCircle } from "react-icons/ai";
-import { Observer } from "@/components/Observer";
-import { SortField } from "@/components/SortField";
-import { Loading } from "@/components/Loading";
+import { Observer } from "@/components/Shared/Observer";
+import { SortField } from "@/components/Main/SortField";
+import { Loading } from "@/components/Shared/Loading";
 import { constSelector } from "recoil";
 const category = ["all", "PRODUCT", "FOOD", "CLOTHES", "ETC"];
 export const MainPage = () => {

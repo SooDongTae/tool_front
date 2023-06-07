@@ -1,7 +1,7 @@
-import { CategoryModal } from "@/components/CategoryModal";
+import { CategoryModal } from "@/components/Shared/CategoryModal";
 import { CommunityPost } from "@/components/Community/CommunityPost";
-import { Loading } from "@/components/Loading";
-import { SearchBar } from "@/components/SearchBar";
+import { Loading } from "@/components/Shared/Loading";
+import { SearchBar } from "@/components/Shared/SearchBar";
 import usePostList from "@/hooks/community/usePost";
 import { Pagination } from "@mui/material";
 import Link from "next/link";

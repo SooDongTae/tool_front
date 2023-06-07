@@ -1,4 +1,4 @@
-import HistoryBox from "@/components/HistoryBox";
+import HistoryBox from "@/components/Profile/HistoryBox";
 import ProfileView from "@/components/Profile/ProfileView";
 import React from "react";
 

@@ -1,4 +1,4 @@
-import { CategoryModal } from "@/components/CategoryModal";
+import { CategoryModal } from "@/components/Shared/CategoryModal";
 import useWriteMutation from "@/hooks/community/useWrite";
 import { IPost } from "@/types/Post.type";
 import { Editor } from "@tinymce/tinymce-react";

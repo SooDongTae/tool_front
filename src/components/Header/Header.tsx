@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Tab from "./Tab";
-import Symbol from "../asset/tool.svg";
+import Tab from "../GroupBuy/Tab";
+import Symbol from "../../asset/tool.svg";
 import { HeaderText } from "./HeaderText";
 import useUser from "@/hooks/user/useUser";
-import { Loading } from "./Loading";
 export const Header = () => {
   const router = useRouter();
   const path = router.pathname;
