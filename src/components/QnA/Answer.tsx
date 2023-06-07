@@ -1,10 +1,12 @@
 import { questionState } from "@/context/questionState";
-import { IAnswer } from "@/types/GroupBuy.type";
+import useAnswer from "@/hooks/answer/get";
 import React, { useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 const Answer = ({ id }: { id: string }) => {
   const qState = useRecoilValue(questionState(id));
+  const { answer, isLoading } = useAnswer(id);
+  console.log(answer);
   return (
     <div
       className={`${
@@ -17,7 +19,7 @@ const Answer = ({ id }: { id: string }) => {
             A
           </div>
           <div className="w-[90%] h-full flex justify-start items-start text-[1.2rem] text-GrayScale-40 p-[1rem]">
-            환불 완료 되었습니다.
+            wlfansdlq
           </div>
         </>
       ) : (

@@ -5,7 +5,6 @@ import useQuestion from "@/hooks/question/get";
 import { IQuestion } from "@/types/GroupBuy.type";
 import React from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { RecoilRoot } from "recoil";
 
 interface IQuestionList {
   questionResponseList: [IQuestion];
