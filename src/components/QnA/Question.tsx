@@ -11,7 +11,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 
 const Question = ({ question }: { question: IQuestion }) => {
   const user = useRecoilValue(userState);
-  const [qState, setQState] = useRecoilState(questionState);
+  const [qState, setQState] = useRecoilState(questionState(question.id));
   const { mutate } = useDeleteQuestion({
     id: "",
     content: "",
@@ -21,7 +21,9 @@ const Question = ({ question }: { question: IQuestion }) => {
   return (
     <div
       className="w-full h-[6rem] flex flex-row border-b-[0.1rem] border-GrayScale-30 cursor-pointer"
-      onClick={() => setQState({ ...qState, isClicked: !qState.isClicked })}
+      onClick={() =>
+        setQState({ showOption: false, isClicked: !qState.isClicked })
+      }
     >
       <div className="w-[10%] h-full flex justify-center items-center text-4xl">
         Q

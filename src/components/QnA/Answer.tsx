@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 const Answer = ({ id }: { id: string }) => {
-  const qState = useRecoilValue(questionState);
+  const qState = useRecoilValue(questionState(id));
   return (
     <div
       className={`${
