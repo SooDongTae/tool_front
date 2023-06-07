@@ -48,13 +48,10 @@ export const WritePage = () => {
             }}
           />
         </div>
-        <div
-          className="border-2 border-GreenDark-30 w-[10rem]"
-          onClick={() => {
-            mutate();
-          }}
-        >
-          작성
+        <div className="flex justify-center mt-4">
+          <button className="button-layout border-[0.5px] bg-GreenLight-30 text-white" onClick={() => mutate()}>
+            글 작성
+          </button>
         </div>
       </div>
     </div>
