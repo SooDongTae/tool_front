@@ -11,6 +11,7 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import { IoCloseOutline } from "react-icons/io5";
 import ReactModal from "react-modal";
 import { useRecoilState, useRecoilValue } from "recoil";
+import Update from "./Update";
 
 const Question = ({ question }: { question: IQuestion }) => {
   console.log(question);
@@ -87,26 +88,11 @@ const Question = ({ question }: { question: IQuestion }) => {
         isOpen={isModifying}
         onAfterClose={() => setIsModifying(false)}
       >
-        <div className="w-full h-[20%] border-b-[0.1rem] border-GrayScale-15 flex flex-row justify-between items-center text-[1.3rem] pl-[3%]">
-          <span>질문 수정</span>
-          <div className="w-[2.3rem] h-[2.3rem] mr-[3%] bg-GrayScale-15 rounded-[10px] flex justify-center items-center">
-            <IoCloseOutline size={30} color={"black"} />
-          </div>
-        </div>
-        <form className="w-full h-[80%] flex flex-col justify-center items-center">
-          <div className="w-full h-[70%] border-b-[0.1rem] border-GrayScale-15 flex flex-col items-center justify-evenly">
-            <input className="w-[80%] h-[3rem] shadow-lg rounded-[10px] p-[2%] text-[1.3rem] focus:outline-none" />
-            <div className="w-[20%] flex flex-row justify-evenly">
-              <span>비공개</span>
-              <input type="checkbox" className="scale-[130%]" />
-            </div>
-          </div>
-          <div className="w-full h-[30%] flex justify-center items-center">
-            <button className="w-[95%] h-[70%] rounded-[10px] bg-GreenLight-30 text-white flex justify-center items-center cursor-pointer duration-200">
-              질문 수정 완료
-            </button>
-          </div>
-        </form>
+        <Update
+          content={question.content}
+          id={question.id}
+          isSecret={question.isSecret}
+        />
       </ReactModal>
     </div>
   );

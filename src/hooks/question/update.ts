@@ -12,7 +12,7 @@ const modifyQuestion = async (form: ICreateQuestion) => {
   return data;
 };
 
-const useModifyQuestion = (form: ICreateQuestion) => {
+const useModifyQuestion = () => {
   const queryClient = useQueryClient();
   return useMutation((form: ICreateQuestion) => modifyQuestion(form), {
     onSuccess: () => {
