@@ -1,9 +1,13 @@
+import { userState } from "@/context/userState";
 import Image from "next/image";
 import React from "react";
 import { SlScreenSmartphone } from "react-icons/sl";
 import { TfiEmail } from "react-icons/tfi";
+import { useRecoilValue } from "recoil";
+import { ProgressBar } from "../ProgressBar";
 
 const ProfileInfo = () => {
+  const user = useRecoilValue(userState);
   return (
     <div className="w-[65%] h-[calc(100vh-6rem)] mt-[6rem] flex flex-col justify-evenly items-center bg-[#f9f9f9] ">
       <div className="profile-box p-[2%] flex flex-col justify-evenly">
@@ -16,7 +20,7 @@ const ProfileInfo = () => {
             alt="프로필 사진"
           />
           <div className="flex flex-col ml-[5%]">
-            <span className="text-[1.5rem] font-semibold">태현</span>
+            <span className="text-[1.5rem] font-semibold">{user.name}</span>
             <span className="text-[1rem] text-[#777]">
               taehyun5820@gmail.com
             </span>
@@ -46,13 +50,13 @@ const ProfileInfo = () => {
             <span className="text-[1.2rem]">닉네임</span>
             <span className="text-[1.2rem]">신용등급</span>
           </div>
-          <div className="w-full h-[1.3rem] rounded-[20px] border-[1px]">
-            <div
-              className={`bg-GreenLight-20 rounded-l-[20px] rounded-r-[20px] h-full`}
-              // style={{ width: `calc(${6 - 1}*20)` }}
-              style={{ width: `calc(100%/5*${6 - 1})` }}
-            ></div>
-          </div>
+          <ProgressBar
+            width="full"
+            height="1.3rem"
+            maxi={5}
+            current={4}
+            color="GreenLight-20"
+          />
           <div className="flex flex-row justify-between">
             <span className="text-GrayScale-40">5등급</span>
             <span className="text-GrayScale-40">1등급</span>

@@ -33,7 +33,7 @@ export const MainPage = () => {
   console.log("rerender");
   const PartyList = party.map((item: any, idx: number) => {
     return (
-      <Link href={`/groupbuy/${item.id}`}>
+      <Link href="/groupbuy/[id]" as={`/groupbuy/${item.id}`}>
         <Party
           grade={item.grade}
           classNum={item.class_no}

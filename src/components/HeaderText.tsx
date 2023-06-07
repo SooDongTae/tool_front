@@ -12,6 +12,7 @@ export const HeaderText = ({
 }) => {
   const router = useRouter();
   const current = router.pathname;
+  console.log(target);
   return (
     <Link href={target}>
       <div
