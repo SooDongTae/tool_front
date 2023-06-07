@@ -19,14 +19,15 @@ const useWriteMutation = (post: IPost, category: string) => {
   const router = useRouter();
   const queryClient = useQueryClient();
   return useMutation(() => onWrite(post, category), {
-    onSuccess: () => {
+    onSuccess: (res) => {
+      console.log(res);
       queryClient.invalidateQueries(["post"]);
       toast.success("글 작성 성공!");
-    //   router.push("/community");
+      router.push("/community");
     },
     onError: () => {
       toast.error("글 작성 실패!");
-      //   router.push("/");
+      router.push("/community");
     },
   });
 };
