@@ -27,8 +27,13 @@ export interface ICreateQuestion {
   id: string;
   form: {
     content: string;
-    isSecret: boolean;
+    secret: boolean;
   };
+}
+
+export interface IQuestionForm {
+  content: string;
+  secret: boolean;
 }
 
 export interface IUpdateQuestion {

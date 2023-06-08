@@ -1,14 +1,9 @@
 import { questionState } from "@/context/questionState";
 import { userState } from "@/context/userState";
-import useCreateAnswer from "@/hooks/answer/create";
-import useAnswer from "@/hooks/answer/get";
-import useCreateQuestion from "@/hooks/question/create";
 import useDeleteQuestion from "@/hooks/question/delete";
 import { IQuestion } from "@/types/GroupBuy.type";
 import React, { useState } from "react";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { BiDotsVerticalRounded } from "react-icons/bi";
-import { IoCloseOutline } from "react-icons/io5";
 import ReactModal from "react-modal";
 import { useRecoilState, useRecoilValue } from "recoil";
 import Update from "./Update";
