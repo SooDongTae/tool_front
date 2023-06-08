@@ -43,7 +43,7 @@ const useUser = () => {
     [router.query, setUser, userInfo]
   );
 
-  return { user, isLogged: !!userInfo, logout, isLoading };
+  return { user , isLogged: !!userInfo, logout, isLoading };
 };
 
 export default useUser;

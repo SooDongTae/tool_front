@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Tab from "./Tab";
-import Symbol from "../asset/tool.svg";
+import Tab from "../GroupBuy/Tab";
+import Symbol from "../../asset/tool.svg";
 import { HeaderText } from "./HeaderText";
-import useUser from "@/hooks/useUser";
-import { Loading } from "./Loading";
+import useUser from "@/hooks/user/useUser";
 export const Header = () => {
   const router = useRouter();
   const path = router.pathname;
@@ -24,12 +23,6 @@ export const Header = () => {
         </div>
         {isLogged ? (
           <div className="flex flex-row">
-            <div
-              className="font-bold text-[1.1rem] cursor-pointer"
-              onClick={logout}
-            >
-              로그아웃
-            </div>
             <HeaderText
               target=""
               text={
@@ -40,7 +33,14 @@ export const Header = () => {
                 " " +
                 user?.name
               }
+              ml=""
             />
+            <div
+              className="font-bold text-[1.1rem] cursor-pointer ml-[2rem]"
+              onClick={logout}
+            >
+              로그아웃
+            </div>
           </div>
         ) : (
           <HeaderText

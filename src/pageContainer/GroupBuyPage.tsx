@@ -1,5 +1,5 @@
-import LeftTime, { GetLeftTime } from "@/components/LeftTime";
-import { ProgressBar } from "@/components/ProgressBar";
+import LeftTime, { GetLeftTime } from "@/components/Shared/LeftTime";
+import { ProgressBar } from "@/components/Shared/ProgressBar";
 import { IGroupBuy } from "@/types/GroupBuy.type";
 import Image from "next/image";
 import { useQueryClient } from "react-query";

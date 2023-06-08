@@ -1,6 +1,6 @@
 import { NextPageContext } from "next";
 import { useEffect } from "react";
-import useLoginMutation from "@/hooks/useLogin";
+import useLoginMutation from "@/hooks/user/useLogin";
 export const OAuth = ({ code }: { code: string }) => {
   const { mutate } = useLoginMutation(code);
   useEffect(() => {

@@ -1,10 +1,9 @@
 import { FormSelectInput } from "@/components/FormInput/FormSelectInput";
 import { FormTextInput } from "@/components/FormInput/FormTextInput";
 import { useReducer, useRef, useState } from "react";
-import { toast } from "react-toastify";
 import { BiImageAdd } from "react-icons/bi";
 import "react-datepicker/dist/react-datepicker.css";
-import usePartyMutation from "@/hooks/useCreate";
+import usePartyMutation from "@/hooks/party/useCreate";
 import { FormDateInput } from "@/components/FormInput/FormDateInput";
 export const CreatePage = () => {
   const formData = new FormData();
@@ -22,13 +21,39 @@ export const CreatePage = () => {
     cost: "",
     content: "",
   });
-  console.log(
-    form.untilAt?.getFullYear().toString() +
-      "-" +
-      form.untilAt?.getMonth().toString() +
-      "-" +
-      form.untilAt?.getDate().toString()
-  );
+
+  const setFormData = () => {
+    formData.append(
+      "request",
+      new Blob(
+        [
+          JSON.stringify({
+            ...form,
+            untilAt:
+              form.untilAt.getFullYear().toString() +
+              "-" +
+              (parseInt(form.untilAt.getMonth().toString()) < 10 ? "0" : "") +
+              (form.untilAt.getMonth() + 1).toString() +
+              "-" +
+              (parseInt(form.untilAt.getDate().toString()) < 10 ? "0" : "") +
+              form.untilAt.getDate().toString(),
+          }),
+        ],
+        {
+          type: "application/json",
+        }
+      )
+    );
+    formData.append("file", sendImage);
+  };
+
+  const setImageFile = (file: React.ChangeEvent<HTMLInputElement>) => {
+    const target = file.currentTarget;
+    const imgSrc = URL.createObjectURL((target.files as FileList)[0]);
+    setPreviewImg(imgSrc);
+    setSendImage((target.files as FileList)[0]);
+  };
+  
   return (
     <div className="flex items-center pt-[10rem] justify-center bg-Background-Gray">
       <div className="w-[75rem]">
@@ -115,12 +140,7 @@ export const CreatePage = () => {
           </label>
           <input
             ref={fileRef}
-            onChange={(file: React.ChangeEvent<HTMLInputElement>) => {
-              const target = file.currentTarget;
-              const imgSrc = URL.createObjectURL((target.files as FileList)[0]);
-              setPreviewImg(imgSrc);
-              setSendImage((target.files as FileList)[0]);
-            }}
+            onChange={setImageFile}
             className="hidden"
             id="chooseFile"
             type="file"
@@ -144,37 +164,7 @@ export const CreatePage = () => {
         <div className="w-full flex justify-center mt-[4rem] mb-[4rem]">
           <button
             onClick={() => {
-              // if (!isValid) return;
-              if (!sendImage) {
-                toast.error("이미지를 업로드해 주세요!");
-                return;
-              }
-              formData.append(
-                "request",
-                new Blob(
-                  [
-                    JSON.stringify({
-                      ...form,
-                      untilAt:
-                        form.untilAt.getFullYear().toString() +
-                        "-" +
-                        (parseInt(form.untilAt.getMonth().toString()) < 10
-                          ? "0"
-                          : "") +
-                        (form.untilAt.getMonth() + 1).toString() +
-                        "-" +
-                        (parseInt(form.untilAt.getDate().toString()) < 10
-                          ? "0"
-                          : "") +
-                        form.untilAt.getDate().toString(),
-                    }),
-                  ],
-                  {
-                    type: "application/json",
-                  }
-                )
-              );
-              formData.append("file", sendImage);
+              setFormData();
               mutate();
             }}
             className="w-[8rem] h-[4rem] bg-GreenLight-30 text-white text-[1.5rem] rounded-[10px]"
