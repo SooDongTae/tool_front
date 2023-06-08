@@ -2,7 +2,7 @@ import axios from "axios";
 import { useQuery } from "react-query";
 
 const getAnswer = async (id: string) => {
-  const { data } = await axios.get(`/api/comment/${id}`, {
+  const { data } = await axios.get(`/api/answer/${id}`, {
     headers: {
       Authorization: `Bearer${localStorage.getItem("accessToken")})}`,
     },

@@ -4,11 +4,15 @@ import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
 
 const modifyQuestion = async (form: ICreateQuestion) => {
-  const { data } = await axios.put(`/api/question/${form.id}`, form, {
-    headers: {
-      Authorization: `Bearer${localStorage.getItem("accessToken")}`,
-    },
-  });
+  const { data } = await axios.put(
+    `/api/question/${form.id}`,
+    { content: form.content, secret: form.isSecret },
+    {
+      headers: {
+        Authorization: `Bearer${localStorage.getItem("accessToken")}`,
+      },
+    }
+  );
   return data;
 };
 

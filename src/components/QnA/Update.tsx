@@ -1,28 +1,45 @@
-import { ICreateQuestion, IQuestion } from "@/types/GroupBuy.type";
+import useModifyQuestion from "@/hooks/question/update";
+import {
+  ICreateQuestion,
+  IQuestion,
+  IUpdateQuestion,
+} from "@/types/GroupBuy.type";
 import React from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { IoCloseOutline } from "react-icons/io5";
 
-const Update = ({ content, id, isSecret }: ICreateQuestion) => {
+const Update = ({ content, id, isSecret, getIsOpen }: IUpdateQuestion) => {
   const { register, handleSubmit, watch, reset } = useForm();
+  const { mutate } = useModifyQuestion();
   const onValid: SubmitHandler<FieldValues> = (data) => {
+    console.log(data);
+    mutate({ content: data.content, id: id, isSecret: data.isSecret });
     reset();
   };
   const onInvalid = () => {
     alert("질문 폼을 다시 확인해주세요");
   };
+  console.log(watch("isSecret"));
   return (
     <>
       <div className="w-full h-[20%] border-b-[0.1rem] border-GrayScale-15 flex flex-row justify-between items-center text-[1.3rem] pl-[3%]">
         <span>질문 수정</span>
         <div className="w-[2.3rem] h-[2.3rem] mr-[3%] bg-GrayScale-15 rounded-[10px] flex justify-center items-center">
-          <IoCloseOutline size={30} color={"black"} />
+          <IoCloseOutline
+            onClick={() => {
+              getIsOpen(false);
+            }}
+            size={30}
+            color={"black"}
+          />
         </div>
       </div>
       <form
         onSubmit={(e) => {
           e.stopPropagation();
-          handleSubmit(onValid, onInvalid);
+          e.preventDefault();
+          handleSubmit(onValid, onInvalid)();
+          getIsOpen(false);
         }}
         className="w-full h-[80%] flex flex-col justify-center items-center"
       >
@@ -37,7 +54,7 @@ const Update = ({ content, id, isSecret }: ICreateQuestion) => {
             <input
               {...register("isSecret")}
               type="checkbox"
-              defaultChecked={true}
+              defaultChecked={isSecret}
               className="scale-[130%]"
             />
           </div>

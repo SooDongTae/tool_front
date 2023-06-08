@@ -23,6 +23,11 @@ const Question = ({ question }: { question: IQuestion }) => {
     content: "",
     isSecret: false,
   });
+
+  const getIsOpen = (isOpen: boolean) => {
+    setIsModifying(isOpen);
+  };
+
   return (
     <div
       className="w-full h-[6rem] flex flex-row border-b-[0.1rem] border-GrayScale-30 cursor-pointer"
@@ -92,6 +97,7 @@ const Question = ({ question }: { question: IQuestion }) => {
           content={question.content}
           id={question.id}
           isSecret={question.isSecret}
+          getIsOpen={getIsOpen}
         />
       </ReactModal>
     </div>

@@ -29,6 +29,13 @@ export interface ICreateQuestion {
   isSecret: boolean;
 }
 
+export interface IUpdateQuestion {
+  id: string;
+  content: string;
+  isSecret: boolean;
+  getIsOpen: (isOpen: boolean) => void;
+}
+
 export interface IQuestion {
   content: string;
   createdAt: Date;
