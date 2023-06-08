@@ -22,13 +22,12 @@ const QuestionPage = ({ id }: { id: string }) => {
   }: { questions: IQuestionList; isLoading: boolean } = useQuestion(id);
   const questionList = questions?.questionResponseList;
   const { mutate } = useCreateQuestion();
-  const onSubmit = handleSubmit((data) => {
-    mutate({ id: id, form: { content: data.content, secret: data.secret } });
-    reset();
-  });
   return (
     <form
-      onSubmit={onSubmit}
+      // onSubmit={onSubmit}
+      onSubmit={handleSubmit((values) =>
+        mutate(values as ICreateQuestion, { onSuccess: () => reset() })
+      )}
       className="relative w-screen h-screen flex justify-center"
     >
       <div className="absolute w-[7%] h-[5%] left-[45%] bottom-[2%] flex flex-row justify-between items-center">

@@ -4,10 +4,13 @@ import {
   IQuestion,
   IUpdateQuestion,
 } from "@/types/GroupBuy.type";
+import { values } from "lodash";
 import React from "react";
+import { useForm } from "react-hook-form";
 import { IoCloseOutline } from "react-icons/io5";
 
 const Update = ({ content, id, isSecret, getIsOpen }: IUpdateQuestion) => {
+  const { register, handleSubmit, reset } = useForm();
   const { mutate } = useModifyQuestion();
   return (
     <>
@@ -28,17 +31,22 @@ const Update = ({ content, id, isSecret, getIsOpen }: IUpdateQuestion) => {
           e.stopPropagation();
           e.preventDefault();
           getIsOpen(false);
+          handleSubmit((values) =>
+            mutate(values as ICreateQuestion, { onSuccess: () => reset() })
+          );
         }}
         className="w-full h-[80%] flex flex-col justify-center items-center"
       >
         <div className="w-full h-[70%] border-b-[0.1rem] border-GrayScale-15 flex flex-col items-center justify-evenly">
           <input
+            {...register("content", { required: true })}
             defaultValue={content}
             className="w-[80%] h-[3rem] shadow-[0_0_10px_0_rgba(0,0,0,0.3)] rounded-[10px] p-[2%] text-[1.3rem] focus:outline-none"
           />
           <div className="w-[20%] flex flex-row justify-evenly">
             <span>비공개</span>
             <input
+              {...register("secret")}
               type="checkbox"
               defaultChecked={isSecret}
               className="scale-[130%]"
