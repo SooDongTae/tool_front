@@ -3,6 +3,7 @@ import Question from "@/components/QnA/Question";
 import useCreateQuestion from "@/hooks/question/create";
 import useQuestion from "@/hooks/question/get";
 import { IQuestion } from "@/types/GroupBuy.type";
+import qs from "qs";
 import React from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
@@ -11,32 +12,35 @@ interface IQuestionList {
 }
 
 const QuestionPage = ({ id }: { id: string }) => {
-  const { register, handleSubmit, watch, reset } = useForm();
+  const { register, handleSubmit, watch, reset } = useForm({
+    defaultValues: {
+      isSecret: false,
+      content: "",
+    },
+  });
   const {
     questions,
     isLoading,
   }: { questions: IQuestionList; isLoading: boolean } = useQuestion(id);
   const questionList = questions?.questionResponseList;
-  const { mutate } = useCreateQuestion({
-    id: "",
-    content: "",
-    isSecret: false,
-  });
+  const { mutate } = useCreateQuestion();
   const onValid: SubmitHandler<FieldValues> = (data) => {
-    mutate({ id: id, content: data.content, isSecret: data.isSecret });
+    mutate({
+      id: id,
+      form: { content: data.content, isSecret: data.isSecret },
+    });
     reset();
   };
   const onInvalid = () => {
     alert("질문 폼을 다시 확인해주세요");
   };
-
   return (
     <form
       onSubmit={handleSubmit(onValid, onInvalid)}
       className="relative w-screen h-screen flex justify-center"
     >
       <div className="absolute w-[7%] h-[5%] left-[45%] bottom-[2%] flex flex-row justify-between items-center">
-        <div>질문 비공개</div>
+        <div onClick={() => console.log(watch())}>질문 비공개</div>
         <input
           {...register("isSecret")}
           className="scale-[130%]"

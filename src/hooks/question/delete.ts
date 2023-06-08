@@ -12,7 +12,7 @@ const deleteQuestion = async (form: ICreateQuestion) => {
   return data;
 };
 
-const useDeleteQuestion = (form: ICreateQuestion) => {
+const useDeleteQuestion = () => {
   const queryClient = useQueryClient();
   return useMutation((form: ICreateQuestion) => deleteQuestion(form), {
     onSuccess: () => {

@@ -12,14 +12,12 @@ const Update = ({ content, id, isSecret, getIsOpen }: IUpdateQuestion) => {
   const { register, handleSubmit, watch, reset } = useForm();
   const { mutate } = useModifyQuestion();
   const onValid: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
-    mutate({ content: data.content, id: id, isSecret: data.isSecret });
+    mutate({ id: id, form: { content: content, isSecret: isSecret } });
     reset();
   };
   const onInvalid = () => {
     alert("질문 폼을 다시 확인해주세요");
   };
-  console.log(watch("isSecret"));
   return (
     <>
       <div className="w-full h-[20%] border-b-[0.1rem] border-GrayScale-15 flex flex-row justify-between items-center text-[1.3rem] pl-[3%]">

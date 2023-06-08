@@ -25,8 +25,10 @@ export interface ILeftTime {
 
 export interface ICreateQuestion {
   id: string;
-  content: string;
-  isSecret: boolean;
+  form: {
+    content: string;
+    isSecret: boolean;
+  };
 }
 
 export interface IUpdateQuestion {

@@ -18,11 +18,7 @@ const Question = ({ question }: { question: IQuestion }) => {
   const user = useRecoilValue(userState);
   const [qState, setQState] = useRecoilState(questionState(question.id));
   const [isModifying, setIsModifying] = useState(false);
-  const { mutate } = useDeleteQuestion({
-    id: "",
-    content: "",
-    isSecret: false,
-  });
+  const { mutate } = useDeleteQuestion();
 
   const getIsOpen = (isOpen: boolean) => {
     setIsModifying(isOpen);
@@ -76,8 +72,10 @@ const Question = ({ question }: { question: IQuestion }) => {
                   e.stopPropagation();
                   mutate({
                     id: question.id,
-                    content: question.content,
-                    isSecret: question.isSecret,
+                    form: {
+                      content: question.content,
+                      isSecret: question.isSecret,
+                    },
                   });
                 }}
                 className="w-full h-1/2 flex justify-center items-center cursor-pointer hover:bg-GrayScale-5 rounded-b-[15px]"
