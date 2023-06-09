@@ -4,7 +4,7 @@ const nextConfig = {
     return [
       {
         source: "/api/:path*",
-        destination: "http://tool-api.kro.kr:8080/api/:path*",
+        destination: process.env.NEXT_PUBLIC_SERVER_ADDRESS + "/:path*",
       },
     ];
   },

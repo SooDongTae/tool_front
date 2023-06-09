@@ -10,7 +10,9 @@ export const Write = () => {
   useEffect(() => {
     if (!!user.id === false) {
       router.push(
-        "https://auth.bssm.kro.kr/oauth?clientId=98fd44ad&redirectURI=http://localhost:3000/oauth"
+        process.env.NEXT_PUBLIC_LOGIN_API_KEY
+          ? process.env.NEXT_PUBLIC_LOGIN_API_KEY
+          : ""
       );
     }
   });
