@@ -26,7 +26,7 @@ export const WritePage = () => {
           />
           <input
             onChange={(e) => setPost({ ...post, title: e.target.value })}
-            className="w-full  border-[.5px] pl-3 outline-none focus:border-GreenLight-30 rounded-md font-semibold"
+            className="w-[90%]  border-[.5px] border-GrayScale-20 pl-3 outline-none focus:border-GreenLight-30 rounded-md font-semibold"
             placeholder="제목을 입력해주세요..."
           />
         </div>
@@ -48,8 +48,11 @@ export const WritePage = () => {
             }}
           />
         </div>
-        <div className="flex justify-center mt-4">
-          <button className="button-layout border-[0.5px] bg-GreenLight-30 text-white" onClick={() => mutate()}>
+        <div className="flex justify-center mt-8">
+          <button
+            className="w-[8rem] h-[4rem] border-[0.5px] bg-GreenLight-30 text-white rounded-lg text-xl font-bold"
+            onClick={() => mutate()}
+          >
             글 작성
           </button>
         </div>

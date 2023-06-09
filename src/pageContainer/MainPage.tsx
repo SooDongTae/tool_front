@@ -9,7 +9,7 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import { Observer } from "@/components/Shared/Observer";
 import { SortField } from "@/components/Main/SortField";
 import { Loading } from "@/components/Shared/Loading";
-import { constSelector } from "recoil";
+import { ChatBot } from "@/components/Shared/ChatBot";
 const category = ["all", "PRODUCT", "FOOD", "CLOTHES", "ETC"];
 export const MainPage = () => {
   const [cateIdx, setCateIdx] = useState(0);
@@ -52,7 +52,7 @@ export const MainPage = () => {
   });
 
   return (
-    <div className="min-h-screen flex pt-[8.5rem] bg-Background-Gray flex-col items-center scrollbar-hide">
+    <div className="min-h-screen flex pt-[8.5rem] bg-Background-Gray flex-col items-center relative">
       <div className="lg:w-[75rem] w-[80%]">
         <div className="h-[18rem] rounded-[10px] bg-BlueLight-20 text-4xl font-bold text-GreenLight-30 flex justify-center items-center">
           <a href="https://tool-landingpage.bssm.kro.kr" target="_blink">
@@ -95,6 +95,7 @@ export const MainPage = () => {
         </div>
       </div>
       {hasNextPage && <Observer handleIntersection={handleIntersection} />}
+      <ChatBot/>
     </div>
   );
 };

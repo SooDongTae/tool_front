@@ -11,7 +11,7 @@ export const CommunityPage = ({ school }: { school: string }) => {
   const [category, setCategory] = useState(0);
   const [pageIdx, setPageIdx] = useState(1);
   const [title, setTitle] = useState("");
-  console.log(pageIdx);
+
   const { postList, isLoading } = usePostList({
     title: title,
     category: "FREE",
@@ -21,15 +21,17 @@ export const CommunityPage = ({ school }: { school: string }) => {
   const post = useMemo(() => postList?.boardResponseList || null, [postList]);
   const PostList = post?.map((item: any, idx: number) => {
     return (
-      <CommunityPost
-        key={idx}
-        owner={item.owner}
-        recommend={item.likes}
-        view={item.views}
-        title={item.title}
-        created_at={item.created_at.substring(0, 10)}
-        category={item.category}
-      />
+      <Link href={`/detail/${item.id}`}>
+        <CommunityPost
+          key={idx}
+          owner={item.owner}
+          recommend={item.likes}
+          view={item.views}
+          title={item.title}
+          created_at={item.created_at.substring(0, 10)}
+          category={item.category}
+        />
+      </Link>
     );
   });
   return (
@@ -72,6 +74,7 @@ export const CommunityPage = ({ school }: { school: string }) => {
             </div>
             <div className="flex justify-center">
               <Pagination
+                className="mt-[2rem]"
                 count={postList?.maxPage}
                 defaultPage={pageIdx}
                 onChange={(e, value) => setPageIdx(value)}
