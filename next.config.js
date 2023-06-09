@@ -4,7 +4,7 @@ const nextConfig = {
     return [
       {
         source: "/api/:path*",
-        destination: "http://10.150.151.66:8080/api/:path*",
+        destination: "http://tool-api.kro.kr:8080/api/:path*",
       },
     ];
   },
