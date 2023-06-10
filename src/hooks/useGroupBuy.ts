@@ -1,12 +1,9 @@
+import { customAxios } from "@/lib/axios/customAxios";
 import axios from "axios";
 import { useQuery } from "react-query";
 
 const getParty = async (id: string) => {
-  const { data } = await axios.get(`/api/groupBuying/${id}`, {
-    headers: {
-      Authorization: `Bearer${localStorage.getItem("accessToken")})}`,
-    },
-  });
+  const { data } = await customAxios.get(`/api/groupBuying/${id}`, {});
   return data;
 };
 const useGroupBuy = (id: string) => {

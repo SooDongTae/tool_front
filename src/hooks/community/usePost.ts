@@ -1,3 +1,4 @@
+import { customAxios } from "@/lib/axios/customAxios";
 import { GetPartyListType } from "@/types/Party.type";
 import axios from "axios";
 import { useInfiniteQuery, useQuery } from "react-query";
@@ -7,7 +8,7 @@ interface IPost {
   category?: string;
 }
 const onRequest = async (criteria: IPost) => {
-  const { data } = await axios.get(
+  const { data } = await customAxios.get(
     `/api/board/list?size=8&page=${criteria.page}&title=${criteria.title}&category=all`,
     {
       headers: {

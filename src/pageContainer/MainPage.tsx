@@ -30,27 +30,14 @@ export const MainPage = () => {
       partyList?.pages.flatMap((page) => page.groupBuyingResponseList) || [],
     [partyList]
   );
-  console.log("rerender");
   const PartyList = party.map((item: any, idx: number) => {
     return (
-      <Link href="/groupbuy/[id]" as={`/groupbuy/${item.id}`}>
-        <Party
-          grade={item.grade}
-          classNum={item.class_no}
-          studentNum={item.student_no}
-          key={idx}
-          owner={item.owner}
-          title={item.title}
-          maxPeople={item.maxPeople}
-          currentPeople={item.currentPeople}
-          endDate={item.untilAt}
-          price={item.cost}
-          imgSrc={item.imgSrc}
-        />
+      <Link href={`/groupbuy/${item.id}`} as={`/groupbuy/${item.id}`} key={idx}>
+        <Party {...item} />
       </Link>
     );
   });
-
+  console.log(partyList);
   return (
     <div className="min-h-screen flex pt-[8.5rem] bg-Background-Gray flex-col items-center relative">
       <div className="lg:w-[75rem] w-[80%]">
@@ -95,7 +82,7 @@ export const MainPage = () => {
         </div>
       </div>
       {hasNextPage && <Observer handleIntersection={handleIntersection} />}
-      <ChatBot/>
+      <ChatBot />
     </div>
   );
 };

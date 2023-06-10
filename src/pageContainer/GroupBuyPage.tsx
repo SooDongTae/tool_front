@@ -46,7 +46,7 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
     <div className="relative  h-auto flex justify-center pt-[10rem] bg-Background-Gray">
       <div className="w-[55rem] h-full flex flex-col">
         <img
-          src={party?.imgSrc.substring(21)}
+          src={party?.imgSrc}
           className="w-full h-[600px] object-contain"
           alt="공동구매 이미지"
         />
