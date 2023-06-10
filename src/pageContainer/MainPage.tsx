@@ -30,15 +30,14 @@ export const MainPage = () => {
       partyList?.pages.flatMap((page) => page.groupBuyingResponseList) || [],
     [partyList]
   );
-  console.log("rerender");
   const PartyList = party.map((item: any, idx: number) => {
     return (
-      <Link href="/groupbuy/[id]" as={`/groupbuy/${item.id}`}>
-        <Party props={...item} />
+      <Link href={`/groupbuy/${item.id}`} as={`/groupbuy/${item.id}`} key={idx}>
+        <Party {...item} />
       </Link>
     );
   });
-
+  console.log(partyList);
   return (
     <div className="min-h-screen flex pt-[8.5rem] bg-Background-Gray flex-col items-center relative">
       <div className="lg:w-[75rem] w-[80%]">

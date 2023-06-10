@@ -3,7 +3,7 @@ export interface PartyProps {
   currentPeople: number;
   maxPeople: number;
   endDate: Date;
-  price: number;
+  cost: number;
   owner: string;
   grade: number;
   classNum: number;

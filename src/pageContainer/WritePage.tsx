@@ -32,7 +32,7 @@ export const WritePage = () => {
         </div>
         <div className="mt-[2rem]">
           <Editor
-            apiKey="d3o8m1lh6b3c9ge9a9jb0g3us91rz86ib2redhyd3lz6ggi9"
+            apiKey={process.env.NEXT_PUBLIC_EDITOR_API_KEY}
             onInit={(e, editor) => (editorRef.current = editor)}
             onEditorChange={(text) => setPost({ ...post, content: text })}
             init={{
