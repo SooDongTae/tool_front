@@ -1,3 +1,4 @@
+import { customAxios } from "@/lib/axios/customAxios";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useMutation, useQueryClient } from "react-query";
@@ -5,7 +6,7 @@ import { toast } from "react-toastify";
 
 const onLogin = async (authCode: string) => {
   const headers = { authCode: authCode };
-  const { data } = await axios.post("/api/auth/oauth/bsm", null, {
+  const { data } = await customAxios.post("/api/auth/oauth/bsm", null, {
     headers,
   });
   return data;

@@ -5,8 +5,9 @@ import { useRecoilState } from "recoil";
 import axios from "axios";
 import { InitUserState, userState } from "@/context/userState";
 import { UserType } from "@/types/User.type";
+import { customAxios } from "@/lib/axios/customAxios";
 const getUser = async () => {
-  const { data } = await axios.get("/api/auth", {
+  const { data } = await customAxios.get("/api/auth", {
     headers: {
       Authorization: `Bearer${localStorage.getItem("accessToken")})}`,
     },
@@ -27,7 +28,7 @@ const useUser = () => {
   });
 
   const logout = () => {
-    axios.delete("/api/auth/logout", {
+    customAxios.delete("/api/auth/logout", {
       data: {
         refreshToken: localStorage.getItem("refreshToken"),
       },
