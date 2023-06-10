@@ -1,9 +1,10 @@
+import { customAxios } from "@/lib/axios/customAxios";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
 export const onCreate = async (form: FormData) => {
-  const { data } = await axios.post(`/api/groupBuying/create`, form, {
+  const { data } = await customAxios.post(`/api/groupBuying/create`, form, {
     headers: {
       Authorization: `Bearer${localStorage.getItem("accessToken")}`,
       "Content-Type": "multipart/form-data",
@@ -18,7 +19,7 @@ const usePartyMutation = (form: FormData) => {
     onSuccess: (res) => {
       queryClient.invalidateQueries(["party"]);
       toast.success("파티 생성 성공!");
-      router.push("/groupbuy/" + res);
+      // router.push("/groupbuy/" + res);
     },
     onError: () => {
       toast.error("파티 생성 실패!");

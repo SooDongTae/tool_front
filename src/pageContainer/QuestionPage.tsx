@@ -63,17 +63,6 @@ const QuestionPage = ({ id }: { id: string }) => {
             <Answer id={question.id} key={question.id} />
           </div>
         ))}
-        {/* <Question
-          question={{
-            content: "string",
-            createdAt: new Date(),
-            id: 1,
-            isSecret: false,
-            lastModifiedAt: new Date(),
-            writerName: "string",
-          }}
-          key={1}
-        /> */}
       </div>
     </form>
   );
