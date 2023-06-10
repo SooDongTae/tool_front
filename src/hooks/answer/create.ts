@@ -1,10 +1,10 @@
+import { customAxios } from "@/lib/axios/customAxios";
 import { IAnswer } from "@/types/GroupBuy.type";
-import axios from "axios";
 import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
 
 const createAnswer = async (form: IAnswer) => {
-  const { data } = await axios.post(
+  const { data } = await customAxios.post(
     `/api/answer/${form.id}`,
     { content: form.content },
     {

@@ -1,16 +1,19 @@
 import { customAxios } from "@/lib/axios/customAxios";
 import { ICreateQuestion } from "@/types/GroupBuy.type";
-import axios from "axios";
-import qs from "qs";
 import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
 
 const modifyQuestion = async ({ id, form }: ICreateQuestion) => {
-  const { data } = await customAxios.put(`/api/question/${id}`, form, {
-    headers: {
-      Authorization: `Bearer${localStorage.getItem("accessToken")}`,
-    },
-  });
+  console.log(form);
+  const { data } = await customAxios.put(
+    `/api/question/${id}`,
+    { content: form.content, secret: true },
+    {
+      headers: {
+        Authorization: `Bearer${localStorage.getItem("accessToken")}`,
+      },
+    }
+  );
   return data;
 };
 

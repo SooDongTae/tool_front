@@ -2,6 +2,7 @@ import useModifyQuestion from "@/hooks/question/update";
 import {
   ICreateQuestion,
   IQuestion,
+  IQuestionForm,
   IUpdateQuestion,
 } from "@/types/GroupBuy.type";
 import { values } from "lodash";
@@ -12,6 +13,13 @@ import { IoCloseOutline } from "react-icons/io5";
 const Update = ({ content, id, isSecret, getIsOpen }: IUpdateQuestion) => {
   const { register, handleSubmit, reset } = useForm();
   const { mutate } = useModifyQuestion();
+  const onValid = (data: any) => {
+    mutate(
+      { id: id, form: data as IQuestionForm },
+      { onSuccess: () => reset() }
+    );
+    getIsOpen(false);
+  };
   return (
     <>
       <div className="w-full h-[20%] border-b-[0.1rem] border-GrayScale-15 flex flex-row justify-between items-center text-[1.3rem] pl-[3%]">
@@ -27,14 +35,13 @@ const Update = ({ content, id, isSecret, getIsOpen }: IUpdateQuestion) => {
         </div>
       </div>
       <form
-        onSubmit={(e) => {
-          e.stopPropagation();
-          e.preventDefault();
-          getIsOpen(false);
-          handleSubmit((values) =>
-            mutate(values as ICreateQuestion, { onSuccess: () => reset() })
+        onSubmit={handleSubmit((values) => {
+          mutate(
+            { id: id, form: values as IQuestionForm },
+            { onSuccess: () => reset() }
           );
-        }}
+          getIsOpen(false);
+        })}
         className="w-full h-[80%] flex flex-col justify-center items-center"
       >
         <div className="w-full h-[70%] border-b-[0.1rem] border-GrayScale-15 flex flex-col items-center justify-evenly">

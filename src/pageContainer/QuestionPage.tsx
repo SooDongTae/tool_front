@@ -26,7 +26,10 @@ const QuestionPage = ({ id }: { id: string }) => {
     <form
       // onSubmit={onSubmit}
       onSubmit={handleSubmit((values) =>
-        mutate(values as ICreateQuestion, { onSuccess: () => reset() })
+        mutate(
+          { id: id, form: values as IQuestionForm },
+          { onSuccess: () => reset() }
+        )
       )}
       className="relative w-screen h-screen flex justify-center"
     >

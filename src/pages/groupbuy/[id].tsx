@@ -8,6 +8,7 @@ import { useRecoilState } from "recoil";
 
 const groupbuy = ({ id }: { id: string }) => {
   const [grpId, setGrpId] = useRecoilState(groupId);
+  console.log(id);
   useEffect(() => {
     setGrpId(id);
   }, []);

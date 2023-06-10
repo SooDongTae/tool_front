@@ -33,7 +33,7 @@ const Question = ({ question }: { question: IQuestion }) => {
         Q
       </div>
       <div className="w-[85%] h-full flex justify-start items-center text-[1.5rem]">
-        {question.writerName === user.name
+        {question.writerName !== user.name && !question.isSecret
           ? question.content
           : "비공개 질문입니다."}
       </div>
@@ -69,7 +69,7 @@ const Question = ({ question }: { question: IQuestion }) => {
                     id: question.id,
                     form: {
                       content: question.content,
-                      isSecret: question.isSecret,
+                      secret: question.isSecret,
                     },
                   });
                 }}
@@ -82,6 +82,7 @@ const Question = ({ question }: { question: IQuestion }) => {
         </div>
       )}
       <ReactModal
+        ariaHideApp={false}
         className="fixed top-[35%] left-[35%] w-[30%] h-[30%] bg-white rounded-[10px] shadow-[0_0_20px_0_rgba(0,0,0,0.3)] flex flex-col focus:outline-none"
         isOpen={isModifying}
         onAfterClose={() => setIsModifying(false)}
