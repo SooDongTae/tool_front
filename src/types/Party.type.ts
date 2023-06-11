@@ -6,8 +6,8 @@ export interface PartyProps {
   cost: number;
   owner: string;
   grade: number;
-  classNum: number;
-  studentNum: number;
+  class_no: number;
+  student_no: number;
   imgSrc: string;
 }
 

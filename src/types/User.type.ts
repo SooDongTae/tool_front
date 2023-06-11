@@ -4,4 +4,5 @@ export interface UserType {
   classNo: number;
   stuNo: number;
   name: string;
+  token: string;
 }
