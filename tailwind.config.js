@@ -34,6 +34,7 @@ module.exports = {
       "BlueLight-20": "#E1F5FE",
       "GreenLight-30": "#20C997",
       "GreenLight-20": "#4AF1C9",
+      "GrayScale-50": "#444444",
       "GrayScale-40": "#878787",
       "GrayScale-30": "#AEAEB2",
       "GrayScale-20": "#C6C6C6",
