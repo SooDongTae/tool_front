@@ -1,8 +1,14 @@
 import HistoryBox from "@/components/Profile/HistoryBox";
 import ProfileView from "@/components/Profile/ProfileView";
+import useHistory from "@/hooks/useHistory";
+import { IGroupBuy, IHistoryList } from "@/types/GroupBuy.type";
+import { PartyProps } from "@/types/Party.type";
 import React from "react";
 
 const HistoryPage = () => {
+  const { history, isLoading }: { history: IHistoryList; isLoading: boolean } =
+    useHistory();
+  const historyList = history?.groupBuyingResponseList;
   return (
     <div className="w-screen h-screen flex flex-row justify-between bg-Background-Gray">
       {/* <ProfileView /> */}
@@ -18,11 +24,14 @@ const HistoryPage = () => {
               <div className="w-[20%] history-content">결제 금액</div>
               <div className="w-[20%] text-center text-[1.3rem]">현재 상태</div>
             </div>
-            <HistoryBox />
-            <HistoryBox />
-            <HistoryBox />
-            <HistoryBox />
-            <HistoryBox />
+            {historyList?.map((data: IGroupBuy) => (
+              <HistoryBox
+                untilAt={data.untilAt}
+                title={data.title}
+                cost={data.cost}
+                status={data.status}
+              />
+            ))}
           </div>
         </div>
       </div>

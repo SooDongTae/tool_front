@@ -6,6 +6,7 @@ import { useQueryClient } from "react-query";
 import React, { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 import { IoCloseOutline } from "react-icons/io5";
+import usePartyMutation from "@/hooks/useJoin";
 
 const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
   const [modalOpened, setModalOpened] = useState(false);
@@ -41,6 +42,7 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
       leftMinute: leftMinute,
     });
   }, 60000);
+  const { mutate } = usePartyMutation(party?.id);
 
   return (
     <div className="relative  h-auto flex justify-center pt-[10rem] bg-Background-Gray">
@@ -143,6 +145,7 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
         </div>
         <div className="w-full h-[25%] flex justify-center items-center">
           <div
+            onClick={() => mutate()}
             onMouseDown={() => setOnMouseDown({ ...onMouseDown, submit: true })}
             onMouseUp={() => setOnMouseDown({ ...onMouseDown, submit: false })}
             className={`${

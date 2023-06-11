@@ -17,6 +17,15 @@ export interface IGroupBuy {
   untilAt: Date;
   views: number;
 }
+export interface IHistory {
+  cost: number;
+  title: string;
+  untilAt: Date;
+  status: string;
+}
+export interface IHistoryList {
+  groupBuyingResponseList: [IGroupBuy];
+}
 export interface ILeftTime {
   leftDay: number;
   leftHour: number;
