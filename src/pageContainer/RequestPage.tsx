@@ -20,8 +20,8 @@ const RequestPage = () => {
           </h2>
         </div>
         <div className="w-[70%] flex flex-row flex-wrap justify-between mt-[2rem]">
-          {requestList?.map((request) => (
-            <Request {...request} />
+          {requestList?.map((request, idx: number) => (
+            <Request {...request} key={idx} />
           ))}
         </div>
       </div>
