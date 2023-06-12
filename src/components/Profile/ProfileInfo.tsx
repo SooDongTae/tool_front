@@ -9,7 +9,7 @@ import { ProgressBar } from "../Shared/ProgressBar";
 const ProfileInfo = () => {
   const user = useRecoilValue(userState);
   return (
-    <div className="w-[65%] h-[calc(100vh-6rem)] mt-[6rem] flex flex-col justify-evenly items-center bg-[#f9f9f9] ">
+    <div className="w-full h-[calc(100vh-6rem)] mt-[6rem] flex flex-col justify-evenly items-center bg-[#f9f9f9] ">
       <div className="profile-box p-[2%] flex flex-col justify-evenly">
         <div className="flex flex-row items-center border-b-[0.1rem] border-b-GrayScale-20 p-[2%]">
           <Image

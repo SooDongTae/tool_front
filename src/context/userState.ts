@@ -5,6 +5,9 @@ export const InitUserState = {
   stuNo: 0,
   name: "",
   classNo: 0,
+  profileUrl: "",
+  email: "",
+  joinRequests: 0,
 };
 
 export const userState = atom({

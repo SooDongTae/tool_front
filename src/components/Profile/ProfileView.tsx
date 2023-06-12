@@ -9,15 +9,12 @@ const ProfileView = () => {
   const user = useRecoilValue(userState);
   const path = useRouter().pathname;
   return (
-    <div className="w-[35%] h-[100vh] pt-[7rem] flex flex-col items-center justify-start bg-white">
-      <h2 className="text-[2.5rem] font-semibold">
-        <span className="text-GreenLight-30">My</span> 페이지
-      </h2>
+    <div className="w-[35%] h-[100vh] pt-[7rem] bg-white">
       <div className="flex flex-col items-center justify-evenly mt-[12%]">
         <Image
           className="rounded-full"
-          width={200}
-          height={200}
+          width={150}
+          height={150}
           src={"/12.png"}
           alt="프로필 사진"
         />

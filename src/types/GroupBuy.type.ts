@@ -17,6 +17,16 @@ export interface IGroupBuy {
   untilAt: Date;
   views: number;
 }
+export interface IHistory {
+  cost: number;
+  title: string;
+  untilAt: Date;
+  status: string;
+}
+export interface IHistoryList {
+  map(arg0: (data: IGroupBuy) => JSX.Element): import("react").ReactNode;
+  groupBuyingResponseList: [IGroupBuy];
+}
 export interface ILeftTime {
   leftDay: number;
   leftHour: number;
