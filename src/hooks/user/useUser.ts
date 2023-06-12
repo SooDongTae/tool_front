@@ -22,7 +22,7 @@ const useUser = () => {
     data: userInfo,
     remove,
     isLoading,
-  } = useQuery<UserType>(["user"], getUser, {
+  } = useQuery(["user"], getUser, {
     retry: 1,
     refetchOnMount: false,
   });
