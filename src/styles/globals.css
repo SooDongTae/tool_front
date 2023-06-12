@@ -61,3 +61,10 @@
 .header-dropdown {
   @apply h-[3.5rem] w-full flex justify-center items-center text-[1.1rem] font-bold cursor-pointer  hover:text-GrayScale-40;
 }
+
+.chatbot-wrapper{
+  @apply w-[90%] flex items-center mt-[1rem]
+}
+.chatbot-text {
+  @apply text-sm rounded-[10px] font-semibold p-2
+}
