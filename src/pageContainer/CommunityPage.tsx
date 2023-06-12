@@ -21,7 +21,7 @@ export const CommunityPage = ({ school }: { school: string }) => {
   const post = useMemo(() => postList?.boardResponseList || null, [postList]);
   const PostList = post?.map((item: any, idx: number) => {
     return (
-      <Link href={`/detail/${item.id}`}>
+      <Link href={`/detail/${item.id}`} key={idx}>
         <CommunityPost
           key={idx}
           owner={item.owner}

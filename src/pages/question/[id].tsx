@@ -5,7 +5,7 @@ import { NextPage, NextPageContext } from "next";
 import React, { useEffect } from "react";
 import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil";
 
-const question = ({ id }: { id: string }) => {
+const Question = ({ id }: { id: string }) => {
   const [grpId, setGrpId] = useRecoilState(groupId);
   useEffect(() => {
     setGrpId(id);
@@ -18,4 +18,4 @@ export const getServerSideProps = async (ctx: NextPageContext) => {
   return { props: { id } };
 };
 
-export default question;
+export default Question;

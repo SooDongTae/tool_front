@@ -13,7 +13,7 @@ export const ProgressBar = ({
       style={{ width: width, height: height }}
     >
       <div
-        className={` rounded-l-[20px] h-full bg-${color}`}
+        className={` rounded-l-[20px] rounded-r-[20px] h-full bg-${color}`}
         style={{ width: `calc(100%/${maxi}*${current})` }}
       ></div>
     </div>
