@@ -1,6 +1,14 @@
+import useRequest from "@/hooks/useRequest";
+import { IRequest, IRequestList } from "@/types/Request.type";
 import React from "react";
 
 const RequestPage = () => {
+  const {
+    requests,
+    isLoading,
+  }: { requests: IRequestList; isLoading: boolean } = useRequest();
+  const requestList = requests?.joinRequestResponses;
+  console.log(requestList);
   return (
     <div className="w-screen h-screen flex flex-row justify-between bg-Background-Gray">
       {/* <ProfileView /> */}
@@ -32,10 +40,10 @@ const RequestPage = () => {
               alt="프로필 사진"
             />
             <p className="text-[1.3rem] w-[50%] font-semibold">3111 이태현</p>
-            <div className="w-[4rem] h-[2rem] rounded-full bg-GreenLight-30 text-center leading-[2rem] text-white cursor-pointer">
+            <div className="w-[4rem] h-[2rem] rounded-full bg-GreenLight-30 text-center leading-[2rem] text-white">
               수락
             </div>
-            <div className="w-[4rem] h-[2rem] rounded-full bg-GrayScale-20 text-center leading-[2rem] text-white font-semibold cursor-pointer">
+            <div className="w-[4rem] h-[2rem] rounded-full bg-GrayScale-20 text-center leading-[2rem] text-white font-semibold">
               거절
             </div>
           </div>
