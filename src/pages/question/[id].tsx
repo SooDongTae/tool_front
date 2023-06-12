@@ -3,7 +3,7 @@ import useQuestion from "@/hooks/question/get";
 import QuestionPage from "@/pageContainer/QuestionPage";
 import { NextPage, NextPageContext } from "next";
 import React, { useEffect } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil";
 
 const question = ({ id }: { id: string }) => {
   const [grpId, setGrpId] = useRecoilState(groupId);
