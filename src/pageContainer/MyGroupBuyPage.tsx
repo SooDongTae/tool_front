@@ -16,7 +16,7 @@ const MyGroupBuyPage = () => {
       {/* <ProfileView /> */}
       <div className="w-full h-screen flex flex-col items-center bg-[#fafafa] overflow-scroll">
         <div className="w-full flex flex-col items-center justify-start pt-[10rem]">
-          <h2 className="w-[65%] text-[2rem] font-semibold text-left">
+          <h2 className="w-[70%] text-[2rem] font-semibold text-left">
             <span className="text-GreenLight-30">My</span> 파티
           </h2>
         </div>

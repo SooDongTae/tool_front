@@ -15,7 +15,7 @@ const HistoryPage = () => {
       {/* <ProfileView /> */}
       <div className="w-full h-screen flex flex-col items-center bg-[#fafafa] overflow-scroll">
         <div className="w-full h-full flex flex-col items-center justify-start mt-[10rem]">
-          <h2 className="w-[65%] text-[2rem] font-semibold text-left">
+          <h2 className="w-[70%] text-[2rem] font-semibold text-left">
             <span className="text-GreenLight-30">My</span> 참여 내역
           </h2>
           <div className="w-[70%] h-full mt-[2rem]">
