@@ -24,6 +24,7 @@ export interface IHistory {
   status: string;
 }
 export interface IHistoryList {
+  map(arg0: (data: IGroupBuy) => JSX.Element): import("react").ReactNode;
   groupBuyingResponseList: [IGroupBuy];
 }
 export interface ILeftTime {
