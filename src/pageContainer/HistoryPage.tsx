@@ -30,12 +30,13 @@ const HistoryPage = () => {
                 아직 참여 내역이 없습니다.
               </div>
             ) : (
-              historyList?.map((data: IGroupBuy) => (
+              historyList?.map((data: IGroupBuy,idx : number) => (
                 <HistoryBox
                   untilAt={data.untilAt}
                   title={data.title}
                   cost={data.cost}
                   status={data.status}
+                  key ={idx}
                 />
               ))
             )}
