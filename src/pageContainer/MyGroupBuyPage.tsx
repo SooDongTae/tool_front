@@ -28,9 +28,6 @@ const MyGroupBuyPage = () => {
               key={idx}
             >
               <Party
-                untilAt={data.untilAt}
-                class_no={data.class_no}
-                student_no={data.student_no}
                 {...data}
                 key = {idx}
               />
