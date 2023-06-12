@@ -42,7 +42,7 @@ export const MainPage = () => {
     <div className="min-h-screen flex pt-[8.5rem] bg-Background-Gray flex-col items-center relative">
       <div className="lg:w-[75rem] w-[80%]">
         <div className="h-[18rem] rounded-[10px] bg-BlueLight-20 text-4xl font-bold text-GreenLight-30 flex justify-center items-center">
-          <a href="https://tool-landingpage.bssm.kro.kr" target="_blink">
+          <a href="https://tool-landing-page.vercel.app" target="_blink">
             Tool 사용법이 궁금하다면?
           </a>
         </div>

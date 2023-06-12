@@ -9,7 +9,7 @@ const Request = (props: IRequest) => {
       <img
         className="rounded-full w-[3rem] h-[3rem]"
         src={
-          props.userProfile
+          props.userProfile !== ""
             ? props.userProfile
             : "https://png.pngtree.com/png-vector/20190411/ourmid/pngtree-vector-business-men-icon-png-image_925963.jpg"
         }
