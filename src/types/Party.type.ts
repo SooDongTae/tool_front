@@ -2,7 +2,7 @@ export interface PartyProps {
   title: string;
   currentPeople: number;
   maxPeople: number;
-  endDate: Date;
+  untilAt: Date;
   cost: number;
   owner: string;
   grade: number;
