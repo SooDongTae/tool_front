@@ -8,7 +8,11 @@ const Request = (props: IRequest) => {
     <div className="w-[48%] h-[5rem] shadow-[0_0_10px_0_rgba(0,0,0,0.3)] rounded-[15px] mb-[1rem] flex flex-row justify-evenly items-center">
       <img
         className="rounded-full w-[3rem] h-[3rem]"
-        src={props.userProfile}
+        src={
+          props.userProfile
+            ? props.userProfile
+            : "https://png.pngtree.com/png-vector/20190411/ourmid/pngtree-vector-business-men-icon-png-image_925963.jpg"
+        }
         alt="프로필 사진"
       />
       <p className="text-[1.3rem] w-[50%] font-semibold">
