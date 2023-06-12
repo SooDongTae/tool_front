@@ -28,10 +28,11 @@ const MyGroupBuyPage = () => {
               key={idx}
             >
               <Party
-                endDate={data.untilAt}
-                classNum={data.class_no}
-                studentNum={data.student_no}
+                untilAt={data.untilAt}
+                class_no={data.class_no}
+                student_no={data.student_no}
                 {...data}
+                key = {idx}
               />
             </Link>
           ))}
