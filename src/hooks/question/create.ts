@@ -2,7 +2,6 @@ import { groupId } from "@/context/selectedGroupState";
 import { customAxios } from "@/lib/axios/customAxios";
 import { ICreateQuestion } from "@/types/GroupBuy.type";
 import axios from "axios";
-import qs from "qs";
 import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
 import { useRecoilValue } from "recoil";
