@@ -9,7 +9,7 @@ export const ProgressBar = ({
 }: ProgressType) => {
   return (
     <div
-      className={`rounded-[20px] border-[1px] `}
+      className={`rounded-[20px] border-[1px] overflow-hidden `}
       style={{ width: width, height: height }}
     >
       <div

@@ -24,7 +24,7 @@ const useWriteMutation = (post: IPost, category: string) => {
       console.log(res);
       queryClient.invalidateQueries(["post"]);
       toast.success("글 작성 성공!");
-      // router.push("/detail/" + res);
+      router.push("/detail/" + res);
     },
     onError: () => {
       toast.error("글 작성 실패!");
