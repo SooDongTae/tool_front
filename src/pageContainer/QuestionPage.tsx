@@ -61,7 +61,7 @@ const QuestionPage = ({ id }: { id: string }) => {
           </div>
         </div>
         {questionList?.map((question: IQuestion, key: number) => (
-          <div className="w-full">
+          <div className="w-full" key = {key}>
             <Question question={question} key={question.id} />
             <Answer id={question.id} key={question.id} />
           </div>
