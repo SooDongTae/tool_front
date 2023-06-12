@@ -34,6 +34,11 @@ const ProfilePage = () => {
             <p className="p-[3%] font-semibold text-white">나의 참여 내역</p>
           </div>
         </Link>
+        <Link href={"/requests"}>
+          <div className="w-[30rem] h-[5rem] bg-GreenLight-30 rounded-[10px] mt-[1%] cursor-pointer hover:translate-x-[.6rem] duration-300">
+            <p className="p-[3%] font-semibold text-white">받은 참여 요청</p>
+          </div>
+        </Link>
       </div>
     </div>
   );
