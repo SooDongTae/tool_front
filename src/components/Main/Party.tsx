@@ -11,7 +11,7 @@ export const Party = ({
   owner,
   currentPeople,
   maxPeople,
-  cost
+  cost,
 }: PartyProps) => {
   const { leftDay } = GetLeftTime(untilAt);
   return (
@@ -34,7 +34,8 @@ export const Party = ({
         </div>
         <div className="mt-6">
           <span className="text-sm">
-            {(currentPeople / maxPeople) * 100}% ({currentPeople}/{maxPeople})
+            {((currentPeople / maxPeople) * 100).toFixed(2)}% ({currentPeople}/
+            {maxPeople})
           </span>
           <ProgressBar
             maxi={maxPeople}
