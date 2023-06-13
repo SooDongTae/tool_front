@@ -1,21 +1,14 @@
+import { IFormInput } from "@/types/FormInput.type";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import ko from "date-fns/locale/ko";
-interface FormDateInputType {
-  date?: null | Date;
-  inputName?: string;
-  setData: ({}) => void;
-  width?: string;
-  type?: string;
-}
 export const FormDateInput = ({
   setData,
   width,
   date,
   inputName,
   type,
-}: FormDateInputType) => {
+}: IFormInput) => {
   const [isFocus, setIsFocus] = useState(false);
   return (
     <div className="input-box">

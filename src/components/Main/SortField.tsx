@@ -20,7 +20,8 @@ export const SortField = ({
         data === target ? "text-GreenLight-30" : "hover:text-GrayScale-40"
       }`}
     >
-      {Icon}  
+      {Icon}
+      <div className="w-[.25rem]" />
       {text}
     </div>
   );

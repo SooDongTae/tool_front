@@ -11,16 +11,7 @@ export const CreatePage = () => {
   const [previewImg, setPreviewImg] = useState<any>(null);
   const [sendImage, setSendImage] = useState<any>(null);
   const { mutate } = usePartyMutation(formData);
-  const [form, setForm] = useReducer(reducer, {
-    category: "",
-    maxPeople: "",
-    title: "",
-    account: "",
-    bank: "",
-    untilAt: null,
-    cost: "",
-    content: "",
-  });
+  const [form, setForm] = useReducer(reducer, {});
 
   const setFormData = () => {
     formData.append(
@@ -53,7 +44,7 @@ export const CreatePage = () => {
     setPreviewImg(imgSrc);
     setSendImage((target.files as FileList)[0]);
   };
-  
+
   return (
     <div className="layout">
       <div className="w-[75rem]">

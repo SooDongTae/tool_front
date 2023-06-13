@@ -10,6 +10,7 @@ import { Observer } from "@/components/Shared/Observer";
 import { SortField } from "@/components/Main/SortField";
 import { Loading } from "@/components/Shared/Loading";
 import { ChatBot } from "@/components/Shared/ChatBot";
+import { IParty } from "@/types/Party.type";
 const category = ["all", "PRODUCT", "FOOD", "CLOTHES", "ETC"];
 export const MainPage = () => {
   const [cateIdx, setCateIdx] = useState(0);
@@ -20,6 +21,7 @@ export const MainPage = () => {
     category: category[cateIdx],
     sortField: sortField,
   });
+  console.log(partyList)
   const handleIntersection = () => {
     if (hasNextPage) {
       fetchNextPage();
@@ -30,7 +32,7 @@ export const MainPage = () => {
       partyList?.pages.flatMap((page) => page.groupBuyingResponseList) || [],
     [partyList]
   );
-  const PartyList = party.map((item: any, idx: number) => {
+  const PartyList = party.map((item: IParty, idx: number) => {
     return (
       <Link href={`/groupbuy/${item.id}`} as={`/groupbuy/${item.id}`} key={idx}>
         <Party {...item} />

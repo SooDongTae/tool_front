@@ -3,7 +3,6 @@ import ProfileView from "@/components/Profile/ProfileView";
 import useHistory from "@/hooks/useHistory";
 import useMyGroupBuy from "@/hooks/useMyGroupBuy";
 import { IGroupBuy, IHistoryList } from "@/types/GroupBuy.type";
-import { PartyProps } from "@/types/Party.type";
 import React from "react";
 
 const HistoryPage = () => {
