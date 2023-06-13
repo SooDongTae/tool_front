@@ -55,7 +55,7 @@ export const CreatePage = () => {
   };
   
   return (
-    <div className="flex items-center pt-[10rem] justify-center bg-Background-Gray">
+    <div className="layout">
       <div className="w-[75rem]">
         <div className="h-[3rem] border-b-2 items-center  text-3xl font-semibold">
           <span className="text-GreenLight-30">공동구매 파티</span>
