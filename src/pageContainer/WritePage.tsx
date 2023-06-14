@@ -16,7 +16,7 @@ export const WritePage = () => {
     "undo redo codesample | bold italic | alignleft alignright aligncenter alignjustify | emoticon image media | preview code";
   console.log(post);
   return (
-    <div className="pt-[10rem]  flex justify-center">
+    <div className="layout">
       <div className="flex w-[75rem] justify-center flex-col">
         <div className="w-full flex justify-between flex-row">
           <CategoryModal

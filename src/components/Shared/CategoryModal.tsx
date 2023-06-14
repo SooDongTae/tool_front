@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { AiFillCaretDown } from "react-icons/ai";
-interface CateModalType {
+interface ICateModal {
   setData: (v: number) => void;
   data: number;
   category: string[];
 }
-export const CategoryModal = ({ setData, data, category }: CateModalType) => {
+export const CategoryModal = ({ setData, data, category }: ICateModal) => {
   const [open, setOpen] = useState(false);
   const CategoryItem = category.map((item, idx) => {
     return (

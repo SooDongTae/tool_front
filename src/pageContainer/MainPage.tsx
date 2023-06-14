@@ -10,6 +10,7 @@ import { Observer } from "@/components/Shared/Observer";
 import { SortField } from "@/components/Main/SortField";
 import { Loading } from "@/components/Shared/Loading";
 import { ChatBot } from "@/components/Shared/ChatBot";
+import { IParty } from "@/types/Party.type";
 const category = ["all", "PRODUCT", "FOOD", "CLOTHES", "ETC"];
 export const MainPage = () => {
   const [cateIdx, setCateIdx] = useState(0);
@@ -20,6 +21,7 @@ export const MainPage = () => {
     category: category[cateIdx],
     sortField: sortField,
   });
+  console.log(partyList)
   const handleIntersection = () => {
     if (hasNextPage) {
       fetchNextPage();
@@ -30,7 +32,7 @@ export const MainPage = () => {
       partyList?.pages.flatMap((page) => page.groupBuyingResponseList) || [],
     [partyList]
   );
-  const PartyList = party.map((item: any, idx: number) => {
+  const PartyList = party.map((item: IParty, idx: number) => {
     return (
       <Link href={`/groupbuy/${item.id}`} as={`/groupbuy/${item.id}`} key={idx}>
         <Party {...item} />
@@ -39,10 +41,10 @@ export const MainPage = () => {
   });
   console.log(partyList);
   return (
-    <div className="min-h-screen flex pt-[8.5rem] bg-Background-Gray flex-col items-center relative">
+    <div className="layout">
       <div className="lg:w-[75rem] w-[80%]">
         <div className="h-[18rem] rounded-[10px] bg-BlueLight-20 text-4xl font-bold text-GreenLight-30 flex justify-center items-center">
-          <a href="https://tool-landingpage.bssm.kro.kr" target="_blink">
+          <a href="https://tool-landing-page.vercel.app" target="_blink">
             Tool 사용법이 궁금하다면?
           </a>
         </div>

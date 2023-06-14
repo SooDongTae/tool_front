@@ -6,7 +6,7 @@ import { NextPage, NextPageContext } from "next";
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 
-const groupbuy = ({ id }: { id: string }) => {
+const Groupbuy = ({ id }: { id: string }) => {
   const [grpId, setGrpId] = useRecoilState(groupId);
   console.log(id);
   useEffect(() => {
@@ -21,4 +21,4 @@ export const getServerSideProps = async (ctx: NextPageContext) => {
   const { id } = ctx.query;
   return { props: { id } };
 };
-export default groupbuy;
+export default Groupbuy;

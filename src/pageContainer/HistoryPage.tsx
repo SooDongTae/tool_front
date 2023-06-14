@@ -3,7 +3,6 @@ import ProfileView from "@/components/Profile/ProfileView";
 import useHistory from "@/hooks/useHistory";
 import useMyGroupBuy from "@/hooks/useMyGroupBuy";
 import { IGroupBuy, IHistoryList } from "@/types/GroupBuy.type";
-import { PartyProps } from "@/types/Party.type";
 import React from "react";
 
 const HistoryPage = () => {
@@ -30,12 +29,13 @@ const HistoryPage = () => {
                 아직 참여 내역이 없습니다.
               </div>
             ) : (
-              historyList?.map((data: IGroupBuy) => (
+              historyList?.map((data: IGroupBuy,idx : number) => (
                 <HistoryBox
                   untilAt={data.untilAt}
                   title={data.title}
                   cost={data.cost}
                   status={data.status}
+                  key ={idx}
                 />
               ))
             )}

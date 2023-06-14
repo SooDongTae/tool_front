@@ -11,16 +11,7 @@ export const CreatePage = () => {
   const [previewImg, setPreviewImg] = useState<any>(null);
   const [sendImage, setSendImage] = useState<any>(null);
   const { mutate } = usePartyMutation(formData);
-  const [form, setForm] = useReducer(reducer, {
-    category: "",
-    maxPeople: "",
-    title: "",
-    account: "",
-    bank: "",
-    untilAt: null,
-    cost: "",
-    content: "",
-  });
+  const [form, setForm] = useReducer(reducer, {});
 
   const setFormData = () => {
     formData.append(
@@ -53,9 +44,9 @@ export const CreatePage = () => {
     setPreviewImg(imgSrc);
     setSendImage((target.files as FileList)[0]);
   };
-  
+
   return (
-    <div className="flex items-center pt-[10rem] justify-center bg-Background-Gray">
+    <div className="layout">
       <div className="w-[75rem]">
         <div className="h-[3rem] border-b-2 items-center  text-3xl font-semibold">
           <span className="text-GreenLight-30">공동구매 파티</span>

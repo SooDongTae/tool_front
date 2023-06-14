@@ -61,3 +61,18 @@
 .header-dropdown {
   @apply h-[3.5rem] w-full flex justify-center items-center text-[1.1rem] font-bold cursor-pointer  hover:text-GrayScale-40;
 }
+
+.chatbot-wrapper {
+  @apply w-[90%] flex items-center mt-[1rem];
+}
+.chatbot-text {
+  @apply text-sm rounded-[10px] font-semibold p-2;
+}
+
+.layout {
+  @apply min-h-screen flex pt-[10rem] bg-Background-Gray flex-col items-center;
+}
+
+.container {
+  @apply lg:w-[75rem] w-[80%];
+}

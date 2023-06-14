@@ -1,4 +1,4 @@
-import MyGroupBuyPage from "@/pageContainer/myGroupBuyPage";
+import MyGroupBuyPage from "@/pageContainer/MyGroupBuyPage";
 import React from "react";
 
 const mygroupbuy = () => {
