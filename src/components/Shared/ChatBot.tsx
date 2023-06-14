@@ -42,7 +42,7 @@ export const ChatBot = () => {
   return (
     <>
       {open ? (
-        <div className="fixed right-10 bottom-28  w-[25rem] h-[40rem] shadow-2xl bg-white flex flex-col rounded-lg">
+        <div className="fixed right-10 bottom-28  w-[25rem] h-[40rem] shadow-2xl bg-white flex flex-col rounded-lg z-50">
           <div className="flex justify-center items-center h-[4rem] min-h-[4rem] bg-GreenLight-30 text-white text-2xl font-bold rounded-t-lg shadow-md">
             Tool 문의채널
           </div>

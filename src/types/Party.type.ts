@@ -1,4 +1,4 @@
-export interface PartyProps {
+export interface IParty {
   title: string;
   currentPeople: number;
   maxPeople: number;
@@ -9,9 +9,12 @@ export interface PartyProps {
   class_no: number;
   student_no: number;
   imgSrc: string;
+  category? : string;
+  id : number;
+  views : number;
 }
 
-export interface FormType {
+export interface IForm {
   category: string;
   maxPeople: number;
   title: string;

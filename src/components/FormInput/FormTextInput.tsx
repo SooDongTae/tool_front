@@ -1,17 +1,12 @@
-interface FormTextInputType {
-  title?: string;
-  inputName: string;
-  setData: ({}) => void;
-  width: string;
-  type: string;
-}
+import { IFormInput } from "@/types/FormInput.type";
+
 export const FormTextInput = ({
   setData,
   width,
   title,
   inputName,
   type,
-}: FormTextInputType) => {
+}: IFormInput) => {
   return (
     <div className="input-box">
       <input

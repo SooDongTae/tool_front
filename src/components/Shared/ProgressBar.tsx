@@ -1,4 +1,4 @@
-import { ProgressType } from "@/types/ProgressBar.type";
+import { IProgress } from "@/types/ProgressBar.type";
 
 export const ProgressBar = ({
   maxi,
@@ -6,7 +6,7 @@ export const ProgressBar = ({
   width,
   height,
   color,
-}: ProgressType) => {
+}: IProgress) => {
   return (
     <div
       className={`rounded-[20px] border-[1px] overflow-hidden `}

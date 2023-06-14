@@ -1,6 +1,6 @@
 import { customAxios } from "@/lib/axios/customAxios";
 import { useQuery } from "react-query";
-const onRequest = async (id: string | undefined | string[]) => {
+const onRequest = async (id: string) => {
   const { data } = await customAxios.get("api/board/" + id, {
     headers: {
       Authorization: `Bearer${localStorage.getItem("accessToken")}`,
@@ -9,7 +9,7 @@ const onRequest = async (id: string | undefined | string[]) => {
   return data;
 };
 
-const usePostDetail = (id: string | undefined | string[]) => {
+const usePostDetail = (id: string) => {
   const { data: postDetail, isLoading } = useQuery(["detail", id], () =>
     onRequest(id)
   );

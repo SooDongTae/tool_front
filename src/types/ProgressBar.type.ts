@@ -1,4 +1,4 @@
-export interface ProgressType {
+export interface IProgress {
   width: string;
   height: string;
   maxi: number;

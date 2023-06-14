@@ -1,11 +1,4 @@
-interface FormSelectInputType {
-  title?: string;
-  inputName: string;
-  setData: ({}) => void;
-  options: string[];
-  type: string;
-  values: string[];
-}
+import { IFormInput, IFormSelectInput } from "@/types/FormInput.type";
 
 export const FormSelectInput = ({
   inputName,
@@ -14,7 +7,7 @@ export const FormSelectInput = ({
   options,
   type,
   values,
-}: FormSelectInputType) => {
+}: IFormSelectInput) => {
   const Options = options.map((data, idx) => {
     return (
       <option value={values[idx]} key={idx}>

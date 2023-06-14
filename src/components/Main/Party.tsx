@@ -1,6 +1,6 @@
-import { PartyProps } from "@/types/Party.type";
 import { ProgressBar } from "../Shared/ProgressBar";
 import { GetLeftTime } from "../Shared/LeftTime";
+import { IParty } from "@/types/Party.type";
 export const Party = ({
   grade,
   untilAt,
@@ -11,8 +11,8 @@ export const Party = ({
   owner,
   currentPeople,
   maxPeople,
-  cost
-}: PartyProps) => {
+  cost,
+}: IParty) => {
   const { leftDay } = GetLeftTime(untilAt);
   return (
     <div className="bg-white h-[22rem] rounded-[10px]  border-GrayScale-20  shadow-[rgba(0,_0,_0,_0.1)_0px_4px_16px_0px] hover:shadow-[rgba(0,_0,_0,_0.2)_0px_7px_16px_0px] hover:translate-y-[-.6rem] duration-300 cursor-pointer  flex items-center flex-col">
@@ -34,7 +34,8 @@ export const Party = ({
         </div>
         <div className="mt-6">
           <span className="text-sm">
-            {(currentPeople / maxPeople) * 100}% ({currentPeople}/{maxPeople})
+            {currentPeople}/{maxPeople} (
+            {((currentPeople / maxPeople) * 100).toFixed(2)}%)
           </span>
           <ProgressBar
             maxi={maxPeople}
