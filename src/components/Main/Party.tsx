@@ -1,6 +1,7 @@
 import { ProgressBar } from "../Shared/ProgressBar";
 import { GetLeftTime } from "../Shared/LeftTime";
 import { IParty } from "@/types/Party.type";
+import { NameConverter } from "../Shared/NameConverter";
 export const Party = ({
   grade,
   untilAt,
@@ -27,10 +28,12 @@ export const Party = ({
           </div>
         </div>
         <div className="text-xs text-GrayScale-40 ">
-          {grade}
-          {class_no}
-          {student_no < 10 ? 0 : null}
-          {student_no} {owner}
+          <NameConverter
+            grade={grade}
+            class_no={class_no}
+            student_no={student_no}
+            owner={owner}
+          />
         </div>
         <div className="mt-6">
           <span className="text-sm">
