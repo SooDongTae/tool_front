@@ -6,7 +6,6 @@ import { useRecoilState, useRecoilValue } from "recoil";
 const Answer = ({ id }: { id: string }) => {
   const qState = useRecoilValue(questionState(id));
   const { answer, isLoading } = useAnswer(id);
-  console.log(answer);
   return (
     <div
       className={`${
@@ -19,7 +18,10 @@ const Answer = ({ id }: { id: string }) => {
             A
           </div>
           <div className="w-[90%] h-full flex justify-start items-start text-[1.2rem] text-GrayScale-40 p-[1rem]">
-            wlfansdlq
+            <div>
+              <p>답변이 없습니다.</p>
+              <div>답변하기</div>
+            </div>
           </div>
         </>
       ) : (

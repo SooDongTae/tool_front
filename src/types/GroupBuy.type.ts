@@ -37,7 +37,7 @@ export interface ICreateQuestion {
   id: string;
   form: {
     content: string;
-    secret: boolean;
+    isSecret: boolean;
   };
 }
 

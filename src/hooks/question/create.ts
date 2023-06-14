@@ -4,7 +4,6 @@ import { ICreateQuestion } from "@/types/GroupBuy.type";
 import axios from "axios";
 import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
-import { useRecoilValue } from "recoil";
 
 const createQuestion = async ({ id, form }: ICreateQuestion) => {
   const { data } = await customAxios.post(`/api/question/${id}`, form, {

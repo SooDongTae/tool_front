@@ -1,7 +1,7 @@
 import { customAxios } from "@/lib/axios/customAxios";
 import { ICreateQuestion } from "@/types/GroupBuy.type";
 import axios from "axios";
-import { useMutation, useQueryClient } from "react-query";
+import { hashQueryKey, useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
 
 const deleteQuestion = async (form: ICreateQuestion) => {

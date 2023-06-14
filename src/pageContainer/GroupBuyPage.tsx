@@ -15,8 +15,6 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
     close: false,
     submit: false,
   });
-  const ex =
-    "초코에몽 같이 공동구매할 사람을 구합니다. 초코에몽이 먹고싶은 사람은 참가해주세요!";
   const [leftTime, setLeftTime] = useState({
     leftDay: 0,
     leftHour: 0,
@@ -119,7 +117,9 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
         onAfterClose={() => setModalOpened(false)}
       >
         <div className="w-full h-[20%] border-b-[0.1rem] border-GrayScale-15 flex flex-row justify-between items-center text-[1.3rem] pl-[3%]">
-          <span>초코에몽 공동구매 / 이동훈</span>
+          <span>
+            {party?.title} / {party?.owner}
+          </span>
           <div
             className={`w-[2.3rem] h-[2.3rem] mr-[3%] ${
               onMouseDown.close ? "bg-GrayScale-20" : "bg-GrayScale-15"
@@ -138,9 +138,11 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
         </div>
         <div className="w-full h-[55%] border-b-[0.1rem] border-GrayScale-15 flex flex-col justify-center items-center">
           {/* <img src={party.imgSrc.substring(21)} className="w-[4rem]" /> */}
-          <span className="text-[1.8rem]">초코에몽 공동구매</span>
+          <span className="text-[1.8rem]">{party?.title}</span>
           <p className="text-GrayScale-40">
-            {ex.length > 30 ? ex.substring(0, 30) + "..." : ex}
+            {party?.content.length > 30
+              ? party?.content.substring(0, 30) + "..."
+              : party?.content}
           </p>
         </div>
         <div className="w-full h-[25%] flex justify-center items-center">
