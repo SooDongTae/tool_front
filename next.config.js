@@ -10,7 +10,7 @@ const nextConfig = {
   },
   reactStrictMode: false,
   images: {
-    domains: ["localhost"],
+    domains: [process.env.NEXT_PUBLIC_IMAGE_URL, "*"],
   },
 };
 

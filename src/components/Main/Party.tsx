@@ -2,6 +2,7 @@ import { ProgressBar } from "../Shared/ProgressBar";
 import { GetLeftTime } from "../Shared/LeftTime";
 import { IParty } from "@/types/Party.type";
 import { NameConverter } from "../Shared/NameConverter";
+import Image from "next/image";
 export const Party = ({
   grade,
   untilAt,
@@ -17,9 +18,13 @@ export const Party = ({
   const { leftDay } = GetLeftTime(untilAt);
   return (
     <div className="bg-white h-[22rem] rounded-[10px]  border-GrayScale-20  shadow-[rgba(0,_0,_0,_0.1)_0px_4px_16px_0px] hover:shadow-[rgba(0,_0,_0,_0.2)_0px_7px_16px_0px] hover:translate-y-[-.6rem] duration-300 cursor-pointer  flex items-center flex-col">
-      <img
+      <Image
         src={imgSrc}
         className="w-full h-[12rem] rounded-t-[9px] object-cover"
+        priority={true}
+        alt="파티 이미지"
+        width={100}
+        height={100}
       />
       <div className="w-[80%] flex flex-col">
         <div className="flex ">
