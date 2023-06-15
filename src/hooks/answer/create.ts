@@ -16,7 +16,7 @@ const createAnswer = async (form: IAnswer) => {
   return data;
 };
 
-const useCreateAnswer = (form: IAnswer) => {
+const useCreateAnswer = () => {
   const queryClient = useQueryClient();
   return useMutation((form: IAnswer) => createAnswer(form), {
     onSuccess: () => {

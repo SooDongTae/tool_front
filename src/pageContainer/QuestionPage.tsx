@@ -41,7 +41,7 @@ const QuestionPage = ({ id }: { id: string }) => {
           type="checkbox"
         />
       </div>
-      <div className="absolute w-[40%] h-[7%] left-[30%] bottom-[8%] bg-GrayScale-10 border-[0.1rem] border-GrayScale-40 rounded-[10px] flex flex-row">
+      <div className="absolute w-[40%] h-[7%] left-[30%] bottom-[8%] bg-GrayScale-10 border-[0.1rem] border-GrayScale-40 rounded-[10px] flex flex-row z-10">
         <input
           {...register("content", { required: true })}
           className="w-[80%] h-full rounded-[10px] rounded-r-none pl-[1rem] focus:outline-none text-[1.2rem]"
@@ -61,7 +61,7 @@ const QuestionPage = ({ id }: { id: string }) => {
           </div>
         </div>
         {questionList?.map((question: IQuestion, key: number) => (
-          <div className="w-full" key = {key}>
+          <div className="w-full" key={key}>
             <Question question={question} key={question.id} />
             <Answer id={question.id} key={question.id} />
           </div>

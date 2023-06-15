@@ -37,7 +37,7 @@ export interface ICreateQuestion {
   id: string;
   form: {
     content: string;
-    isSecret: boolean;
+    secret: boolean;
   };
 }
 
@@ -65,4 +65,15 @@ export interface IQuestion {
 export interface IAnswer {
   id: string;
   content: string;
+}
+
+export interface IAnswerResponseList {
+  answerResponseList: [IAnswerResponse];
+}
+export interface IAnswerResponse {
+  content: string;
+  createdAt: string;
+  id: number;
+  lastModifiedAt: string;
+  writerName: string;
 }
