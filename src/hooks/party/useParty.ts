@@ -1,7 +1,6 @@
 import { customAxios } from "@/lib/axios/customAxios";
 import { GetPartyListType } from "@/types/Party.type";
-import axios from "axios";
-import { useInfiniteQuery, useQuery } from "react-query";
+import { useInfiniteQuery } from "react-query";
 
 const onRequest = async (criteria: GetPartyListType) => {
   const { data } = await customAxios.get(
@@ -26,8 +25,9 @@ const usePartyList = (criteria: GetPartyListType) => {
       return onRequest({ ...criteria, offset: pageParam });
     },
     {
+      retry: false,
       getNextPageParam: (lastPage, pages) => {
-        if (lastPage?.maxPage === pages?.length) return false;
+        if (lastPage?.maxPage <= pages?.length) return false;
         return pages?.length + 1;
       },
     }

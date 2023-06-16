@@ -10,7 +10,7 @@ const useChatbot = (question: string) => {
   const { data: answer, isLoading } = useQuery(
     ["chatbot", question],
     () => onRequest(question),
-    { retry: 1 }
+    { retry: false }
   );
   return { answer, isLoading };
 };

@@ -24,7 +24,6 @@ const QuestionPage = ({ id }: { id: string }) => {
   const { mutate } = useCreateQuestion();
   return (
     <form
-      // onSubmit={onSubmit}
       onSubmit={handleSubmit((values) =>
         mutate(
           { id: id, form: values as IQuestionForm },
