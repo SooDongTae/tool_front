@@ -21,7 +21,6 @@ export const MainPage = () => {
     category: category[cateIdx],
     sortField: sortField,
   });
-  console.log(partyList)
   const handleIntersection = () => {
     if (hasNextPage) {
       fetchNextPage();
@@ -39,7 +38,6 @@ export const MainPage = () => {
       </Link>
     );
   });
-  console.log(partyList);
   return (
     <div className="layout">
       <div className="lg:w-[75rem] w-[80%]">
@@ -71,11 +69,12 @@ export const MainPage = () => {
             />
           </div>
           <div className="flex flex-row justify-between items-center">
-            <SearchBar setData={setTitle} data={title} />
-            <Link href="/create">
-              <div className="lg:text-base text-sm button-layout text-GreenLight-30 hover:bg-GreenLight-30 bg-[white] hover:text-[white] border-[.5px] border-[GreenLight-30] ml-8">
-                파티 만들기
-              </div>
+            <SearchBar setData={setTitle} />
+            <Link
+              href="/create"
+              className="lg:text-base text-sm button-layout text-GreenLight-30 hover:bg-GreenLight-30  hover:text-[white] border-[.5px] border-GreenLight-30 ml-8"
+            >
+              파티 만들기
             </Link>
           </div>
         </div>

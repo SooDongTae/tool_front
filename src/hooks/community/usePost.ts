@@ -9,7 +9,7 @@ interface IPost {
 }
 const onRequest = async (criteria: IPost) => {
   const { data } = await customAxios.get(
-    `/api/board/list?size=8&page=${criteria.page}&title=${criteria.title}&category=all`,
+    `/api/board/list?size=8&page=${criteria.page}&title=${criteria.title}&category=${criteria.category}`,
     {
       headers: {
         Authorization: `Bearer${localStorage.getItem("accessToken")}`,

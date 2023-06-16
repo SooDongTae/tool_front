@@ -12,6 +12,8 @@
     "test:ci": "jest --ci"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.4",
     "@mui/styles": "^5.13.2",
@@ -22,8 +24,11 @@
     "axios": "^1.4.0",
     "eslint": "8.37.0",
     "eslint-config-next": "13.2.4",
+    "install": "^0.13.0",
     "lodash": "^4.17.21",
     "next": "13.2.4",
+    "next-seo": "^6.0.0",
+    "npm": "^9.7.1",
     "openai": "^3.2.1",
     "react": "18.2.0",
     "react-datepicker": "^4.11.0",

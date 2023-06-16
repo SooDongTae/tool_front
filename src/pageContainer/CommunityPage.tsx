@@ -6,15 +6,16 @@ import usePostList from "@/hooks/community/usePost";
 import { Pagination } from "@mui/material";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-const Category = ["전체", "자유", "공구", "문의"];
+const category = ["전체", "자유", "공구", "문의"];
+const RCategory = ["all", "FREE", "PARTY", "QUESTION"];
 export const CommunityPage = ({ school }: { school: string }) => {
-  const [category, setCategory] = useState(0);
+  const [cateIdx, setCateIdx] = useState(0);
   const [pageIdx, setPageIdx] = useState(1);
   const [title, setTitle] = useState("");
-
+  console.log(title);
   const { postList, isLoading } = usePostList({
     title: title,
-    category: "FREE",
+    category: RCategory[cateIdx],
     page: pageIdx,
   });
   console.log(postList);
@@ -35,31 +36,31 @@ export const CommunityPage = ({ school }: { school: string }) => {
     );
   });
   return (
-    <div className="min-h-screen pt-[10rem] flex justify-center bg-Background-Gray">
-      {!isLoading ? (
-        <>
-          <div className="w-[75rem]">
-            <div className="text-3xl tracking-wider">
-              <span className="font-bold">{school}</span>
-              <span> 커뮤니티</span>
+    <div className="layout">
+      <div className="container">
+        <div className="text-3xl tracking-wider">
+          <span className="font-bold">{school}</span>
+          <span> 커뮤니티</span>
+        </div>
+        <div className="flex flex-row mt-[2rem] items-center justify-between">
+          <div className="flex flex-row items-center">
+            <CategoryModal
+              setData={setCateIdx}
+              data={cateIdx}
+              category={category}
+            />
+            <div className="ml-[2rem]">
+              <SearchBar setData={setTitle}/>
             </div>
-            <div className="flex flex-row mt-[2rem] items-center justify-between">
-              <div className="flex flex-row items-center">
-                <CategoryModal
-                  setData={setCategory}
-                  data={category}
-                  category={Category}
-                />
-                <div className="ml-[2rem]">
-                  <SearchBar setData={setTitle} data={title} />
-                </div>
-              </div>
-              <Link href="/write">
-                <button className="button-layout border-[.5px] border-GreenLight-30 text-GreenLight-30 hover:text-white hover:bg-GreenLight-30">
-                  글 작성
-                </button>
-              </Link>
-            </div>
+          </div>
+          <Link href="/write">
+            <button className="button-layout border-[.5px] border-GreenLight-30 text-GreenLight-30 hover:text-white hover:bg-GreenLight-30">
+              글 작성
+            </button>
+          </Link>
+        </div>{" "}
+        {!isLoading ? (
+          <>
             <div className="flex flex-col w-full mt-[2rem]">
               <div className="w-full flex h-[2.5rem] border-b-[1px] border-GrayScale-30">
                 <div className="w-[15%] community-title ">작성자</div>
@@ -81,11 +82,11 @@ export const CommunityPage = ({ school }: { school: string }) => {
                 variant="outlined"
               />
             </div>
-          </div>
-        </>
-      ) : (
-        <Loading />
-      )}
+          </>
+        ) : (
+          <Loading />
+        )}
+      </div>
     </div>
   );
 };

@@ -80,7 +80,13 @@ export const ChatBot = () => {
         {open ? (
           <AiOutlineClose size={"3rem"} className="text-GreenLight-30" />
         ) : (
-          <Image src="/chat.png" width={100} height={100}  alt="챗봇 이미지" />
+          <Image
+            src="/chat.png"
+            width={100}
+            height={100}
+            priority={true}
+            alt="챗봇 이미지"
+          />
         )}
       </div>
     </>

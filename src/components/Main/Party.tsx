@@ -19,6 +19,7 @@ export const Party = ({
   return (
     <div className="bg-white h-[22rem] rounded-[10px]  border-GrayScale-20  shadow-[rgba(0,_0,_0,_0.1)_0px_4px_16px_0px] hover:shadow-[rgba(0,_0,_0,_0.2)_0px_7px_16px_0px] hover:translate-y-[-.6rem] duration-300 cursor-pointer  flex items-center flex-col">
       <Image
+        quality={100}
         src={imgSrc}
         className="w-full h-[12rem] rounded-t-[9px] object-cover"
         priority={true}
