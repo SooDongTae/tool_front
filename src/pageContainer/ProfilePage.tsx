@@ -26,17 +26,23 @@ const ProfilePage = () => {
       <div className="w-full mt-[1%] flex flex-col items-center">
         <Link href={"/mygroupbuy"}>
           <div className="w-[30rem] h-[5rem] bg-GreenLight-30 rounded-[10px] mt-[2%] cursor-pointer hover:translate-x-[.6rem] duration-300">
-            <p className="p-[3%] font-semibold text-white">내가 만든 파티</p>
+            <p className="p-[3%] text-[1.2rem] text-center font-semibold text-white">
+              내가 만든 파티
+            </p>
           </div>
         </Link>
         <Link href={"/history"}>
           <div className="w-[30rem] h-[5rem] bg-GreenLight-30 rounded-[10px] mt-[1%] cursor-pointer hover:translate-x-[.6rem] duration-300">
-            <p className="p-[3%] font-semibold text-white">나의 참여 내역</p>
+            <p className="p-[3%] text-[1.2rem] text-center font-semibold text-white">
+              나의 참여 내역
+            </p>
           </div>
         </Link>
         <Link href={"/requests"}>
           <div className="w-[30rem] h-[5rem] bg-GreenLight-30 rounded-[10px] mt-[1%] cursor-pointer hover:translate-x-[.6rem] duration-300">
-            <p className="p-[3%] font-semibold text-white">받은 참여 요청</p>
+            <p className="p-[3%] text-[1.2rem] text-center font-semibold text-white">
+              받은 참여 요청
+            </p>
           </div>
         </Link>
       </div>
