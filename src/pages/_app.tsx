@@ -7,7 +7,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import { RecoilRoot } from "recoil";
 import CssBaseline from "@mui/material/CssBaseline";
-import { ChatBot } from "@/components/Shared/ChatBot";
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
   return (

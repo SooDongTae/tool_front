@@ -2,7 +2,7 @@ import { StateType } from "@/types/State.type";
 import { AiOutlineSearch } from "react-icons/ai";
 import lodash from "lodash";
 import { ChangeEvent } from "react";
-export const SearchBar = ({ setData, data }: StateType) => {
+export const SearchBar = ({ setData }: StateType) => {
   const debounceOnChange = lodash.debounce(
     (e: ChangeEvent<HTMLInputElement>) => {
       setData && setData(e.target.value);

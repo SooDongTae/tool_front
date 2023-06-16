@@ -13,9 +13,8 @@ export const HeaderText = ({
   const router = useRouter();
   const current = router.pathname;
   return (
-    <Link href={target}>
+    <Link href={target} style={{ marginLeft: ml }}>
       <div
-        style={{ marginLeft: ml }}
         className={`
               whitespace-nowrap
               text-[1.1rem]

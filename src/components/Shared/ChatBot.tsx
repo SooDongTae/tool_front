@@ -2,6 +2,7 @@ import useChatbot from "@/hooks/chatbot/useChatbot";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AiOutlineClose, AiOutlineSend } from "react-icons/ai";
 import { QnA } from "../QnA";
+import Image from "next/image";
 export const ChatBot = () => {
   const [open, setOpen] = useState(false);
   const [questions, setQuestions] = useState<string[]>([" "]);
@@ -79,7 +80,13 @@ export const ChatBot = () => {
         {open ? (
           <AiOutlineClose size={"3rem"} className="text-GreenLight-30" />
         ) : (
-          <img src="chat.png" />
+          <Image
+            src="/chat.png"
+            width={100}
+            height={100}
+            priority={true}
+            alt="챗봇 이미지"
+          />
         )}
       </div>
     </>

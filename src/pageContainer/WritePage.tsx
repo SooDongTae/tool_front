@@ -8,6 +8,7 @@ export const WritePage = () => {
     title: "",
     content: "",
   });
+  console.log(post)
   const [category, setCategory] = useState(0);
   const { mutate } = useWriteMutation(post, "FREE");
   const editorRef = useRef<any>(null);
