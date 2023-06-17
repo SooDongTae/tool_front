@@ -5,14 +5,16 @@ import { useMemo, useState } from "react";
 import { CategoryModal } from "@/components/Shared/CategoryModal";
 import usePartyList from "@/hooks/party/useParty";
 import { BsGraphUp } from "react-icons/bs";
-import { AiOutlineClockCircle } from "react-icons/ai";
+import { AiOutlineClockCircle, AiOutlineClose } from "react-icons/ai";
 import { Observer } from "@/components/Shared/Observer";
 import { SortField } from "@/components/Main/SortField";
 import { Loading } from "@/components/Shared/Loading";
 import { ChatBot } from "@/components/Shared/ChatBot";
 import { IParty } from "@/types/Party.type";
+import Image from "next/image";
 const category = ["all", "PRODUCT", "FOOD", "CLOTHES", "ETC"];
 export const MainPage = () => {
+  const [open, setOpen] = useState(false);
   const [cateIdx, setCateIdx] = useState(0);
   const [title, setTitle] = useState("");
   const [sortField, setSortField] = useState("views");
@@ -47,7 +49,7 @@ export const MainPage = () => {
           </a>
         </div>
         <div className="lg:h-[2.5rem] h-[7rem] flex justify-between mt-8 lg:items-center lg:flex-row flex-col">
-          <div className="flex flex-row items-center justify-between lg:w-[20rem] w-full h-full">
+          <div className="flex flex-row items-center justify-between lg:w-[20rem]">
             <CategoryModal
               setData={setCateIdx}
               data={cateIdx}
@@ -83,7 +85,25 @@ export const MainPage = () => {
         </div>
       </div>
       {hasNextPage && <Observer handleIntersection={handleIntersection} />}
-      <ChatBot />
+      <div
+        className="fixed bg-white right-10 bottom-10 w-[4rem] h-[4rem] shadow-[rgba(0,_0,_0,_0.1)_0px_4px_16px_0px] hover:border-GreenLight-30 border-[.5px] border-GrayScale-15 cursor-pointer  duration-300 rounded-[25px] flex justify-center items-center"
+        onClick={() => setOpen((prev) => !prev)}
+      >
+        {open ? (
+          <>
+            <ChatBot />
+            <AiOutlineClose size={"3rem"} className="text-GreenLight-30" />
+          </>
+        ) : (
+          <Image
+            src="/chat.png"
+            width={100}
+            height={100}
+            priority={true}
+            alt="챗봇 이미지"
+          />
+        )}
+      </div>
     </div>
   );
 };
