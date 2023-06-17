@@ -1,17 +1,26 @@
 import { Comment } from "@/components/Community/Comment";
 import { NameConverter } from "@/components/Shared/NameConverter";
+import useComment from "@/hooks/community/useComment";
 import useCommentMutation from "@/hooks/community/useCommentAdd";
 import usePostDetail from "@/hooks/community/useDetail";
 import useLikeMutation from "@/hooks/community/useLike";
+import { IComment } from "@/types/Community.type";
 import { useMemo, useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 export const DetailPage = ({ id }: { id: string }) => {
   const [text, setText] = useState("");
-  const { postDetail, isLoading } = usePostDetail(id);
+  const { postDetail, isLoading: postLoading } = usePostDetail(id);
   const { mutate: likeMutate } = useLikeMutation(id);
   const { mutate: commentMutate } = useCommentMutation(id, text);
+  const { commentList, isLoading: commentLoading } = useComment(id);
+  const comments = useMemo(
+    () => commentList?.commentResponses || [],
+    [commentList]
+  );
+  const Comments = comments.map((item: IComment, idx: number) => {
+    return <Comment {...item} />;
+  });
   const detail = useMemo(() => postDetail || {}, [postDetail]);
-  console.log(detail);
   return (
     <div className="layout">
       <div className="container">
@@ -55,9 +64,10 @@ export const DetailPage = ({ id }: { id: string }) => {
         <div className="">
           <div className="flex flex-col">
             <span className="text-lg font-bold text-GreenLight-30 ">
-              {7}개의 댓글
+              {comments.length}개의 댓글
             </span>
             <textarea
+              value={text}
               onChange={(e) => setText(e.target.value)}
               rows={4}
               placeholder="댓글을 입력하세요"
@@ -65,43 +75,17 @@ export const DetailPage = ({ id }: { id: string }) => {
             />
             <div className="flex justify-end">
               <button
-                onClick={() => commentMutate()}
+                onClick={() => {
+                  setText("");
+                  commentMutate();
+                }}
                 className="button-layout border-[.5px] mt-10 text-GreenLight-30 hover:bg-GreenLight-30  hover:text-[white] border-GreenLight-30"
               >
                 댓글 작성
               </button>
             </div>
           </div>
-          <div className="">
-            <Comment
-              grade={detail.grade}
-              class_no={detail.class_no}
-              student_no={detail.student_no}
-              owner={detail.owner}
-              content="잘봤습니다. 감사합니다"
-            />
-            <Comment
-              grade={detail.grade}
-              class_no={detail.class_no}
-              student_no={detail.student_no}
-              owner={detail.owner}
-              content="잘봤습니다. 감사합니다"
-            />
-            <Comment
-              grade={detail.grade}
-              class_no={detail.class_no}
-              student_no={detail.student_no}
-              owner={detail.owner}
-              content="잘봤습니다. 감사합니다"
-            />
-            <Comment
-              grade={detail.grade}
-              class_no={detail.class_no}
-              student_no={detail.student_no}
-              owner={detail.owner}
-              content="잘봤습니다. 감사합니다잘봤습니다. 감사합니다잘봤습니다. 감사합니다잘봤습니다. 감사합니다잘봤습니다. 감사합니다잘봤습니다. 감사합니다잘봤습니다. 감사합니다잘봤습니다. 감사합니다잘봤습니다. 감사합니다잘봤습니다. 감사합니다"
-            />
-          </div>
+          {Comments}
         </div>
       </div>
     </div>
