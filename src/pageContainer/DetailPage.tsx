@@ -18,7 +18,7 @@ export const DetailPage = ({ id }: { id: string }) => {
     [commentList]
   );
   const Comments = comments.map((item: IComment, idx: number) => {
-    return <Comment {...item} />;
+    return <Comment {...item} key={idx} />;
   });
   const detail = useMemo(() => postDetail || {}, [postDetail]);
   return (
