@@ -7,12 +7,7 @@ export interface UserType {
   token: string;
 }
 
-export interface IUser {
-  id: number;
-  grade: number;
-  stuNo: number;
-  name: string;
-  classNo: number;
+export interface IUser extends UserType {
   profileUrl: string;
   email: string;
   joinRequests: number;
