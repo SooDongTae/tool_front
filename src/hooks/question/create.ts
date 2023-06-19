@@ -14,13 +14,13 @@ const createQuestion = async ({ id, form }: ICreateQuestion) => {
   return data;
 };
 
-const useCreateQuestion = () => {
+const useCreateQuestion = ({ id, form }: ICreateQuestion) => {
   const queryClient = useQueryClient();
   return useMutation(
     ({ id, form }: ICreateQuestion) => createQuestion({ id: id, form: form }),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(["question"]);
+        queryClient.invalidateQueries(["question", id]);
         toast.success("질문 생성 성공!");
       },
       onError: () => {

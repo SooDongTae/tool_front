@@ -21,7 +21,10 @@ const QuestionPage = ({ id }: { id: string }) => {
     isLoading,
   }: { questions: IQuestionList; isLoading: boolean } = useQuestion(id);
   const questionList = questions?.questionResponseList;
-  const { mutate } = useCreateQuestion();
+  const { mutate } = useCreateQuestion({
+    id: id,
+    form: { content: "", secret: false },
+  });
   return (
     <form
       onSubmit={handleSubmit((values) =>

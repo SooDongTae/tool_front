@@ -16,11 +16,11 @@ const createAnswer = async (form: IAnswer) => {
   return data;
 };
 
-const useCreateAnswer = () => {
+const useCreateAnswer = (form: IAnswer) => {
   const queryClient = useQueryClient();
   return useMutation((form: IAnswer) => createAnswer(form), {
     onSuccess: () => {
-      queryClient.invalidateQueries(["answer"]);
+      queryClient.invalidateQueries(["answer", form.id]);
       toast.success("답변 성공!");
     },
     onError: () => {

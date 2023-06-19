@@ -13,11 +13,11 @@ const deleteQuestion = async (form: ICreateQuestion) => {
   return data;
 };
 
-const useDeleteQuestion = () => {
+const useDeleteQuestion = (id: string) => {
   const queryClient = useQueryClient();
   return useMutation((form: ICreateQuestion) => deleteQuestion(form), {
     onSuccess: () => {
-      queryClient.invalidateQueries(["question"]);
+      queryClient.invalidateQueries(["question", id]);
       toast.success("질문 삭제 성공!");
     },
     onError: () => {

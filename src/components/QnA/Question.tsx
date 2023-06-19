@@ -13,7 +13,7 @@ const Question = ({ question }: { question: IQuestion }) => {
   const user = useRecoilValue(userState);
   const [qState, setQState] = useRecoilState(questionState(question.id));
   const [isModifying, setIsModifying] = useState(false);
-  const { mutate } = useDeleteQuestion();
+  const { mutate } = useDeleteQuestion(question.id);
 
   const getIsOpen = (isOpen: boolean) => {
     setIsModifying(isOpen);

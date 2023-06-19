@@ -15,12 +15,12 @@ const Answer = ({ id }: { id: string }) => {
   const user = useRecoilValue(userState);
   const grpId = useRecoilValue(groupId);
   const { party } = useGroupBuy(grpId);
+  const [content, setContent] = useState("");
   const {
     answer,
     isLoading,
   }: { answer: IAnswerResponseList; isLoading: boolean } = useAnswer(id);
-  const { mutate } = useCreateAnswer();
-  const [content, setContent] = useState("");
+  const { mutate } = useCreateAnswer({ id: id, content: content });
   const [isOpen, setIsOpen] = useState(false);
   const answerContent = answer?.answerResponseList[0]?.content;
   console.log(answer);
