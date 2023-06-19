@@ -6,16 +6,13 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import { RecoilRoot } from "recoil";
-import CssBaseline from "@mui/material/CssBaseline";
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
   return (
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
         <Header />
-        <CssBaseline />
         <Component {...pageProps} />
-        {/* <ChatBot /> */}
         <ToastContainer limit={1} position="bottom-right" />
       </RecoilRoot>
     </QueryClientProvider>

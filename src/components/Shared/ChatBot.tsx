@@ -5,10 +5,12 @@ import { QnA } from "../QnA";
 import Image from "next/image";
 export const ChatBot = () => {
   const [open, setOpen] = useState(false);
-  const [questions, setQuestions] = useState<string[]>([" "]);
+  const [questions, setQuestions] = useState<any>([{ question: " " }]);
   const { answer, isLoading } = useChatbot(questions[questions.length - 1]);
   const [answers, setAnswers] = useState<string[]>([]);
   const [text, setText] = useState("");
+
+  console.log(answers)
   useEffect(() => {
     if (!isLoading) {
       setAnswers([...answers, answer]);
@@ -23,16 +25,16 @@ export const ChatBot = () => {
     setText(e.target.value);
   };
   const SubmitHandler = async () => {
-    setQuestions([...questions, text]);
+    setQuestions([...questions, { question: text }]);
     setText("");
   };
   const QandA = useMemo(
     () =>
-      questions.map((item, idx) => {
+      questions.map((item: any, idx: number) => {
         return (
           <QnA
             answer={answers[idx]}
-            question={item}
+            question={item.question}
             key={idx}
             isLoading={isLoading && idx == questions.length - 1}
           />

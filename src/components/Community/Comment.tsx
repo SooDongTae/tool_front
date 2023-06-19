@@ -6,9 +6,9 @@ export const Comment = ({
   grade,
   student_no,
   class_no,
-  owner,
+  name,
   content,
-  createdAt,
+  lastModified,
 }: IComment) => {
   return (
     <div className="border-b-GrayScale-30 border-b-[.5px] pt-8 pb-8">
@@ -26,10 +26,12 @@ export const Comment = ({
               grade={grade}
               student_no={student_no}
               class_no={class_no}
-              owner={owner}
+              owner={name}
             />
           </span>
-          <span className="text-GrayScale-30 text-sm">2022-12-11</span>
+          <span className="text-GrayScale-30 text-sm">
+            {lastModified?.toString().substring(0, 10)}
+          </span>
         </div>
       </div>
       <div className="mt-4 text-lg">{content}</div>

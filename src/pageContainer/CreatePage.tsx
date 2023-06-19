@@ -12,7 +12,6 @@ export const CreatePage = () => {
   const [sendImage, setSendImage] = useState<any>(null);
   const { mutate } = usePartyMutation(formData);
   const [form, setForm] = useReducer(reducer, {});
-
   const setFormData = () => {
     formData.append(
       "request",
@@ -37,22 +36,20 @@ export const CreatePage = () => {
     );
     formData.append("file", sendImage);
   };
-
   const setImageFile = (file: React.ChangeEvent<HTMLInputElement>) => {
     const target = file.currentTarget;
     const imgSrc = URL.createObjectURL((target.files as FileList)[0]);
     setPreviewImg(imgSrc);
     setSendImage((target.files as FileList)[0]);
   };
-
   return (
     <div className="layout">
-      <div className="w-[75rem]">
+      <div className="container">
         <div className="h-[3rem] border-b-2 items-center  text-3xl font-semibold">
           <span className="text-GreenLight-30">공동구매 파티</span>
           <span> 등록</span>
         </div>
-        <div className="flex flex-row justify-between">
+        <div className="flex justify-between">
           <div>
             <FormTextInput
               type="Title"
@@ -76,23 +73,52 @@ export const CreatePage = () => {
                 title={form.maxPeople}
                 inputName="참가 인원수"
                 width="24rem"
+                inputType="number"
               />
             </div>
             <div className="form-row w-[49rem]">
+              <FormSelectInput
+                title={form.bank}
+                type="Bank"
+                setData={setForm}
+                inputName="은행"
+                options={[
+                  "",
+                  "신한",
+                  "국민",
+                  "우리",
+                  "토스",
+                  "카카오",
+                  "카카오(미니)",
+                  "농협",
+                  "새마을",
+                  "하나",
+                  "부산",
+                  "신협",
+                ]}
+                values={[
+                  "",
+                  "신한",
+                  "국민",
+                  "우리",
+                  "토스",
+                  "카카오",
+                  "카카오(미니)",
+                  "농협",
+                  "새마을",
+                  "하나",
+                  "부산",
+                  "신협",
+                ]}
+              />
               <FormTextInput
                 type="Account"
                 title={form.account}
                 setData={setForm}
                 width="24rem"
                 inputName="계좌번호"
-              />
-              <FormSelectInput
-                title={form.bank}
-                type="Bank"
-                setData={setForm}
-                inputName="은행"
-                options={["", "신한", "국민", "우리", "토스"]}
-                values={["", "신한", "국민", "우리", "토스"]}
+                inputType="number"
+                value={form.account}
               />
             </div>
             <div className="form-row w-[49rem]">
@@ -102,6 +128,7 @@ export const CreatePage = () => {
                 setData={setForm}
                 width="24rem"
                 inputName="참여 금액"
+                inputType="number"
               />
               <FormDateInput
                 type="EndDate"
@@ -140,7 +167,7 @@ export const CreatePage = () => {
         </div>
         <div className="mt-[1.5rem] flex items-start">
           <textarea
-            className="h-[20rem] form-input peer w-[75rem] pt-[1rem]"
+            className="h-[20rem] form-input peer w-[75rem] pt-[1rem] resize-none"
             onChange={(e) => setForm({ type: "Desc", data: e.target.value })}
           />
           <div
@@ -179,6 +206,17 @@ const reducer = (state: any, action: any): any => {
     case "Account":
       return { ...state, account: action.data };
     case "Bank":
+      if (action.data == "농협")
+        return { ...state, bank: action.data, account: "3" };
+      else if (action.data == "카카오(미니)")
+        return { ...state, bank: action.data, account: "7777" };
+      else if (action.data == "카카오")
+        return { ...state, bank: action.data, account: "3333" };
+      else if (action.data == "신한")
+        return { ...state, bank: action.data, account: "110" };
+      else if (action.data == "토스")
+        return { ...state, bank: action.data, account: "1000" };
+
       return { ...state, bank: action.data };
     case "EndDate":
       return { ...state, untilAt: action.data };

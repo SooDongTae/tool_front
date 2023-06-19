@@ -1,6 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 @layer base {
   h1 {
     @apply text-4xl;
@@ -19,7 +26,7 @@
     @apply font-semibold;
   }
   h5 {
-    @apply text-lg; 
+    @apply text-lg;
     @apply font-semibold;
   }
   h6 {
@@ -27,7 +34,6 @@
     @apply font-semibold;
   }
 }
-
 
 .button-layout {
   @apply h-[2.5rem] flex justify-center items-center rounded-[10px] w-[6rem] lg:w-[8rem] duration-300;

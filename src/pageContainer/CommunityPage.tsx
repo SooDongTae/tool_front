@@ -12,26 +12,16 @@ export const CommunityPage = ({ school }: { school: string }) => {
   const [cateIdx, setCateIdx] = useState(0);
   const [pageIdx, setPageIdx] = useState(1);
   const [title, setTitle] = useState("");
-  console.log(title);
   const { postList, isLoading } = usePostList({
     title: title,
     category: RCategory[cateIdx],
     page: pageIdx,
   });
-  console.log(postList);
   const post = useMemo(() => postList?.boardResponseList || null, [postList]);
   const PostList = post?.map((item: any, idx: number) => {
     return (
       <Link href={`/detail/${item.id}`} key={idx}>
-        <CommunityPost
-          key={idx}
-          owner={item.owner}
-          recommend={item.likes}
-          view={item.views}
-          title={item.title}
-          created_at={item.created_at.substring(0, 10)}
-          category={item.category}
-        />
+        <CommunityPost key={idx} {...item} />
       </Link>
     );
   });
@@ -50,7 +40,7 @@ export const CommunityPage = ({ school }: { school: string }) => {
               category={category}
             />
             <div className="ml-[2rem]">
-              <SearchBar setData={setTitle}/>
+              <SearchBar setData={setTitle} />
             </div>
           </div>
           <Link href="/write">
@@ -61,17 +51,15 @@ export const CommunityPage = ({ school }: { school: string }) => {
         </div>{" "}
         {!isLoading ? (
           <>
-            <div className="flex flex-col w-full mt-[2rem]">
-              <div className="w-full flex h-[2.5rem] border-b-[1px] border-GrayScale-30">
+            <div className="flex flex-col mt-[2rem]">
+              <div className="flex h-[2.5rem] border-b-[1px] border-GrayScale-30">
                 <div className="w-[15%] community-title ">작성자</div>
                 <div className="w-[50%] community-title">제목</div>
                 <div className="w-[15%] community-title">작성일</div>
                 <div className="w-[10%] community-title">조회수</div>
                 <div className="w-[10%] community-title">추천</div>
               </div>
-              <div className="w-full flex flex-col min-h-[28rem] ">
-                {PostList}
-              </div>
+              <div className="flex flex-col min-h-[28rem] ">{PostList}</div>
             </div>
             <div className="flex justify-center">
               <Pagination
