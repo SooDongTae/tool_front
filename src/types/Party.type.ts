@@ -1,16 +1,13 @@
-export interface IParty {
+import { IStudent } from "./User.type";
+
+export interface IParty extends IStudent {
   title: string;
   currentPeople: number;
   maxPeople: number;
   untilAt: Date;
   cost: number;
-  owner: string;
-  grade: number;
-  class_no: number;
-  student_no: number;
   imgSrc: string;
   category? : string;
-  id : number;
   views : number;
 }
 
