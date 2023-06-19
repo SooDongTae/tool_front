@@ -1,12 +1,10 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { userState } from "@/context/userState";
-import { useRouter } from "next/router";
 import Link from "next/link";
 
 const ProfilePage = () => {
   const user = useRecoilValue(userState);
-  const path = useRouter().pathname;
   console.log(user);
   return (
     <div className="w-full h-full bg-white pt-[8rem]">

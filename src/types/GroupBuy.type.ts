@@ -10,12 +10,19 @@ export interface IGroupBuy {
   owner: string;
   ownerRating: number;
   ownerRatingScore: number;
-  participantResponses: [];
+  participantResponses: [IParticipant];
   status: string;
   student_no: number;
   title: string;
   untilAt: Date;
   views: number;
+}
+
+export interface IParticipant {
+  ban: number;
+  grade: number;
+  name: string;
+  num: number;
 }
 export interface IHistory {
   cost: number;

@@ -1,16 +1,19 @@
 import LeftTime, { GetLeftTime } from "@/components/Shared/LeftTime";
 import { ProgressBar } from "@/components/Shared/ProgressBar";
-import { IGroupBuy } from "@/types/GroupBuy.type";
+import { IGroupBuy, IParticipant } from "@/types/GroupBuy.type";
 import Image from "next/image";
 import { useQueryClient } from "react-query";
 import React, { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 import { IoCloseOutline } from "react-icons/io5";
 import usePartyMutation from "@/hooks/useJoin";
+import { useRecoilValue } from "recoil";
+import { userState } from "@/context/userState";
+import { IUser } from "@/types/User.type";
 
 const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
+  const user = useRecoilValue(userState);
   const [modalOpened, setModalOpened] = useState(false);
-  // const [closeDown, setCloseDown] = useState(false);
   const [onMouseDown, setOnMouseDown] = useState({
     close: false,
     submit: false,
@@ -41,6 +44,19 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
     });
   }, 60000);
   const { mutate } = usePartyMutation(party?.id);
+
+  const isParticipant = (user: IUser, participants: [IParticipant]) => {
+    let flag = false;
+    participants?.forEach((par) => {
+      if (
+        user.grade === par.grade &&
+        user.classNo === par.ban &&
+        user.stuNo === par.num
+      )
+        flag = true;
+    });
+    return flag;
+  };
 
   return (
     <div className="relative  h-auto flex justify-center pt-[10rem] bg-Background-Gray">
@@ -88,7 +104,7 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
           <div className="flex flex-col justify-between w-full h-[8rem] mt-[5%]">
             <div className="text-2xl">
               {party?.currentPeople}/{party?.maxPeople}(
-              {(party?.currentPeople / party?.maxPeople) * 100}%)
+              {((party?.currentPeople / party?.maxPeople) * 100).toFixed(2)}%)
             </div>
             <ProgressBar
               width="full"
@@ -103,11 +119,18 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
           </div>
           <div
             onClick={() => {
-              setModalOpened(true);
+              if (!isParticipant(user, party?.participantResponses))
+                setModalOpened(true);
             }}
-            className="w-[15rem] h-[3rem] bg-GreenLight-30 m-[5%] text-white rounded-[10rem] text-center text-2xl items-center justify-center flex cursor-pointer hover:bg-GreenDark-30 duration-300"
+            className={`w-[15rem] h-[3rem] ${
+              !isParticipant(user, party.participantResponses)
+                ? "bg-GreenLight-30 hover:bg-GreenDark-30 cursor-pointer"
+                : "bg-GrayScale-20"
+            }  m-[5%] text-white rounded-[10rem] text-center text-2xl items-center justify-center flex duration-300`}
           >
-            참여하기
+            {isParticipant(user, party?.participantResponses)
+              ? "참여 대기중.."
+              : "참여하기"}
           </div>
         </div>
       </div>
@@ -154,7 +177,9 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
               onMouseDown.submit ? "bg-GreenDark-30" : "bg-GreenLight-30"
             } w-[95%] h-[60%] rounded-[10px] text-white flex justify-center items-center cursor-pointer duration-200`}
           >
-            공동구매 참여하기
+            {isParticipant(user, party?.participantResponses)
+              ? "참여 대기중.."
+              : "공동구매 참여하기"}
           </div>
         </div>
       </ReactModal>
