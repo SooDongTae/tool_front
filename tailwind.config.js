@@ -24,10 +24,22 @@ module.exports = {
             transform: "translate(0px,-27px)",
           },
         },
+        Loading: {
+          "0%": {},
+          "100%": {
+            opacity: "0",
+            transform: "scale(0.5)",
+          },
+          "50%": {
+            opacity: "1",
+            transform: "scale(1.2)",
+          },
+        },
       },
       animation: {
         InputHover: "InputHover .3s ease-in-out forwards",
         TextAreaHover: "TextAreaHover .3s ease-in-out forwards",
+        Loading: "Loading 1s linear infinite",
       },
     },
     colors: {
