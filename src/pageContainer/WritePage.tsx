@@ -1,25 +1,23 @@
 import { CategoryModal } from "@/components/Shared/CategoryModal";
 import useWriteMutation from "@/hooks/community/useWrite";
 import { IPost } from "@/types/Post.type";
-import { Editor } from "@tinymce/tinymce-react";
-import { useRef, useState } from "react";
+import dynamic from "next/dynamic";
+import { useState } from "react";
+const PostEditor = dynamic(() => import("../components/Shared/PostEditor"), {
+  ssr: false,
+});
 export const WritePage = () => {
   const [post, setPost] = useState<IPost>({
     title: "",
     content: "",
   });
-  console.log(post)
   const [category, setCategory] = useState(0);
   const { mutate } = useWriteMutation(post, "FREE");
-  const editorRef = useRef<any>(null);
-  const tinymcePlugins = ["link", "lists", "autoresize"];
-  const tinymceToolbar =
-    "undo redo codesample | bold italic | alignleft alignright aligncenter alignjustify | emoticon image media | preview code";
   console.log(post);
   return (
     <div className="layout">
-      <div className="flex w-[75rem] justify-center flex-col">
-        <div className="w-full flex justify-between flex-row">
+      <div className="container">
+        <div className="flex justify-between">
           <CategoryModal
             data={1}
             category={["FREE", "FREE"]}
@@ -32,22 +30,7 @@ export const WritePage = () => {
           />
         </div>
         <div className="mt-[2rem]">
-          <Editor
-            apiKey={process.env.NEXT_PUBLIC_EDITOR_API_KEY}
-            onInit={(e, editor) => (editorRef.current = editor)}
-            onEditorChange={(text) => setPost({ ...post, content: text })}
-            init={{
-              height: "50rem",
-              width: "100%",
-              plugins: tinymcePlugins,
-              toolbar: tinymceToolbar,
-              min_height: 500,
-              menubar: false,
-              branding: false,
-              statusbar: false,
-              block_formats: "제목1=h2;제목2=h3;제목3=h4;본문=p;",
-            }}
-          />
+          <PostEditor setData={setPost} data={post} />
         </div>
         <div className="flex justify-center mt-8">
           <button

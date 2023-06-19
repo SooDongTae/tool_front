@@ -11,7 +11,6 @@ const onLike = async (id: string) => {
 
 const useLikeMutation = (id: string) => {
   const queryClient = useQueryClient();
-  console.log("HIHI");
   return useMutation(() => onLike(id), {
     onSuccess: (res) => {
       queryClient.invalidateQueries(["detail", id]);

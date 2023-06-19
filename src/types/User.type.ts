@@ -23,4 +23,6 @@ export interface IStudent {
   class_no: number;
   student_no: number;
   owner: string;
+  id: number;
+  name?: string;
 }

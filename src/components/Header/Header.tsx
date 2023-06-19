@@ -4,6 +4,7 @@ import Tab from "../GroupBuy/Tab";
 import Symbol from "../../asset/tool.svg";
 import { HeaderText } from "./HeaderText";
 import useUser from "@/hooks/user/useUser";
+import { NameConverter } from "../Shared/NameConverter";
 export const Header = () => {
   const router = useRouter();
   const path = router.pathname;
@@ -23,20 +24,16 @@ export const Header = () => {
         </div>
         {isLogged ? (
           <div className="flex flex-row">
-            <HeaderText
-              target=""
-              text={
-                user?.grade.toString() +
-                user?.classNo.toString() +
-                (user?.stuNo < 10 ? "0" : "") +
-                user?.stuNo.toString() +
-                " " +
-                user?.name
-              }
-              ml=""
-            />
+            <span className="text-[1.1rem] whitespace-nowrap font-bold">
+              <NameConverter
+                grade={user?.grade}
+                class_no={user?.classNo}
+                student_no={user?.stuNo}
+                owner={user?.name}
+              />
+            </span>
             <div
-              className="font-bold text-[1.1rem] cursor-pointer ml-[2rem]"
+              className="font-bold text-[1.1rem] cursor-pointer ml-[2rem] hover:text-GrayScale-40"
               onClick={logout}
             >
               로그아웃

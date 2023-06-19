@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import { CategoryModal } from "@/components/Shared/CategoryModal";
 import usePartyList from "@/hooks/party/useParty";
 import { BsGraphUp } from "react-icons/bs";
-import { AiOutlineClockCircle } from "react-icons/ai";
+import { AiOutlineClockCircle, AiOutlineClose } from "react-icons/ai";
 import { Observer } from "@/components/Shared/Observer";
 import { SortField } from "@/components/Main/SortField";
 import { Loading } from "@/components/Shared/Loading";
@@ -22,9 +22,7 @@ export const MainPage = () => {
     sortField: sortField,
   });
   const handleIntersection = () => {
-    if (hasNextPage) {
-      fetchNextPage();
-    }
+    if (hasNextPage) fetchNextPage();
   };
   const party = useMemo(
     () =>
@@ -40,14 +38,14 @@ export const MainPage = () => {
   });
   return (
     <div className="layout">
-      <div className="lg:w-[75rem] w-[80%]">
+      <div className="container">
         <div className="h-[18rem] rounded-[10px] bg-BlueLight-20 text-4xl font-bold text-GreenLight-30 flex justify-center items-center">
           <a href="https://tool-landing-page.vercel.app" target="_blink">
             Tool 사용법이 궁금하다면?
           </a>
         </div>
         <div className="lg:h-[2.5rem] h-[7rem] flex justify-between mt-8 lg:items-center lg:flex-row flex-col">
-          <div className="flex flex-row items-center justify-between lg:w-[20rem] w-full h-full">
+          <div className="flex items-center justify-between lg:w-[20rem]">
             <CategoryModal
               setData={setCateIdx}
               data={cateIdx}
@@ -68,7 +66,7 @@ export const MainPage = () => {
               text="최신순"
             />
           </div>
-          <div className="flex flex-row justify-between items-center">
+          <div className="flex justify-between items-center">
             <SearchBar setData={setTitle} />
             <Link
               href="/create"

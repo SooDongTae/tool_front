@@ -4,12 +4,13 @@ export interface CommunityPostType {
   owner: string;
   title: string;
   created_at: string;
-  view: string;
-  recommend: string;
+  views: string;
+  likes: string;
   category: string;
 }
 
 export interface IComment extends IStudent {
   content: string;
-  createdAt?: Date;
+  lastModified?: Date;
+  name: string;
 }

@@ -1,4 +1,4 @@
-import { IFormInput, IFormSelectInput } from "@/types/FormInput.type";
+import { IFormInput, IFormSelectInput } from "@/types/Input.type";
 
 export const FormSelectInput = ({
   inputName,

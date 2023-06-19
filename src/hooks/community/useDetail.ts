@@ -1,7 +1,7 @@
 import { customAxios } from "@/lib/axios/customAxios";
 import { useQuery } from "react-query";
 const onRequest = async (id: string) => {
-  const { data } = await customAxios.get("api/board/" + id, {
+  const { data } = await customAxios.get("/api/board/" + id, {
     headers: {
       Authorization: `Bearer${localStorage.getItem("accessToken")}`,
     },

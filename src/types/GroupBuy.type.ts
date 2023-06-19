@@ -1,18 +1,15 @@
-export interface IGroupBuy {
-  class_no: number;
+import { IStudent } from "./User.type";
+
+export interface IGroupBuy extends IStudent {
   content: string;
   cost: number;
   currentPeople: number;
-  grade: number;
-  id: number;
   imgSrc: string;
   maxPeople: number;
-  owner: string;
   ownerRating: number;
   ownerRatingScore: number;
   participantResponses: [IParticipant];
   status: string;
-  student_no: number;
   title: string;
   untilAt: Date;
   views: number;
