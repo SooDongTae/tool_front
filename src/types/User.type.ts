@@ -7,6 +7,12 @@ export interface UserType {
   token: string;
 }
 
+export interface IUser extends UserType {
+  profileUrl: string;
+  email: string;
+  joinRequests: number;
+}
+
 export interface IStudent {
   grade: number;
   class_no: number;

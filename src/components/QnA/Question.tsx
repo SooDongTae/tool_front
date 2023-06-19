@@ -13,7 +13,7 @@ const Question = ({ question }: { question: IQuestion }) => {
   const user = useRecoilValue(userState);
   const [qState, setQState] = useRecoilState(questionState(question.id));
   const [isModifying, setIsModifying] = useState(false);
-  const { mutate } = useDeleteQuestion();
+  const { mutate } = useDeleteQuestion(question.id);
 
   const getIsOpen = (isOpen: boolean) => {
     setIsModifying(isOpen);
@@ -33,9 +33,11 @@ const Question = ({ question }: { question: IQuestion }) => {
         Q
       </div>
       <div className="w-[85%] h-full flex justify-start items-center text-[1.5rem]">
-        {question.writerName !== user.name && !question.isSecret
+        {question.writerName === user.name
           ? question.content
-          : "비공개 질문입니다."}
+          : question.isSecret
+          ? "비공개 질문입니다."
+          : question.content}
       </div>
       {question.writerName === user.name && (
         <div className="relative flex justify-center items-center">

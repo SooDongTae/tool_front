@@ -1,7 +1,7 @@
 import { customAxios } from "@/lib/axios/customAxios";
 import { ICreateQuestion } from "@/types/GroupBuy.type";
 import axios from "axios";
-import { useMutation, useQueryClient } from "react-query";
+import { hashQueryKey, useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
 
 const deleteQuestion = async (form: ICreateQuestion) => {
@@ -13,11 +13,11 @@ const deleteQuestion = async (form: ICreateQuestion) => {
   return data;
 };
 
-const useDeleteQuestion = () => {
+const useDeleteQuestion = (id: string) => {
   const queryClient = useQueryClient();
   return useMutation((form: ICreateQuestion) => deleteQuestion(form), {
     onSuccess: () => {
-      queryClient.invalidateQueries(["question"]);
+      queryClient.invalidateQueries(["question", id]);
       toast.success("질문 삭제 성공!");
     },
     onError: () => {

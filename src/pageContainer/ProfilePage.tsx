@@ -1,12 +1,10 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { userState } from "@/context/userState";
-import { useRouter } from "next/router";
 import Link from "next/link";
 
 const ProfilePage = () => {
   const user = useRecoilValue(userState);
-  const path = useRouter().pathname;
   console.log(user);
   return (
     <div className="w-full h-full bg-white pt-[8rem]">
@@ -26,17 +24,23 @@ const ProfilePage = () => {
       <div className="w-full mt-[1%] flex flex-col items-center">
         <Link href={"/mygroupbuy"}>
           <div className="w-[30rem] h-[5rem] bg-GreenLight-30 rounded-[10px] mt-[2%] cursor-pointer hover:translate-x-[.6rem] duration-300">
-            <p className="p-[3%] font-semibold text-white">내가 만든 파티</p>
+            <p className="p-[3%] text-[1.2rem] text-center font-semibold text-white">
+              내가 만든 파티
+            </p>
           </div>
         </Link>
         <Link href={"/history"}>
           <div className="w-[30rem] h-[5rem] bg-GreenLight-30 rounded-[10px] mt-[1%] cursor-pointer hover:translate-x-[.6rem] duration-300">
-            <p className="p-[3%] font-semibold text-white">나의 참여 내역</p>
+            <p className="p-[3%] text-[1.2rem] text-center font-semibold text-white">
+              나의 참여 내역
+            </p>
           </div>
         </Link>
         <Link href={"/requests"}>
           <div className="w-[30rem] h-[5rem] bg-GreenLight-30 rounded-[10px] mt-[1%] cursor-pointer hover:translate-x-[.6rem] duration-300">
-            <p className="p-[3%] font-semibold text-white">받은 참여 요청</p>
+            <p className="p-[3%] text-[1.2rem] text-center font-semibold text-white">
+              받은 참여 요청
+            </p>
           </div>
         </Link>
       </div>

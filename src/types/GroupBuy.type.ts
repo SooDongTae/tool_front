@@ -8,11 +8,18 @@ export interface IGroupBuy extends IStudent {
   maxPeople: number;
   ownerRating: number;
   ownerRatingScore: number;
-  participantResponses: [];
+  participantResponses: [IParticipant];
   status: string;
   title: string;
   untilAt: Date;
   views: number;
+}
+
+export interface IParticipant {
+  ban: number;
+  grade: number;
+  name: string;
+  num: number;
 }
 export interface IHistory {
   cost: number;
@@ -62,4 +69,15 @@ export interface IQuestion {
 export interface IAnswer {
   id: string;
   content: string;
+}
+
+export interface IAnswerResponseList {
+  answerResponseList: [IAnswerResponse];
+}
+export interface IAnswerResponse {
+  content: string;
+  createdAt: string;
+  id: number;
+  lastModifiedAt: string;
+  writerName: string;
 }
