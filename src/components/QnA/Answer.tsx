@@ -28,7 +28,7 @@ const Answer = ({ id }: { id: string }) => {
     <div
       className={`${
         qState.isClicked ? "h-[10rem] border-b-[0.1rem]" : "h-0"
-      } w-full flex flex-row border-GrayScale-30 duration-200 bg-GrayScale-10 relative`}
+      } w-full flex border-GrayScale-30 duration-200 bg-GrayScale-10 relative`}
     >
       {qState.isClicked ? (
         <>
