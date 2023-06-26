@@ -19,7 +19,7 @@ export const QnA = ({
       ) : null}
       <div className="chatbot-wrapper justify-start">
         <div className="chatbot-text bg-GrayScale-10">
-          {isLoading ? "..." : answer}
+          {isLoading ? "..." : answer ? answer : "오류가 발생했습니다. 다시 시도해 주세요"}
         </div>
       </div>
     </div>
