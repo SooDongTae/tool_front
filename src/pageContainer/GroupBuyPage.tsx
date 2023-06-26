@@ -123,7 +123,7 @@ const GroupBuyPage = ({ party }: { party: IGroupBuy }) => {
                 setModalOpened(true);
             }}
             className={`w-[15rem] h-[3rem] ${
-              !isParticipant(user, party.participantResponses)
+              !isParticipant(user, party?.participantResponses)
                 ? "bg-GreenLight-30 hover:bg-GreenDark-30 cursor-pointer"
                 : "bg-GrayScale-20"
             }  m-[5%] text-white rounded-[10rem] text-center text-2xl items-center justify-center flex duration-300`}
